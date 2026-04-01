@@ -1,0 +1,45 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Blog post title"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short excerpt/summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full blog post content in markdown"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "renewable_energy",
+        "infrastructure",
+        "surveying",
+        "oil_gas",
+        "environmental",
+        "company_news",
+        "technology"
+      ],
+      "description": "Blog post category"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "URL of featured image"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title",
+    "excerpt",
+    "content",
+    "category"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Aerata B.V. — Aerial Assessment Solutions",
+  "short_name": "Aerata",
+  "description": "Professional drone services (DaaS) for renewable energy, critical infrastructure, surveying, oil & gas, and environmental monitoring.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a4d5c",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "https://base44.com/logo_v2.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
