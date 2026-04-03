@@ -29,3 +29,13 @@ dist-ssr
 
 .env
 .vite
+
+# Claude Code internal files
+.claude/
+
+# Raw source media — not for git
+Photos_and_Videos/
+
+# Large video files — GitHub hard-rejects files > 100 MB
+# Videos must be hosted on a CDN (see note below)
+public/media/*.mp4

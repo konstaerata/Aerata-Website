@@ -76,7 +76,7 @@ export default function IndustryCards() {
                   <div className={`absolute inset-0 bg-gradient-to-b ${ind.color} opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`} />
                   <div className="relative z-10">
                     <Icon className={`w-8 h-8 mb-4 transition-colors duration-300 ${isHovered ? 'text-primary' : 'text-muted-foreground'}`} />
-                    <h3 className="font-barlow font-semibold text-foreground text-lg mb-2">{ind.title}</h3>
+                    <h3 className="font-oxanium font-semibold text-foreground text-base mb-2 tracking-wide">{ind.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4">{ind.description}</p>
                     <span className={`inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase transition-colors duration-300 ${isHovered ? 'text-primary' : 'text-muted-foreground'}`}>
                       Learn More <ArrowRight className="w-3 h-3" />

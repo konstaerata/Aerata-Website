@@ -11,9 +11,9 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="py-16 border-y border-border bg-white">
+    <section className="py-16 border-y border-border/60 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-border/50">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -23,14 +23,14 @@ export default function StatsBar() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="flex items-center gap-5 justify-center"
+                className="flex items-center gap-5 justify-center py-4 md:py-0"
               >
-                <div className="w-14 h-14 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <span className="block font-barlow font-bold text-3xl text-foreground">{stat.value}</span>
-                  <span className="text-sm text-muted-foreground">{stat.label}</span>
+                  <span className="block font-oxanium font-bold text-4xl text-primary tracking-tight">{stat.value}</span>
+                  <span className="text-sm text-muted-foreground font-medium">{stat.label}</span>
                 </div>
               </motion.div>
             );

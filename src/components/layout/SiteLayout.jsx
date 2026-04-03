@@ -1,9 +1,16 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../CookieConsent';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+  return null;
+}
 
 export default function SiteLayout() {
   const [scrollY, setScrollY] = useState(0);
@@ -27,7 +34,8 @@ export default function SiteLayout() {
   const altitude = Math.round(400 - (progress / 100) * 400);
 
   return (
-    <div className="min-h-screen bg-background relative pt-20">
+    <div className="min-h-screen bg-background relative">
+      <ScrollToTop />
       <Navbar />
       
       {/* Altitude Scroll Bar */}

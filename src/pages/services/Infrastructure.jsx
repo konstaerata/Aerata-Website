@@ -110,6 +110,57 @@ export default function Infrastructure() {
         </div>
       </section>
 
+      {/* Recent Field Reports */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-px bg-primary" />
+            <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-primary">Mission Logs</span>
+          </div>
+          <h2 className="font-barlow font-bold text-3xl text-foreground mb-8">Recent Field Reports</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                tag: 'Power Grid',
+                title: 'HV Transmission Line Corridor — 210 km Survey, Netherlands',
+                date: 'February 2025',
+                excerpt: '210 km of 380 kV transmission line inspected using LiDAR and thermal payload. Vegetation encroachment flagged at 23 spans; clearance data integrated directly into the TSO\'s GIS platform.',
+                img: '/media/powertransmissiontower.jpg',
+              },
+              {
+                tag: 'Telecom',
+                title: 'Tower Structural Audit — 38 Masts, Attica Region',
+                date: 'December 2024',
+                excerpt: 'Structural integrity survey of 38 telecom masts completed in 4 days. High-res photogrammetric models delivered to the client for remote review, eliminating the need for any rope-access climbers.',
+                img: '/media/powertower.jpg',
+              },
+            ].map((report, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group rounded-lg border border-border/50 bg-card/30 overflow-hidden hover:border-primary/30 hover:shadow-md transition-all duration-300"
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <img src={report.img} alt={report.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 to-transparent" />
+                  <span className="absolute top-3 left-3 px-2 py-1 text-[10px] font-mono font-semibold border border-primary/40 bg-primary/20 text-white rounded tracking-widest uppercase">
+                    {report.tag}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <p className="text-xs font-mono text-muted-foreground mb-2">{report.date}</p>
+                  <h3 className="font-barlow font-semibold text-foreground mb-3 leading-snug">{report.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{report.excerpt}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CTABanner title="Get in Touch to Learn More" subtitle="Discover how drone inspections can transform your infrastructure operations." />
     </div>
   );

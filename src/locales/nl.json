@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over Ons",
+    "services": "Diensten",
+    "fleet": "Ons Vloot",
+    "training": "Training",
+    "news": "Nieuws",
+    "clientLogin": "Klant Login",
+    "getInTouch": "Neem Contact Op",
+    "connectTeam": "Verbind Met Ons Expert Team"
+  },
+  "services": {
+    "surveying": "Luchtfotografie & Kartering",
+    "renewableEnergy": "Hernieuwbare Energie",
+    "environmental": "Milieubewaking",
+    "infrastructure": "Kritieke Infrastructuur",
+    "oilGas": "Olie & Gas"
+  },
+  "hero": {
+    "badge": "Waar Expertise de Lucht Ingaat",
+    "title1": "Benut het",
+    "titleHighlight": "Potentieel",
+    "title2": "van Drones.",
+    "subtitle": "Innovatieve en efficiënte luchtbeoordelingsoplossingen voor bedrijven en organisaties.",
+    "cta": "Plan Nu Uw Drone-inspectie"
+  },
+  "footer": {
+    "tagline": "Waar Expertise de Lucht Ingaat. Professionele dronediensten voor sectoren die precisie vereisen.",
+    "hqTitle": "Hoofdkantoor — Delft",
+    "athensTitle": "Kantoor Athene",
+    "quickLinks": "Snelle Links",
+    "home": "Home",
+    "company": "Ons Bedrijf",
+    "news": "Nieuws",
+    "contact": "Neem Contact Op",
+    "privacy": "Privacybeleid",
+    "copyright": "Copyright 2026 – Aerata.com",
+    "ctaTitle": "Verminder Kosten, Verhoog Efficiëntie.",
+    "ctaDesc": "Plan nu uw drone-inspectie en ontdek hoe luchtintelligentie uw activiteiten kan transformeren.",
+    "ctaButton": "Plan Nu Uw Drone-inspectie",
+    "open": "Open",
+    "closed": "Gesloten"
+  },
+  "whyAerata": {
+    "label": "Waarom Aerata",
+    "title": "Waarom Kiezen voor Aerata?",
+    "description": "We combineren expertise, technologie en betrouwbaarheid om uitzonderlijke luchtbeoordelingsoplossingen te leveren in heel Europa.",
+    "reasons": {
+      "certified": { "title": "Gecertificeerde Piloten & Ingenieurs", "desc": "Volledig gecertificeerd en ervaren team met luchtvaartautoriteitscertificaten." },
+      "technology": { "title": "Geavanceerde DJI Technologie", "desc": "Enterprise DJI-platforms met thermische, LiDAR- en multispectrale sensoren." },
+      "ai": { "title": "AI-gestuurde Analyse", "desc": "Machine learning-algoritmen voor anomaliedetectie en voorspellend onderhoud." },
+      "gdpr": { "title": "AVG-conforme Gegevensverwerking", "desc": "End-to-end gegevensbeveiliging afgestemd op Europese privacyregelgeving." },
+      "offices": { "title": "Kantoren in Nederland & Griekenland", "desc": "Strategische aanwezigheid die Europese en mediterrane markten bedient." }
+    },
+    "easaLabel": "EASA Specifieke Categorie",
+    "easaText": "EASA Goedgekeurde Specifieke Categorie Operator voor complexe en hoog-risico missies.",
+    "insuredLabel": "Volledig Verzekerd",
+    "insuredText": "Volledig verzekerd onder de industriestandaard luchtvaartpolis voor alle commerciële drone-operaties."
+  },
+  "fleet": {
+    "label": "Ons Vloot",
+    "title1": "Enterprise-Kwaliteit",
+    "titleHighlight": "Luchtplatforms",
+    "desc": "Elke missie vereist het juiste gereedschap. Ons vloot combineert de meest geavanceerde commerciële droneplatforms, sensoren en payloads — allemaal bediend door gecertificeerde, ervaren piloten.",
+    "ctaLabel": "Zet Ons Vloot In",
+    "ctaTitle": "Klaar om uw missie te lanceren?",
+    "ctaDesc": "Vertel ons over uw project en wij koppelen het juiste platform, sensoren en crew aan uw specifieke behoeften.",
+    "ctaButton": "Vraag een Vloot Briefing Aan"
+  },
+  "contact": {
+    "label": "Neem Contact Op",
+    "title": "Contacteer Ons"
+  }
+}

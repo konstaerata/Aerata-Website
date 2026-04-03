@@ -1,8 +1,8 @@
-// @ts-nocheck
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
+import { useLang } from '../../lib/LanguageContext';
 
 // To use a video background, pass heroVideo prop with a direct .mp4 URL
 // e.g. heroVideo="https://your-cdn.com/drone-footage.mp4"
@@ -10,6 +10,7 @@ import { Play } from 'lucide-react';
 
 export default function HeroSection({ heroImage, heroVideo }) {
   const videoRef = useRef(null);
+  const { t } = useLang();
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -57,20 +58,20 @@ export default function HeroSection({ heroImage, heroVideo }) {
           <div className="flex items-center gap-3 mb-8">
             <div className="w-16 h-px bg-lime" />
             <span className="text-xs font-exo font-semibold tracking-[0.3em] uppercase text-lime">
-              Where Expertise Takes Flight
+              {t('hero.badge')}
             </span>
           </div>
-          <h1 className="font-exo font-extrabold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
-            Unlock the<br />
-            <span className="text-lime">Potential</span> of Drones.
+          <h1 className="font-exo font-extrabold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight">
+            {t('hero.title1')}<br />
+            <span className="text-lime drop-shadow-[0_0_24px_hsl(88_48%_52%/0.5)]">{t('hero.titleHighlight')}</span> {t('hero.title2')}
           </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl mb-10 font-inter">
-            Innovative and efficient Aerial Assessment Solutions for businesses and organizations.
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl mb-10 font-oxanium font-light tracking-wide">
+            {t('hero.subtitle')}
           </p>
           <Link to="/contact"
             className="inline-flex items-center px-10 py-4 font-exo font-semibold text-sm tracking-wider uppercase bg-lime text-white hover:bg-lime/90 transition-all duration-300 rounded glow-pulse"
           >
-            Schedule Your Drone Inspection Now
+            {t('hero.cta')}
           </Link>
         </motion.div>
       </div>

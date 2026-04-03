@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "fleet": "Our Fleet",
+    "training": "Training",
+    "news": "News",
+    "clientLogin": "Client Login",
+    "getInTouch": "Get in Touch",
+    "connectTeam": "Connect With Our Expert Team"
+  },
+  "services": {
+    "surveying": "Aerial Surveying & Mapping",
+    "renewableEnergy": "Renewable Energy",
+    "environmental": "Environmental Monitoring",
+    "infrastructure": "Critical Infrastructure",
+    "oilGas": "Oil & Gas"
+  },
+  "hero": {
+    "badge": "Where Expertise Takes Flight",
+    "title1": "Unlock the",
+    "titleHighlight": "Potential",
+    "title2": "of Drones.",
+    "subtitle": "Innovative and efficient Aerial Assessment Solutions for businesses and organizations.",
+    "cta": "Schedule Your Drone Inspection Now"
+  },
+  "footer": {
+    "tagline": "Where Expertise Takes Flight. Professional drone services for industries that demand precision.",
+    "hqTitle": "Headquarters — Delft",
+    "athensTitle": "Athens Office",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "company": "Our Company",
+    "news": "News",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "copyright": "Copyright 2026 – Aerata.com",
+    "ctaTitle": "Reduce Costs, Increase Efficiency.",
+    "ctaDesc": "Schedule your drone inspection now and discover how aerial intelligence can transform your operations.",
+    "ctaButton": "Schedule Your Drone Inspection Now",
+    "open": "Open",
+    "closed": "Closed"
+  },
+  "whyAerata": {
+    "label": "Why Aerata",
+    "title": "Why Choose Aerata?",
+    "description": "We combine expertise, technology, and reliability to deliver exceptional aerial assessment solutions across Europe.",
+    "reasons": {
+      "certified": { "title": "Certified Pilots & Engineers", "desc": "Fully licensed and experienced team with aviation authority certifications." },
+      "technology": { "title": "Advanced DJI Technology", "desc": "Enterprise-grade DJI platforms with thermal, LiDAR, and multi-spectral sensors." },
+      "ai": { "title": "AI-Powered Analytics", "desc": "Machine learning algorithms for anomaly detection and predictive maintenance." },
+      "gdpr": { "title": "GDPR-Compliant Data Handling", "desc": "End-to-end data security aligned with European privacy regulations." },
+      "offices": { "title": "Offices in Netherlands & Greece", "desc": "Strategic presence serving European and Mediterranean markets." }
+    },
+    "easaLabel": "EASA Specific Category",
+    "easaText": "EASA Approved Specific Category Operator for complex and high-risk missions.",
+    "insuredLabel": "Fully Insured",
+    "insuredText": "Fully Insured under Industry Standard Aviation Policy for all commercial drone operations."
+  },
+  "fleet": {
+    "label": "Our Fleet",
+    "title1": "Enterprise-Grade",
+    "titleHighlight": "Aerial Platforms",
+    "desc": "Every mission demands the right tool. Our fleet combines the most advanced commercial drone platforms, sensors, and payloads available — each operated by certified, experienced pilots.",
+    "ctaLabel": "Deploy Our Fleet",
+    "ctaTitle": "Ready to launch your mission?",
+    "ctaDesc": "Tell us about your project and we'll match the right platform, sensors, and crew to your specific needs.",
+    "ctaButton": "Request a Fleet Briefing"
+  },
+  "contact": {
+    "label": "Get in Touch",
+    "title": "Contact Us"
+  }
+}

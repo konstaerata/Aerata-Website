@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang, LANGUAGES } from '../../lib/LanguageContext';
 
-const LOGO_URL = 'https://media.base44.com/files/public/69cc1de864505c2ecdcc6774/ea2241fe9_card85x55.pdf';
-const LOGO_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/a6314992b_generated_image.png';
+const LOGO_IMG = '/media/logo-1.png';
 
 const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aerata', icon: (
@@ -33,6 +33,7 @@ const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'About Us', path: '/about' },
   { label: 'Services', path: '#', children: services },
+  { label: 'Our Fleet', path: '/fleet' },
   { label: 'Training', path: '/training' },
   { label: 'News', path: '/news' },
 ];
@@ -42,7 +43,19 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef(null);
   const location = useLocation();
+  const { lang, switchLang, t } = useLang();
+
+  // Close lang dropdown on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (langRef.current && !langRef.current.contains(e.target)) setLangOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -64,24 +77,19 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className={`flex items-center gap-2 transition-colors duration-300`}>
-                {/* Geometric drone mark */}
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <polygon points="16,2 30,10 30,22 16,30 2,22 2,10" fill="hsl(88 48% 52%)" opacity="0.15"/>
-                  <polygon points="16,2 30,10 30,22 16,30 2,22 2,10" fill="none" stroke="hsl(88 48% 52%)" strokeWidth="1.5"/>
-                  <circle cx="16" cy="16" r="4" fill="hsl(200 38% 28%)"/>
-                  <line x1="16" y1="8" x2="16" y2="12" stroke="hsl(88 48% 52%)" strokeWidth="1.5"/>
-                  <line x1="16" y1="20" x2="16" y2="24" stroke="hsl(88 48% 52%)" strokeWidth="1.5"/>
-                  <line x1="8" y1="16" x2="12" y2="16" stroke="hsl(88 48% 52%)" strokeWidth="1.5"/>
-                  <line x1="20" y1="16" x2="24" y2="16" stroke="hsl(88 48% 52%)" strokeWidth="1.5"/>
-                </svg>
-                <span className={`font-oxanium font-bold text-xl tracking-[0.15em] uppercase transition-colors duration-300 ${
-                  scrolled ? 'text-foreground' : 'text-white'
-                }`}>
-                  AERATA
-                </span>
-              </div>
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+              className="flex items-center"
+            >
+              <img
+                src={LOGO_IMG}
+                alt="Aerata logo"
+                className="h-14 w-auto object-contain"
+                onError={(e) => {
+                  e.currentTarget.src = '/media/logo.png';
+                }}
+              />
             </Link>
 
             {/* Desktop Nav */}
@@ -139,10 +147,56 @@ export default function Navbar() {
                   </a>
                 ))}
               </div>
+              {/* Language Switcher */}
+              <div className="relative hidden lg:block" ref={langRef}>
+                <button
+                  onClick={() => setLangOpen(!langOpen)}
+                  className={`flex items-center gap-1.5 px-3 py-2 text-xs font-oxanium font-semibold tracking-wider uppercase rounded transition-colors ${
+                    scrolled ? 'text-muted-foreground hover:text-primary' : 'text-white/70 hover:text-white'
+                  }`}
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  {lang.toUpperCase()}
+                  <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {langOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 6 }}
+                      className="absolute top-full right-0 mt-1 w-36 bg-white border border-border rounded-lg overflow-hidden shadow-xl z-50"
+                    >
+                      {LANGUAGES.map((l) => (
+                        <button
+                          key={l.code}
+                          onClick={() => { switchLang(l.code); setLangOpen(false); }}
+                          className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-all ${
+                            lang === l.code
+                              ? 'bg-primary/8 text-primary font-semibold'
+                              : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
+                          }`}
+                        >
+                          <span className="font-oxanium font-bold text-xs tracking-wider">{l.label}</span>
+                          <span className="text-xs">{l.name}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link to="/portal"
+                className={`hidden lg:inline-flex items-center px-4 py-2.5 text-sm font-semibold font-exo tracking-wide border transition-all duration-300 rounded ${
+                  scrolled ? 'border-primary/40 text-primary hover:bg-primary/5' : 'border-white/30 text-white/80 hover:text-white hover:border-white/60'
+                }`}
+              >
+                {t('nav.clientLogin')}
+              </Link>
               <Link to="/contact"
                 className="hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-semibold font-exo tracking-wide bg-lime text-white hover:bg-lime/90 transition-all duration-300 rounded"
               >
-                Get in Touch
+                {t('nav.getInTouch')}
               </Link>
               <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-foreground p-2">
                 {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -209,11 +263,38 @@ export default function Navbar() {
                   </a>
                 ))}
               </div>
+              {/* Mobile Language Switcher */}
+              <div className="pt-2 pb-4">
+                <p className="text-[10px] font-oxanium font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">Language</p>
+                <div className="flex gap-2">
+                  {LANGUAGES.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => switchLang(l.code)}
+                      className={`flex-1 py-2.5 text-xs font-oxanium font-bold tracking-wider uppercase rounded border transition-all ${
+                        lang === l.code
+                          ? 'bg-primary text-white border-primary'
+                          : 'border-border text-muted-foreground hover:border-primary/40 hover:text-primary'
+                      }`}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pb-2">
+                <Link to="/portal"
+                  className="block w-full text-center px-6 py-4 font-exo font-semibold border border-primary/40 text-primary hover:bg-primary/5 transition-all rounded"
+                >
+                  {t('nav.clientLogin')}
+                </Link>
+              </div>
               <div className="pb-6">
                 <Link to="/contact"
                   className="block w-full text-center px-6 py-4 font-exo font-semibold bg-lime text-white hover:bg-lime/90 transition-all rounded"
                 >
-                  Connect With Our Expert Team
+                  {t('nav.connectTeam')}
                 </Link>
               </div>
             </div>

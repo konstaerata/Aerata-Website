@@ -4,13 +4,12 @@ import HeroSection from '../components/home/HeroSection';
 import IndustryCards from '../components/home/IndustryCards';
 import StatsBar from '../components/home/StatsBar';
 import WhyAerata from '../components/home/WhyAerata';
+import ROICalculator from '../components/home/ROICalculator';
 import PartnersSection from '../components/home/PartnersSection';
 
 const HERO_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png';
 
-// To add a video background, set HERO_VIDEO to a direct .mp4 URL:
-// const HERO_VIDEO = 'https://your-cdn.com/drone-footage.mp4';
-const HERO_VIDEO = null;
+const HERO_VIDEO = '/media/promovideo.mp4';
 
 export default function Home() {
   return (
@@ -19,6 +18,7 @@ export default function Home() {
       <IndustryCards />
       <StatsBar />
       <WhyAerata />
+      <ROICalculator />
       <PartnersSection />
     </div>
   );
