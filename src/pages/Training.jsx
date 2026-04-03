@@ -6,20 +6,20 @@ import { GraduationCap, ExternalLink, Award, BookOpen, Users } from 'lucide-reac
 export default function Training() {
   return (
     <div>
-      <section className="relative py-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent" />
+      {/* Page title — navy brand background */}
+      <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-16 h-px bg-primary" />
-              <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-primary">Training</span>
+              <div className="w-16 h-px bg-lime" />
+              <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-lime">Training</span>
             </div>
-            <h1 className="font-barlow font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight max-w-3xl mb-8">
-              Drone Pilot<br /><span className="text-primary">Training & Licensing</span>
+            <h1 className="font-barlow font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mb-8">
+              Drone Pilot<br /><span className="text-lime">Training & Licensing</span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mb-10">
-              Get certified to fly commercially with EU-compliant drone pilot training. 
-              Our partnership with DroneLicense.eu provides comprehensive courses from 
+            <p className="text-lg text-white/70 leading-relaxed max-w-2xl mb-10">
+              Get certified to fly commercially with EU-compliant drone pilot training.
+              Our partnership with DroneLicense.eu provides comprehensive courses from
               beginner to advanced operations.
             </p>
           </motion.div>

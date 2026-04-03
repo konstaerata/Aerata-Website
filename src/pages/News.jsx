@@ -103,11 +103,11 @@ export default function News() {
 
   return (
     <div>
-      <section className="relative py-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent" />
+      {/* Page title — navy brand background */}
+      <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <SectionHeading label="News & Insights" title="Latest from Aerata" align="left" />
+            <SectionHeading label="News & Insights" title="Latest from Aerata" align="left" light />
           </motion.div>
         </div>
       </section>

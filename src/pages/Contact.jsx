@@ -1,98 +1,224 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Send, CheckCircle } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
-const serviceOptions = [
-  'Aerial Surveying & Mapping',
-  'Renewable Energy Inspections',
-  'Critical Infrastructure Inspections',
-  'Oil & Gas Inspections',
-  'Environmental Monitoring',
-  'Smart Agriculture',
-  'Drone Training',
-  'Other',
-];
+// HubSpot's `css` option forces the form into an iframe and injects this CSS
+// into that iframe's <head>. We also import Oxanium here because the parent
+// page's fonts are not available inside a cross-origin iframe.
+// `cssRequired: ''` strips HubSpot's own default stylesheet so our rules win
+// without needing !important.
+const HS_BRAND_CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body, form, input, select, textarea, button, label {
+    font-family: 'Oxanium', sans-serif;
+  }
+
+  /* Field spacing */
+  fieldset { max-width: 100%; border: none; padding: 0; margin: 0; }
+  .hs-form-field, .field { margin-bottom: 1.25rem; }
+  .input { margin-right: 0; }
+
+  /* Labels */
+  label {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b7a8d;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .hs-form-required { color: #7ab648; margin-left: 2px; }
+
+  /* Inputs / selects / textareas */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="phone"],
+  input[type="number"],
+  select,
+  textarea {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #1a2a3a;
+    background: #f2f4f6;
+    border: 1px solid #ccd3db;
+    border-radius: 0.375rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    min-height: 2.75rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+  }
+  textarea {
+    min-height: 8rem;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  input::placeholder, textarea::placeholder {
+    color: #8fa0b2;
+    opacity: 1;
+  }
+
+  /* Focus — lime ring */
+  input:focus, select:focus, textarea:focus {
+    border-color: #7ab648;
+    box-shadow: 0 0 0 3px rgba(122, 182, 72, 0.15);
+  }
+
+  /* Select chevron */
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23667085' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    padding-right: 2.5rem;
+  }
+
+  /* Validation */
+  input.error, select.error, textarea.error, .hs-input.error {
+    border-color: #e02d2d;
+    box-shadow: none;
+  }
+  .hs-error-msgs {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #cc2222;
+    margin-top: 0.375rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Submit button — brand lime */
+  .hs-button {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #7ab648;
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.875rem 2.5rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .hs-button:hover {
+    background: #669d3a;
+    box-shadow: 0 4px 16px rgba(122, 182, 72, 0.28);
+  }
+  .hs-submit { margin-top: 0.5rem; }
+
+  /* Checkbox / radio lists */
+  .inputs-list { list-style: none; padding: 0; margin: 0.25rem 0 0; }
+  .inputs-list li { margin-bottom: 0.5rem; }
+  .inputs-list label {
+    font-size: 0.8rem;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #2a3d52;
+  }
+
+  /* GDPR / legal */
+  .legal-consent-container,
+  .legal-consent-container p {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.7rem;
+    color: #6b7a8d;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+  }
+  .legal-consent-container a { color: #7ab648; text-decoration: underline; }
+
+  /* Rich text HubSpot injects */
+  .hs-richtext, .hs-richtext p {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.8125rem;
+    color: #6b7a8d;
+    line-height: 1.6;
+  }
+
+  /* Success message */
+  .submitted-message { font-family: 'Oxanium', sans-serif; text-align: center; padding: 3rem 1.5rem; }
+  .submitted-message p { font-size: 0.9375rem; color: #6b7a8d; line-height: 1.7; }
+`;
+
+function HubSpotForm() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const scriptId = 'hs-embed-script';
+
+    const initForm = () => {
+      if (window.hbspt && containerRef.current) {
+        containerRef.current.innerHTML = '';
+        window.hbspt.forms.create({
+          region: 'eu1',
+          portalId: '25483745',
+          formId: 'a422dc81-1039-4f10-826b-07d97d32904a',
+          target: '#hs-form-container',
+          // Strip HubSpot's default stylesheet so our rules are the only ones
+          cssRequired: '',
+          // Inject our brand CSS into the iframe HubSpot creates
+          css: HS_BRAND_CSS,
+        });
+      }
+    };
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+      script.charset = 'utf-8';
+      script.type = 'text/javascript';
+      script.onload = initForm;
+      document.head.appendChild(script);
+    } else {
+      initForm();
+    }
+  }, []);
+
+  return (
+    <div
+      id="hs-form-container"
+      ref={containerRef}
+      className="hs-form-wrapper rounded-lg border border-border/50 bg-card/30 p-8 min-h-[480px]"
+    />
+  );
+}
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '', company: '', email: '', phone: '', service: '', message: ''
-  });
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    try {
-      // HubSpot Form Submission
-      const HUBSPOT_PORTAL_ID = '25483745';
-      const HUBSPOT_FORM_ID = 'a422dc81-1039-4f10-826b-07d97d32904a';
-
-      const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
-
-      const fields = [
-        { name: 'firstname', value: formData.name.split(' ')[0] },
-        { name: 'lastname', value: formData.name.split(' ').slice(1).join(' ') || '' },
-        { name: 'company', value: formData.company },
-        { name: 'email', value: formData.email },
-        { name: 'phone', value: formData.phone },
-        { name: 'message', value: formData.message },
-        { name: 'service_of_interest', value: formData.service },
-      ];
-
-      const response = await fetch(hubspotUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fields: fields,
-          context: {
-            pageUri: window.location.href,
-            pageName: 'Contact Form',
-          },
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
-      } else {
-        console.error('HubSpot submission failed:', response.status);
-        alert('There was an issue submitting the form. Please try again.');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      alert('There was an error submitting the form. Please try again or contact us directly.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   return (
     <div>
-      <section className="relative py-32 pt-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent" />
+      {/* Page title — navy brand background */}
+      <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-16 h-px bg-primary" />
-              <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-primary">Contact</span>
+              <div className="w-16 h-px bg-lime" />
+              <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-lime">Contact</span>
             </div>
-            <h1 className="font-barlow font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight max-w-3xl mb-4">
-              Connect With Our<br /><span className="text-primary">Expert Team</span>
+            <h1 className="font-barlow font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mb-4">
+              Connect With Our<br /><span className="text-lime">Expert Team</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl">
+            <p className="text-lg text-white/70 max-w-xl">
               Ready to explore how drone technology can transform your operations? Get in touch.
             </p>
           </motion.div>
@@ -102,76 +228,18 @@ export default function Contact() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Form */}
+            {/* HubSpot Form */}
             <div className="lg:col-span-3">
-              {submitted ? (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-20 rounded-lg border border-primary/30 bg-primary/5"
-                >
-                  <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-                  <h2 className="font-barlow font-bold text-2xl text-foreground mb-2">Mission Confirmed</h2>
-                  <p className="text-muted-foreground">Your message has been received. Our team will be in touch shortly.</p>
-                </motion.div>
-              ) : (
-                <motion.form
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  onSubmit={handleSubmit}
-                  className="rounded-lg border border-border/50 bg-card/30 p-8"
-                >
-                  <div className="mb-6">
-                    <span className="text-xs font-mono text-primary/60">// MISSION PARAMETERS</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Name *</Label>
-                      <Input value={formData.name} onChange={e => handleChange('name', e.target.value)} required className="bg-secondary border-border" />
-                    </div>
-                    <div>
-                      <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Company</Label>
-                      <Input value={formData.company} onChange={e => handleChange('company', e.target.value)} className="bg-secondary border-border" />
-                    </div>
-                    <div>
-                      <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Email *</Label>
-                      <Input type="email" value={formData.email} onChange={e => handleChange('email', e.target.value)} required className="bg-secondary border-border" />
-                    </div>
-                    <div>
-                      <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Phone</Label>
-                      <Input type="tel" value={formData.phone} onChange={e => handleChange('phone', e.target.value)} className="bg-secondary border-border" />
-                    </div>
-                  </div>
-                  <div className="mb-6">
-                    <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Service of Interest</Label>
-                    <Select value={formData.service} onValueChange={v => handleChange('service', v)}>
-                      <SelectTrigger className="bg-secondary border-border">
-                        <SelectValue placeholder="Select a service..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {serviceOptions.map(s => (
-                          <SelectItem key={s} value={s}>{s}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="mb-8">
-                    <Label className="text-muted-foreground text-xs uppercase tracking-wider mb-2 block">Message *</Label>
-                    <Textarea value={formData.message} onChange={e => handleChange('message', e.target.value)} required rows={5} className="bg-secondary border-border" placeholder="Tell us about your project..." />
-                  </div>
-                  <button type="submit" disabled={submitting}
-                    className="w-full flex items-center justify-center gap-2 px-8 py-3.5 font-barlow font-semibold text-sm tracking-wide border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded disabled:opacity-50"
-                  >
-                    {submitting ? (
-                      <span className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                        Uploading Mission Data...
-                      </span>
-                    ) : (
-                      <>Submit <Send className="w-4 h-4" /></>
-                    )}
-                  </button>
-                </motion.form>
-              )}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="mb-4">
+                  <span className="text-xs font-mono text-primary/60">// MISSION PARAMETERS</span>
+                </div>
+                <HubSpotForm />
+              </motion.div>
             </div>
 
             {/* Contact Info */}
