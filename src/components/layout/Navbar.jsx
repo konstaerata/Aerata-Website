@@ -3,8 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang, LANGUAGES } from '../../lib/LanguageContext';
-
-const LOGO_IMG = '/media/logo-1.png';
+import { MEDIA } from '../../lib/media';
 
 const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aerata', icon: (
@@ -83,12 +82,10 @@ export default function Navbar() {
               className="flex items-center"
             >
               <img
-                src={LOGO_IMG}
+                src={MEDIA.logoPrimary}
                 alt="Aerata logo"
                 className="h-14 w-auto object-contain"
-                onError={(e) => {
-                  e.currentTarget.src = '/media/logo.png';
-                }}
+                onError={(e) => { e.currentTarget.src = MEDIA.logo; }}
               />
             </Link>
 

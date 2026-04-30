@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { useLang } from '../../lib/LanguageContext';
+import { MEDIA } from '../../lib/media';
 
 const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aerata', icon: (
@@ -78,7 +79,7 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <img
-                src="/media/logo-1.png"
+                src={MEDIA.logoPrimary}
                 alt="Aerata"
                 className="h-14 w-auto object-contain"
               />

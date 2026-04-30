@@ -5,6 +5,7 @@ import { Shield, Zap, FileText } from 'lucide-react';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import { MEDIA } from '../../lib/media';
 
 function ThermalSlider() {
   const [pos, setPos] = useState(50);
@@ -56,7 +57,7 @@ function ThermalSlider() {
           {/* AFTER — Thermal (CSS filter simulates thermal palette on same image) */}
           <div className="absolute inset-0">
             <img
-              src="/media/solar_normal.jpg"
+              src={MEDIA.solar}
               alt="Thermal view"
               className="w-full h-full object-cover"
               style={{ filter: 'saturate(0) sepia(1) hue-rotate(300deg) saturate(4) brightness(0.85) contrast(1.3)' }}
@@ -73,7 +74,7 @@ function ThermalSlider() {
             style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           >
             <img
-              src="/media/solar_normal.jpg"
+              src={MEDIA.solar}
               alt="Standard view"
               className="w-full h-full object-cover"
               draggable={false}
@@ -106,8 +107,6 @@ function ThermalSlider() {
   );
 }
 
-const SOLAR_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/861fc5002_generated_b0e7bfe4.png';
-const WIND_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/df75bc794_generated_9231243b.png';
 
 const trustPoints = [
   { icon: Shield, title: 'Advanced Technology', desc: 'Enterprise DJI platforms with thermal and multi-spectral sensors.' },
@@ -121,7 +120,7 @@ export default function RenewableEnergy() {
       <ServicePageHero
         title="Renewable Energy Inspections"
         subtitle="Maximize efficiency, minimize downtime, and ensure safety. Unlock the power of your renewable energy assets."
-        image={SOLAR_IMG}
+        image={MEDIA.solarPanel}
         ctaText="Get a Free Consultation Now"
       />
 
@@ -136,7 +135,7 @@ export default function RenewableEnergy() {
             'Panel alignment and soiling analysis',
             'Up to 50% reduction in inspection cost and time',
           ]}
-          image={SOLAR_IMG}
+          image={MEDIA.solarPanel}
         />
         <ServiceSection
           title="Wind Turbine Inspections"
@@ -148,7 +147,7 @@ export default function RenewableEnergy() {
             '3DX technology in collaboration with Sulzer Schmid',
             'Proactive maintenance recommendations',
           ]}
-          image={WIND_IMG}
+          image={MEDIA.windTurbine}
           reversed
         />
       </div>

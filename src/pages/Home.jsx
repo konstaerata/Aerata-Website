@@ -6,15 +6,12 @@ import StatsBar from '../components/home/StatsBar';
 import WhyAerata from '../components/home/WhyAerata';
 import ROICalculator from '../components/home/ROICalculator';
 import PartnersSection from '../components/home/PartnersSection';
-
-const HERO_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png';
-
-const HERO_VIDEO = '/media/promovideo.mp4';
+import { MEDIA } from '../lib/media';
 
 export default function Home() {
   return (
     <div>
-      <HeroSection heroImage={HERO_IMG} heroVideo={HERO_VIDEO} />
+      <HeroSection heroImage={MEDIA.heroImage} heroVideo={MEDIA.heroVideo} />
       <IndustryCards />
       <StatsBar />
       <WhyAerata />

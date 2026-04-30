@@ -5,9 +5,7 @@ import { Cpu } from 'lucide-react';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
-
-const OIL_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/f380e9e02_generated_a743b199.png';
-const INFRA_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/04b2da82d_generated_65a9eb1f.png';
+import { MEDIA } from '../../lib/media';
 
 export default function OilGas() {
   return (
@@ -15,7 +13,7 @@ export default function OilGas() {
       <ServicePageHero
         title="Oil & Gas Network Inspections"
         subtitle="The Future of Oil & Gas Network Inspection: Why Choose Drones? Efficient, safe, and comprehensive aerial inspections for the energy sector."
-        image={OIL_IMG}
+        image={MEDIA.oilRig}
         ctaText="Get in Touch"
       />
 
@@ -29,7 +27,7 @@ export default function OilGas() {
             'Full reports with high-res imagery and simulations',
             'Minimal operational disruption during inspections',
           ]}
-          image={OIL_IMG}
+          image={MEDIA.oilRig}
         />
         <ServiceSection
           title="Increased Safety"
@@ -40,7 +38,7 @@ export default function OilGas() {
             'Pipeline corridor monitoring',
             'Confined space and hard-to-reach area access',
           ]}
-          image={INFRA_IMG}
+          image={MEDIA.infrastructure}
           reversed
         />
       </div>
@@ -88,14 +86,14 @@ export default function OilGas() {
                 title: 'Offshore Pipeline Integrity Scan — North Sea',
                 date: 'March 2025',
                 excerpt: 'A 42 km subsea pipeline corridor inspected in under 3 days using DJI Matrice 300RTK with H20T payload. Identified 7 anomalous sections requiring remediation, reducing manual dive operations by 80%.',
-                img: '/media/oilandgas.jpg',
+                img: MEDIA.oilGas,
               },
               {
                 tag: 'Refinery Asset',
                 title: 'Flare Stack & Storage Tank Visual Survey — Rotterdam',
                 date: 'January 2025',
                 excerpt: 'Full perimeter inspection of 14 storage tanks and 2 flare stacks completed in a single day. Thermal imaging revealed insulation degradation on 3 tanks ahead of a planned maintenance window.',
-                img: '/media/powertower.jpg',
+                img: MEDIA.powerTower,
               },
             ].map((report, i) => (
               <motion.div

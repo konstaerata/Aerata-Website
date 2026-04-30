@@ -4,11 +4,7 @@ import { motion } from 'framer-motion';
 import { Linkedin } from 'lucide-react';
 import SectionHeading from '../components/shared/SectionHeading';
 import CTABanner from '../components/shared/CTABanner';
-
-const LIDAR_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png';
-const CONSTRUCTION_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/38a98ba55_generated_a71edd9a.png';
-const INFRA_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/04b2da82d_generated_65a9eb1f.png';
-const AGRI_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png';
+import { MEDIA } from '../lib/media';
 
 const caseStudies = [
   {
@@ -16,7 +12,7 @@ const caseStudies = [
     title: 'Solar Farm Thermographic Inspection — Netherlands',
     desc: 'Deployed thermal drone surveys across a 45-hectare solar park in Zuid-Holland to identify underperforming panels and hotspots. Delivered a full defect report within 48 hours.',
     metrics: ['45 ha surveyed in 1 day', '320+ defects identified', '€180k estimated savings'],
-    image: LIDAR_IMG,
+    image: MEDIA.lidar,
     tag: 'Energy',
   },
   {
@@ -24,7 +20,7 @@ const caseStudies = [
     title: 'High-Voltage Powerline Corridor Inspection — Greece',
     desc: 'Inspected 120 km of 150kV transmission lines in mountainous terrain using LiDAR and RGB sensors. Reduced inspection time by 60% versus traditional rope-access methods.',
     metrics: ['120 km inspected', '60% faster than manual', 'Zero safety incidents'],
-    image: INFRA_IMG,
+    image: MEDIA.infrastructure,
     tag: 'Infrastructure',
   },
   {
@@ -32,7 +28,7 @@ const caseStudies = [
     title: 'Archaeological Site Documentation — Peloponnese',
     desc: 'Generated centimeter-accurate orthomosaics and 3D models of a 12-hectare archaeological dig site, providing researchers with GIS-ready data for excavation planning.',
     metrics: ['12 ha, <1 cm GSD', 'Full 3D point cloud', 'GIS & CAD deliverables'],
-    image: AGRI_IMG,
+    image: MEDIA.agriculture,
     tag: 'Surveying',
   },
   {
@@ -40,7 +36,7 @@ const caseStudies = [
     title: 'Real-Time Progress Tracking — Residential Development',
     desc: 'Weekly drone surveys of a large residential construction project near Delft provided automated volume calculations and as-built vs. design comparisons throughout the 18-month build.',
     metrics: ['18 months of weekly data', 'Automated volume reports', '30% reduction in rework'],
-    image: CONSTRUCTION_IMG,
+    image: MEDIA.construction,
     tag: 'Construction',
   },
   {
@@ -48,7 +44,7 @@ const caseStudies = [
     title: 'Wetland Habitat Mapping — Delta Region',
     desc: 'Multi-spectral and RGB drone surveys mapped vegetation density, water quality indicators, and biodiversity zones across a 200-hectare protected wetland reserve.',
     metrics: ['200 ha mapped', 'Multi-spectral NDVI', 'Biodiversity report delivered'],
-    image: LIDAR_IMG,
+    image: MEDIA.lidar,
     tag: 'Environmental',
   },
   {
@@ -56,7 +52,7 @@ const caseStudies = [
     title: 'Offshore Platform Visual Inspection — North Sea',
     desc: 'Conducted close-visual inspection of structural components on an offshore platform, replacing the need for scaffolding and rope access with a safer, faster drone-based workflow.',
     metrics: ['4x faster than rope access', 'Full corrosion mapping', 'Zero platform downtime'],
-    image: INFRA_IMG,
+    image: MEDIA.infrastructure,
     tag: 'Oil & Gas',
   },
 ];
@@ -74,7 +70,7 @@ export default function About() {
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={INFRA_IMG} alt="About Aerata" className="w-full h-full object-cover" />
+          <img src={MEDIA.infrastructure} alt="About Aerata" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/30" />
         </div>

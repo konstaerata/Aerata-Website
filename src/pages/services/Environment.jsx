@@ -4,10 +4,7 @@ import { motion } from 'framer-motion';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
-
-const ENV_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/396042db6_generated_7dacdf8c.png';
-const AGRI_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png';
-const LIDAR_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png';
+import { MEDIA } from '../../lib/media';
 
 export default function Environmental() {
   return (
@@ -15,7 +12,7 @@ export default function Environmental() {
       <ServicePageHero
         title="Environmental Monitoring & Smart Agriculture"
         subtitle="Revolutionizing environmental monitoring with cutting-edge drone technology and AI-powered data analysis. Elevate your environmental insights."
-        image={ENV_IMG}
+        image={MEDIA.environment}
       />
 
       {/* Image Gallery */}
@@ -23,10 +20,10 @@ export default function Environmental() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { img: ENV_IMG, label: 'Bird Migration Tracking' },
-              { img: AGRI_IMG, label: 'Crop Health Monitoring' },
-              { img: LIDAR_IMG, label: 'Habitat Mapping' },
-              { img: ENV_IMG, label: 'Ecosystem Assessment' },
+              { img: MEDIA.environment, label: 'Bird Migration Tracking' },
+              { img: MEDIA.agriculture, label: 'Crop Health Monitoring' },
+              { img: MEDIA.lidar, label: 'Habitat Mapping' },
+              { img: MEDIA.environment, label: 'Ecosystem Assessment' },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -55,7 +52,7 @@ export default function Environmental() {
             'Coastal erosion monitoring',
             'Wetland and forest ecosystem assessments',
           ]}
-          image={ENV_IMG}
+          image={MEDIA.environment}
         />
         <ServiceSection
           title="Biodiversity Assessment"
@@ -66,7 +63,7 @@ export default function Environmental() {
             'Change detection over time',
             'Detailed conservation reports and maps',
           ]}
-          image={LIDAR_IMG}
+          image={MEDIA.lidar}
           reversed
         />
         <ServiceSection
@@ -78,7 +75,7 @@ export default function Environmental() {
             'Nutrient deficiency detection',
             'AI-powered targeted intervention plans',
           ]}
-          image={AGRI_IMG}
+          image={MEDIA.agriculture}
         />
       </div>
 

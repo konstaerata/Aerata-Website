@@ -4,11 +4,7 @@ import { motion } from 'framer-motion';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
-
-const LIDAR_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png';
-const CONSTRUCTION_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/38a98ba55_generated_a71edd9a.png';
-const INFRA_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/04b2da82d_generated_65a9eb1f.png';
-const AGRI_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png';
+import { MEDIA } from '../../lib/media';
 
 export default function Surveying() {
   return (
@@ -16,7 +12,7 @@ export default function Surveying() {
       <ServicePageHero
         title="Aerial Surveying & Mapping"
         subtitle="High Quality | Centimetre Accuracy | Efficient. Precision aerial data collection for surveying, mapping, and 3D modeling applications."
-        image={INFRA_IMG}
+        image={MEDIA.infrastructure}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,7 +25,7 @@ export default function Surveying() {
             'GIS and CAD compatible outputs',
             'Centimeter-level accuracy with GCPs',
           ]}
-          image={CONSTRUCTION_IMG}
+          image={MEDIA.construction}
         />
         <ServiceSection
           title="Digital Terrain Models & LiDAR Surveys"
@@ -40,7 +36,7 @@ export default function Surveying() {
             'Flood risk assessment and modeling',
             'Vegetation canopy analysis',
           ]}
-          image={LIDAR_IMG}
+          image={MEDIA.lidar}
           reversed
         />
         <ServiceSection
@@ -52,7 +48,7 @@ export default function Surveying() {
             'As-built vs. design comparison',
             'Stakeholder-ready visual reports',
           ]}
-          image={CONSTRUCTION_IMG}
+          image={MEDIA.construction}
         />
         <ServiceSection
           title="Remote Monitoring with AI"
@@ -63,7 +59,7 @@ export default function Surveying() {
             'Proactive maintenance alerts',
             'Historical change detection',
           ]}
-          image={AGRI_IMG}
+          image={MEDIA.agriculture}
           reversed
         />
       </div>
@@ -87,7 +83,7 @@ export default function Surveying() {
           <div className="relative rounded-lg overflow-hidden border border-border/50 bg-obsidian" style={{ paddingTop: '56.25%' }}>
             {/* Local 3D model flythrough video as primary view */}
             <video
-              src="/media/3d_model.mp4"
+              src={MEDIA.model3dVideo}
               autoPlay
               muted
               loop

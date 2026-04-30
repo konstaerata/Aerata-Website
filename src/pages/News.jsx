@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
 import SectionHeading from '../components/shared/SectionHeading';
+import { MEDIA } from '../lib/media';
 
 const CATEGORIES = [
   { value: 'all', label: 'All' },
@@ -26,7 +27,7 @@ const SAMPLE_ARTICLES = [
     title: 'Revolutionary LiDAR Technology Transforms Solar Farm Inspections',
     excerpt: 'Discover how our advanced LiDAR sensors are revolutionizing solar farm inspections across Europe.',
     category: 'renewable_energy',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png',
+    featured_image: MEDIA.heroImage,
     created_date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -35,7 +36,7 @@ const SAMPLE_ARTICLES = [
     title: 'Critical Infrastructure: Reducing Inspection Time by 60%',
     excerpt: 'Learn how drone technology is dramatically reducing inspection times for critical infrastructure.',
     category: 'infrastructure',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/38a98ba55_generated_a71edd9a.png',
+    featured_image: MEDIA.construction,
     created_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -44,7 +45,7 @@ const SAMPLE_ARTICLES = [
     title: 'Aerial Surveying: Centimeter-Accurate Mapping Now Standard',
     excerpt: 'Precision meets efficiency in our latest surveying solutions delivering centimeter accuracy.',
     category: 'surveying',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png',
+    featured_image: MEDIA.lidar,
     created_date: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -53,7 +54,7 @@ const SAMPLE_ARTICLES = [
     title: 'AI-Powered Analytics: Anomaly Detection Explained',
     excerpt: 'Explore how machine learning algorithms detect anomalies with unprecedented accuracy.',
     category: 'technology',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png',
+    featured_image: MEDIA.agriculture,
     created_date: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -62,7 +63,7 @@ const SAMPLE_ARTICLES = [
     title: 'Oil & Gas Pipeline Inspections: Safety and Efficiency',
     excerpt: 'Discover how drone technology enhances safety and efficiency in oil & gas operations.',
     category: 'oil_gas',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/04b2da82d_generated_65a9eb1f.png',
+    featured_image: MEDIA.infrastructure,
     created_date: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -71,7 +72,7 @@ const SAMPLE_ARTICLES = [
     title: 'Aerata Expands: Opening New Office in Athens',
     excerpt: 'We\'re thrilled to announce the expansion of our operations into the Mediterranean market.',
     category: 'company_news',
-    featured_image: 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png',
+    featured_image: MEDIA.heroImage,
     created_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
     published: true,
   },

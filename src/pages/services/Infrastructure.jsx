@@ -5,10 +5,7 @@ import { Shield, Zap, Target, CircleDollarSign } from 'lucide-react';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import SectionHeading from '../../components/shared/SectionHeading';
 import CTABanner from '../../components/shared/CTABanner';
-
-const TELECOM_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/460f7d297_generated_f4efa52d.png';
-const POWER_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/bea0ea3d1_generated_5b243c29.png';
-const LIDAR_IMG = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png';
+import { MEDIA } from '../../lib/media';
 
 const telecomServices = [
   { title: 'Tower Inspections', desc: 'High-resolution imagery for early identification of structural issues, corrosion, and equipment damage.' },
@@ -76,13 +73,13 @@ export default function Infrastructure() {
       <ServicePageHero
         title="Critical Infrastructure Inspections"
         subtitle="Streamline inspections for powerlines, gas pipelines, telecom towers and more. Safer, faster, more accurate."
-        image={POWER_IMG}
+        image={MEDIA.powerLines}
         ctaText="Get in Touch"
       />
 
-      <ServiceGrid title="Telecom Tower Inspections" image={TELECOM_IMG} services={telecomServices} />
+      <ServiceGrid title="Telecom Tower Inspections" image={MEDIA.telecom} services={telecomServices} />
       <div className="border-t border-border/30" />
-      <ServiceGrid title="Power Line Inspections" image={POWER_IMG} services={powerlineServices} />
+      <ServiceGrid title="Power Line Inspections" image={MEDIA.powerLines} services={powerlineServices} />
 
       {/* Why Choose Aerata */}
       <section className="py-20 bg-secondary/30 border-y border-border/30">
@@ -125,14 +122,14 @@ export default function Infrastructure() {
                 title: 'HV Transmission Line Corridor — 210 km Survey, Netherlands',
                 date: 'February 2025',
                 excerpt: '210 km of 380 kV transmission line inspected using LiDAR and thermal payload. Vegetation encroachment flagged at 23 spans; clearance data integrated directly into the TSO\'s GIS platform.',
-                img: '/media/powertransmissiontower.jpg',
+                img: MEDIA.powerTransmission,
               },
               {
                 tag: 'Telecom',
                 title: 'Tower Structural Audit — 38 Masts, Attica Region',
                 date: 'December 2024',
                 excerpt: 'Structural integrity survey of 38 telecom masts completed in 4 days. High-res photogrammetric models delivered to the client for remote review, eliminating the need for any rope-access climbers.',
-                img: '/media/powertower.jpg',
+                img: MEDIA.powerTower,
               },
             ].map((report, i) => (
               <motion.div
