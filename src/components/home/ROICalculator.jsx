@@ -3,36 +3,43 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, TrendingDown, Clock, DollarSign } from 'lucide-react';
 
+// Sources: thefuture3d.com, thedronelifenj.com, structionsolutions.com, robota.us, datumate.com
 const SECTOR_DATA = {
   solar: {
     label: 'Solar / Wind Inspection',
-    traditionalDaysPerMW: 1.2,       // days per MW with traditional methods
-    droneDaysPerMW: 0.18,             // days per MW with drones
-    traditionalCostPerMW: 1800,       // € per MW traditional
-    droneCostPerMW: 280,              // € per MW drone
+    // Traditional: 2-person crew covers 1–2 MW/day (25 hrs/MW at €32–35/hr, Aerospec benchmark)
+    // Drone: 50–100 MW/day thermal coverage (DJI Matrice 350 RTK, industry standard)
+    traditionalDaysPerMW: 0.6,       // ~30 days for 50 MW
+    droneDaysPerMW: 0.02,            // ~1 day for 50 MW
+    traditionalCostPerMW: 900,       // ~€900/MW total (labour + equipment + overhead)
+    droneCostPerMW: 320,             // ~€320/MW (mid-range of $300–$500/MW industry quotes)
     unit: 'MW of capacity',
     defaultQty: 50,
-    speedupLabel: 'up to 6.5×',
+    speedupLabel: 'up to 30×',
   },
   oilgas: {
     label: 'Oil & Gas / Pipeline',
-    traditionalDaysPerKm: 2.5,
-    droneDaysPerKm: 0.35,
-    traditionalCostPerKm: 4200,
-    droneCostPerKm: 600,
+    // Traditional ground patrol: ~7 km/day (Texas case study: 80 km in 12 days)
+    // Drone: ~40 km/day (same Texas study: 80 km in 2 days)
+    traditionalDaysPerKm: 0.15,      // ~3 days for 20 km
+    droneDaysPerKm: 0.025,           // ~0.5 day for 20 km
+    traditionalCostPerKm: 800,       // ~€800/km (crew $2,000–$3,000/day, equipment, vehicles, safety)
+    droneCostPerKm: 250,             // ~€250/km (2-person team, $500–$800/day operational)
     unit: 'km of pipeline / asset',
     defaultQty: 20,
-    speedupLabel: 'up to 7×',
+    speedupLabel: 'up to 6×',
   },
   construction: {
     label: 'Construction / Mapping',
-    traditionalDaysPerHa: 0.8,
-    droneDaysPerHa: 0.08,
-    traditionalCostPerHa: 950,
-    droneCostPerHa: 95,
+    // Traditional RTK/total-station crew: ~8 ha/day (industry: "10 acres/day" benchmark)
+    // Drone photogrammetry: 100+ ha in under an hour (40× faster per industry sources)
+    traditionalDaysPerHa: 0.12,      // ~12 days for 100 ha
+    droneDaysPerHa: 0.003,           // ~0.3 days (~2–3 hrs) for 100 ha
+    traditionalCostPerHa: 300,       // ~€300/ha (survey crew; traditional avg ~$517/acre)
+    droneCostPerHa: 30,              // ~€30/ha (photogrammetry incl. processing; $5–$120/acre range)
     unit: 'hectares surveyed',
     defaultQty: 100,
-    speedupLabel: 'up to 10×',
+    speedupLabel: 'up to 40×',
   },
 };
 
