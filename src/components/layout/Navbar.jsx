@@ -44,6 +44,7 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef(null);
+  const servicesCloseTimer = useRef(null);
   const location = useLocation();
   const { lang, switchLang, t } = useLang();
 
@@ -82,10 +83,10 @@ export default function Navbar() {
               className="flex items-center"
             >
               <img
-                src={MEDIA.logoPrimary}
+                src={MEDIA.navbar_logo}
                 alt="Aerata logo"
                 className="h-14 w-auto object-contain"
-                onError={(e) => { e.currentTarget.src = MEDIA.logo; }}
+                onError={(e) => { e.currentTarget.src = MEDIA.navbar_logo_fallback; }}
               />
             </Link>
 
@@ -93,8 +94,17 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <div key={link.label} className="relative"
-                  onMouseEnter={() => link.children && setServicesOpen(true)}
-                  onMouseLeave={() => link.children && setServicesOpen(false)}
+                  onMouseEnter={() => {
+                    if (link.children) {
+                      clearTimeout(servicesCloseTimer.current);
+                      setServicesOpen(true);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (link.children) {
+                      servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 150);
+                    }
+                  }}
                 >
                   {link.children ? (
                     <button className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${
@@ -116,8 +126,11 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
-                      className="absolute top-full left-0 mt-1 w-72 bg-white backdrop-blur-xl border border-border rounded-lg overflow-hidden shadow-xl"
+                      className="absolute top-full left-0 pt-2 w-72"
+                      onMouseEnter={() => clearTimeout(servicesCloseTimer.current)}
+                      onMouseLeave={() => { servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 150); }}
                     >
+                    <div className="bg-white backdrop-blur-xl border border-border rounded-lg overflow-hidden shadow-xl">
                       {link.children.map((child) => (
                         <Link key={child.path} to={child.path}
                           className="block px-5 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all border-b border-border/50 last:border-0"
@@ -125,6 +138,7 @@ export default function Navbar() {
                           {child.label}
                         </Link>
                       ))}
+                    </div>
                     </motion.div>
                   )}
                 </div>

@@ -79,7 +79,7 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <img
-                src={MEDIA.logoPrimary}
+                src={MEDIA.footer_logo}
                 alt="Aerata"
                 className="h-14 w-auto object-contain"
               />

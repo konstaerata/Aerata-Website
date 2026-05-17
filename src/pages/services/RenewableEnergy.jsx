@@ -57,10 +57,10 @@ function ThermalSlider() {
           {/* AFTER — Thermal (CSS filter simulates thermal palette on same image) */}
           <div className="absolute inset-0">
             <img
-              src={MEDIA.solar}
+              src={MEDIA.renewable_thermal_slider_thermal}
               alt="Thermal view"
               className="w-full h-full object-cover"
-              style={{ filter: 'saturate(0) sepia(1) hue-rotate(300deg) saturate(4) brightness(0.85) contrast(1.3)' }}
+
               draggable={false}
             />
             <div className="absolute bottom-3 left-3 px-2 py-1 rounded text-[10px] font-mono font-semibold bg-orange-500/80 text-white tracking-wider">
@@ -74,7 +74,7 @@ function ThermalSlider() {
             style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           >
             <img
-              src={MEDIA.solar}
+              src={MEDIA.renewable_thermal_slider_standard}
               alt="Standard view"
               className="w-full h-full object-cover"
               draggable={false}
@@ -120,7 +120,7 @@ export default function RenewableEnergy() {
       <ServicePageHero
         title="Renewable Energy Inspections"
         subtitle="Maximize efficiency, minimize downtime, and ensure safety. Unlock the power of your renewable energy assets."
-        image={MEDIA.solarPanel}
+        image={MEDIA.renewable_hero_image}
         ctaText="Get a Free Consultation Now"
       />
 
@@ -135,7 +135,7 @@ export default function RenewableEnergy() {
             'Panel alignment and soiling analysis',
             'Up to 50% reduction in inspection cost and time',
           ]}
-          image={MEDIA.solarPanel}
+          image={MEDIA.renewable_section_solar_image}
         />
         <ServiceSection
           title="Wind Turbine Inspections"
@@ -147,7 +147,7 @@ export default function RenewableEnergy() {
             '3DX technology in collaboration with Sulzer Schmid',
             'Proactive maintenance recommendations',
           ]}
-          image={MEDIA.windTurbine}
+          image={MEDIA.renewable_section_wind_image}
           reversed
         />
       </div>

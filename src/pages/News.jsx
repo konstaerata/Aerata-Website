@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
 import SectionHeading from '../components/shared/SectionHeading';
 import { MEDIA } from '../lib/media';
+import { fetchIndustryNews } from '../hooks/useIndustryNews';
 
 const CATEGORIES = [
   { value: 'all', label: 'All' },
@@ -27,7 +28,7 @@ const SAMPLE_ARTICLES = [
     title: 'Revolutionary LiDAR Technology Transforms Solar Farm Inspections',
     excerpt: 'Discover how our advanced LiDAR sensors are revolutionizing solar farm inspections across Europe.',
     category: 'renewable_energy',
-    featured_image: MEDIA.heroImage,
+    featured_image: MEDIA.news_article_lidar_tech_image,
     created_date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -36,7 +37,7 @@ const SAMPLE_ARTICLES = [
     title: 'Critical Infrastructure: Reducing Inspection Time by 60%',
     excerpt: 'Learn how drone technology is dramatically reducing inspection times for critical infrastructure.',
     category: 'infrastructure',
-    featured_image: MEDIA.construction,
+    featured_image: MEDIA.news_article_infrastructure_image,
     created_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -45,7 +46,7 @@ const SAMPLE_ARTICLES = [
     title: 'Aerial Surveying: Centimeter-Accurate Mapping Now Standard',
     excerpt: 'Precision meets efficiency in our latest surveying solutions delivering centimeter accuracy.',
     category: 'surveying',
-    featured_image: MEDIA.lidar,
+    featured_image: MEDIA.news_article_surveying_image,
     created_date: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -54,7 +55,7 @@ const SAMPLE_ARTICLES = [
     title: 'AI-Powered Analytics: Anomaly Detection Explained',
     excerpt: 'Explore how machine learning algorithms detect anomalies with unprecedented accuracy.',
     category: 'technology',
-    featured_image: MEDIA.agriculture,
+    featured_image: MEDIA.news_article_ai_analytics_image,
     created_date: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -63,7 +64,7 @@ const SAMPLE_ARTICLES = [
     title: 'Oil & Gas Pipeline Inspections: Safety and Efficiency',
     excerpt: 'Discover how drone technology enhances safety and efficiency in oil & gas operations.',
     category: 'oil_gas',
-    featured_image: MEDIA.infrastructure,
+    featured_image: MEDIA.news_article_oil_gas_image,
     created_date: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -72,7 +73,7 @@ const SAMPLE_ARTICLES = [
     title: 'Aerata Expands: Opening New Office in Athens',
     excerpt: 'We\'re thrilled to announce the expansion of our operations into the Mediterranean market.',
     category: 'company_news',
-    featured_image: MEDIA.heroImage,
+    featured_image: MEDIA.news_article_company_news_image,
     created_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
     published: true,
   },
@@ -87,12 +88,17 @@ export default function News() {
     queryFn: async () => {
       try {
         const result = await base44.entities.BlogPost.list('-created_date');
-        return result && result.length > 0 ? result : SAMPLE_ARTICLES;
-      } catch (error) {
-        console.log('Using sample articles');
-        return SAMPLE_ARTICLES;
-      }
+        if (result && result.length > 0) return result;
+      } catch (_) {}
+      // Fall back to live industry RSS feeds
+      try {
+        const industry = await fetchIndustryNews();
+        if (industry.length > 0) return industry;
+      } catch (_) {}
+      return SAMPLE_ARTICLES;
     },
+    staleTime: 1000 * 60 * 30,
+    retry: false,
   });
 
   const filteredPosts = posts.filter(p => {
@@ -161,37 +167,80 @@ export default function News() {
               <p className="text-sm text-muted-foreground mt-2">Check back soon for the latest drone industry insights.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
               {filteredPosts.map((post, i) => (
                 <motion.div
                   key={post.id}
+                  className="h-full"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                 >
-                  <Link to={`/news/${post.id}`} className="block group rounded-lg border border-border/50 bg-card/30 overflow-hidden hover:border-primary/30 transition-all">
-                    {post.featured_image && (
-                      <div className="h-48 overflow-hidden">
-                        <img src={post.featured_image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  {(() => {
+                    const CATEGORY_META = {
+                      renewable_energy: { label: 'Renewable Energy', accent: '#7ec247', dot: 'bg-lime' },
+                      oil_gas:          { label: 'Oil & Gas',         accent: '#e06c1a', dot: 'bg-ember' },
+                      surveying:        { label: 'Surveying',         accent: '#4a9eb5', dot: 'bg-navy-light' },
+                      infrastructure:   { label: 'Infrastructure',    accent: '#4a9eb5', dot: 'bg-navy-light' },
+                      environmental:    { label: 'Environmental',     accent: '#7ec247', dot: 'bg-lime' },
+                      company_news:     { label: 'Company News',      accent: '#7ec247', dot: 'bg-lime' },
+                      technology:       { label: 'Technology',        accent: '#4a9eb5', dot: 'bg-navy-light' },
+                    };
+                    const meta = CATEGORY_META[post.category] ?? CATEGORY_META.technology;
+
+                    const cardContent = (
+                      <div className="flex flex-col h-full">
+                        {/* Brand header band — no image, pure style */}
+                        <div className="relative flex-shrink-0 h-[88px] bg-navy-dark overflow-hidden">
+                          {/* Subtle grid lines */}
+                          <svg className="absolute inset-0 w-full h-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <pattern id={`grid-${post.id}`} width="24" height="24" patternUnits="userSpaceOnUse">
+                                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" strokeWidth="0.5"/>
+                              </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill={`url(#grid-${post.id})`}/>
+                          </svg>
+                          {/* Accent glow blob */}
+                          <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full opacity-20 blur-2xl" style={{ backgroundColor: meta.accent }} />
+                          {/* Category label */}
+                          <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                            <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />
+                            <span className="text-[10px] font-semibold tracking-widest uppercase text-white/70">
+                              {meta.label}
+                            </span>
+                          </div>
+                          {/* Accent bar along top */}
+                          <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: meta.accent }} />
+                        </div>
+
+                        {/* Body */}
+                        <div className="flex flex-col flex-1 p-5">
+                          <p className="text-[10px] text-muted-foreground mb-3 tabular-nums">
+                            {post.created_date ? format(new Date(post.created_date), 'MMM d, yyyy') : ''}
+                          </p>
+                          <h3 className="font-barlow font-semibold text-foreground text-base leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-3">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>
+                          <div className="mt-5 pt-4 border-t border-border/40 flex items-center justify-between">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+                              Read More <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
+                            </span>
+                            {post.is_external && (
+                              <span className="text-[10px] text-muted-foreground/40 tracking-wide">↗ External</span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    )}
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-[10px] font-semibold tracking-wider uppercase text-primary">
-                          {post.category?.replace(/_/g, ' ')}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground">
-                          {post.created_date ? format(new Date(post.created_date), 'MMM d, yyyy') : ''}
-                        </span>
-                      </div>
-                      <h3 className="font-barlow font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{post.excerpt}</p>
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary">
-                        Read More <ArrowRight className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </Link>
+                    );
+
+                    const cardClass = "flex flex-col h-full rounded-xl border border-border/50 bg-card/40 overflow-hidden hover:border-navy-light/60 hover:shadow-xl hover:shadow-navy/10 hover:-translate-y-0.5 transition-all duration-300";
+                    return post.is_external
+                      ? <a href={post.source_url} target="_blank" rel="noopener noreferrer" className={`block group h-full ${cardClass}`}>{cardContent}</a>
+                      : <Link to={`/news/${post.id}`} className={`block group h-full ${cardClass}`}>{cardContent}</Link>;
+                  })()}
                 </motion.div>
               ))}
             </div>

@@ -12,7 +12,7 @@ export default function Surveying() {
       <ServicePageHero
         title="Aerial Surveying & Mapping"
         subtitle="High Quality | Centimetre Accuracy | Efficient. Precision aerial data collection for surveying, mapping, and 3D modeling applications."
-        image={MEDIA.infrastructure}
+        video={MEDIA.surveying_hero_video}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,7 +25,7 @@ export default function Surveying() {
             'GIS and CAD compatible outputs',
             'Centimeter-level accuracy with GCPs',
           ]}
-          image={MEDIA.construction}
+          image={MEDIA.surveying_section_orthophotos_image}
         />
         <ServiceSection
           title="Digital Terrain Models & LiDAR Surveys"
@@ -36,7 +36,7 @@ export default function Surveying() {
             'Flood risk assessment and modeling',
             'Vegetation canopy analysis',
           ]}
-          image={MEDIA.lidar}
+          image={MEDIA.surveying_section_lidar_image}
           reversed
         />
         <ServiceSection
@@ -48,7 +48,7 @@ export default function Surveying() {
             'As-built vs. design comparison',
             'Stakeholder-ready visual reports',
           ]}
-          image={MEDIA.construction}
+          image={MEDIA.surveying_section_construction_image}
         />
         <ServiceSection
           title="Remote Monitoring with AI"
@@ -59,7 +59,7 @@ export default function Surveying() {
             'Proactive maintenance alerts',
             'Historical change detection',
           ]}
-          image={MEDIA.agriculture}
+          image={MEDIA.surveying_section_ai_image}
           reversed
         />
       </div>
@@ -83,7 +83,7 @@ export default function Surveying() {
           <div className="relative rounded-lg overflow-hidden border border-border/50 bg-obsidian" style={{ paddingTop: '56.25%' }}>
             {/* Local 3D model flythrough video as primary view */}
             <video
-              src={MEDIA.model3dVideo}
+              src={MEDIA.surveying_demo_3d_video}
               autoPlay
               muted
               loop

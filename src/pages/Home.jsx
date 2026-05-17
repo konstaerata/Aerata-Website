@@ -11,7 +11,7 @@ import { MEDIA } from '../lib/media';
 export default function Home() {
   return (
     <div>
-      <HeroSection heroImage={MEDIA.heroImage} heroVideo={MEDIA.heroVideo} />
+      <HeroSection heroImage={MEDIA.home_hero_image} heroVideo={MEDIA.home_hero_video} />
       <IndustryCards />
       <StatsBar />
       <WhyAerata />
