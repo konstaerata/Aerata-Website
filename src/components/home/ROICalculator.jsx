@@ -1,72 +1,104 @@
 // @ts-nocheck
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Calculator, TrendingDown, Clock, DollarSign } from 'lucide-react';
-
-// Sources: thefuture3d.com, thedronelifenj.com, structionsolutions.com, robota.us, datumate.com
-const SECTOR_DATA = {
-  solar: {
-    label: 'Solar / Wind Inspection',
-    // Traditional: 2-person crew covers 1–2 MW/day (25 hrs/MW at €32–35/hr, Aerospec benchmark)
-    // Drone: 50–100 MW/day thermal coverage (DJI Matrice 350 RTK, industry standard)
-    traditionalDaysPerMW: 0.6,       // ~30 days for 50 MW
-    droneDaysPerMW: 0.02,            // ~1 day for 50 MW
-    traditionalCostPerMW: 900,       // ~€900/MW total (labour + equipment + overhead)
-    droneCostPerMW: 320,             // ~€320/MW (mid-range of $300–$500/MW industry quotes)
-    unit: 'MW of capacity',
-    defaultQty: 50,
-    speedupLabel: 'up to 30×',
-  },
-  oilgas: {
-    label: 'Oil & Gas / Pipeline',
-    // Traditional ground patrol: ~7 km/day (Texas case study: 80 km in 12 days)
-    // Drone: ~40 km/day (same Texas study: 80 km in 2 days)
-    traditionalDaysPerKm: 0.15,      // ~3 days for 20 km
-    droneDaysPerKm: 0.025,           // ~0.5 day for 20 km
-    traditionalCostPerKm: 800,       // ~€800/km (crew $2,000–$3,000/day, equipment, vehicles, safety)
-    droneCostPerKm: 250,             // ~€250/km (2-person team, $500–$800/day operational)
-    unit: 'km of pipeline / asset',
-    defaultQty: 20,
-    speedupLabel: 'up to 6×',
-  },
-  construction: {
-    label: 'Construction / Mapping',
-    // Traditional RTK/total-station crew: ~8 ha/day (industry: "10 acres/day" benchmark)
-    // Drone photogrammetry: 100+ ha in under an hour (40× faster per industry sources)
-    traditionalDaysPerHa: 0.12,      // ~12 days for 100 ha
-    droneDaysPerHa: 0.003,           // ~0.3 days (~2–3 hrs) for 100 ha
-    traditionalCostPerHa: 300,       // ~€300/ha (survey crew; traditional avg ~$517/acre)
-    droneCostPerHa: 30,              // ~€30/ha (photogrammetry incl. processing; $5–$120/acre range)
-    unit: 'hectares surveyed',
-    defaultQty: 100,
-    speedupLabel: 'up to 40×',
-  },
-};
+import { useLang } from '../../lib/LanguageContext';
 
 function fmt(n) {
   return new Intl.NumberFormat('en-EU', { maximumFractionDigits: 0 }).format(n);
 }
 
+function useCountUp(target, duration = 1200, active = true) {
+  const [value, setValue] = useState(0);
+  const prevTarget = useRef(target);
+
+  useEffect(() => {
+    if (!active) { setValue(target); return; }
+    const start = prevTarget.current === target ? 0 : value;
+    prevTarget.current = target;
+    const startTime = performance.now();
+    const diff = target - start;
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(start + diff * eased));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, active]);
+
+  return value;
+}
+
 export default function ROICalculator() {
+  const prefersReducedMotion = useReducedMotion();
+  const { t } = useLang();
   const [sector, setSector] = useState('solar');
-  const [qty, setQty] = useState(SECTOR_DATA.solar.defaultQty);
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
+
+  const SECTOR_DATA = {
+    solar: {
+      label: t('roi.solarLabel'),
+      traditionalDaysPerMW: 0.5,
+      droneDaysPerMW: 0.075,
+      traditionalCostPerMW: 300,
+      droneCostPerMW: 100,
+      unit: t('roi.solarUnit'),
+      defaultQty: 50,
+      speedupLabel: 'up to 6.5×',
+    },
+    oilgas: {
+      label: t('roi.oilgasLabel'),
+      traditionalDaysPerKm: 2.5,
+      droneDaysPerKm: 0.35,
+      traditionalCostPerKm: 2500,
+      droneCostPerKm: 450,
+      unit: t('roi.oilgasUnit'),
+      defaultQty: 20,
+      speedupLabel: 'up to 7×',
+    },
+    construction: {
+      label: t('roi.constructionLabel'),
+      traditionalDaysPerHa: 0.8,
+      droneDaysPerHa: 0.08,
+      traditionalCostPerHa: 450,
+      droneCostPerHa: 65,
+      unit: t('roi.constructionUnit'),
+      defaultQty: 100,
+      speedupLabel: 'up to 10×',
+    },
+  };
+
+  const [qty, setQty] = useState(SECTOR_DATA[sector].defaultQty);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold: 0.2 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
   const d = SECTOR_DATA[sector];
   const qtyNum = Math.max(1, Number(qty) || 1);
 
-  // Pick the right keys dynamically
   const perUnitKey = Object.keys(d).find(k => k.startsWith('traditionalDaysPer') && !k.includes('Cost'));
   const perUnitCostKey = Object.keys(d).find(k => k.startsWith('traditionalCostPer'));
   const droneTimeKey = Object.keys(d).find(k => k.startsWith('droneDaysPer'));
   const droneCostKey = Object.keys(d).find(k => k.startsWith('droneCostPer'));
 
-  const tradDays = (d[perUnitKey] * qtyNum).toFixed(1);
-  const droneDays = (d[droneTimeKey] * qtyNum).toFixed(1);
-  const savedDays = (d[perUnitKey] * qtyNum - d[droneTimeKey] * qtyNum).toFixed(1);
+  const tradDays = parseFloat((d[perUnitKey] * qtyNum).toFixed(1));
+  const droneDays = parseFloat((d[droneTimeKey] * qtyNum).toFixed(1));
+  const savedDays = parseFloat((tradDays - droneDays).toFixed(1));
   const tradCost = d[perUnitCostKey] * qtyNum;
   const droneCost = d[droneCostKey] * qtyNum;
   const savedCost = tradCost - droneCost;
   const savingPct = Math.round((savedCost / tradCost) * 100);
+
+  const animatedSavedCost = useCountUp(savedCost, 900, inView && !prefersReducedMotion);
 
   const handleSectorChange = (e) => {
     const s = e.target.value;
@@ -75,33 +107,32 @@ export default function ROICalculator() {
   };
 
   return (
-    <section className="py-20 bg-secondary/30 border-y border-border/30">
+    <section ref={ref} className="py-20 bg-secondary/30 border-y border-border/30">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          {/* Heading */}
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-px bg-primary" />
-            <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-primary">ROI Tool</span>
+            <span className="text-xs font-display font-semibold tracking-[0.25em] uppercase text-primary">{t('roi.label')}</span>
           </div>
-          <h2 className="font-barlow font-bold text-3xl md:text-4xl text-foreground mb-2">
-            Sector ROI Calculator
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-2">
+            {t('roi.title')}
           </h2>
           <p className="text-muted-foreground mb-10 max-w-xl">
-            Estimate how much time and money drone operations save versus traditional inspection methods.
+            {t('roi.description')}
           </p>
 
-          {/* Controls */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
             <div>
-              <label className="text-xs font-barlow font-semibold uppercase tracking-wider text-muted-foreground mb-2 block">
-                Inspection Type
+              <label htmlFor="roi-sector" className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground mb-2 block">
+                {t('roi.inspectionType')}
               </label>
               <select
+                id="roi-sector"
                 value={sector}
                 onChange={handleSectorChange}
                 className="w-full h-11 px-4 rounded border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
@@ -112,10 +143,11 @@ export default function ROICalculator() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-barlow font-semibold uppercase tracking-wider text-muted-foreground mb-2 block">
-                Volume ({d.unit})
+              <label htmlFor="roi-volume" className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground mb-2 block">
+                {t('roi.volume')} ({d.unit})
               </label>
               <input
+                id="roi-volume"
                 type="number"
                 min="1"
                 value={qty}
@@ -125,55 +157,30 @@ export default function ROICalculator() {
             </div>
           </div>
 
-          {/* Results grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              {
-                icon: Clock,
-                label: 'Traditional Time',
-                value: `${tradDays} days`,
-                sub: 'manual methods',
-                accent: false,
-              },
-              {
-                icon: Clock,
-                label: 'Drone Time',
-                value: `${droneDays} days`,
-                sub: d.speedupLabel + ' faster',
-                accent: false,
-              },
-              {
-                icon: TrendingDown,
-                label: 'Time Saved',
-                value: `${savedDays} days`,
-                sub: `${savingPct}% reduction`,
-                accent: true,
-              },
-              {
-                icon: DollarSign,
-                label: 'Cost Saved',
-                value: `€${fmt(savedCost)}`,
-                sub: `from €${fmt(tradCost)} → €${fmt(droneCost)}`,
-                accent: true,
-              },
+              { icon: Clock, label: t('roi.traditionalTime'), value: `${tradDays} ${t('common.days')}`, sub: t('roi.manualMethods'), accent: false },
+              { icon: Clock, label: t('roi.droneTime'), value: `${droneDays} ${t('common.days')}`, sub: `${d.speedupLabel} ${t('roi.faster')}`, accent: false },
+              { icon: TrendingDown, label: t('roi.timeSaved'), value: `${savedDays} ${t('common.days')}`, sub: `${savingPct}% ${t('roi.reduction')}`, accent: true },
+              { icon: DollarSign, label: t('roi.costSaved'), value: `€${fmt(animatedSavedCost)}`, sub: `from €${fmt(tradCost)} → €${fmt(droneCost)}`, accent: true },
             ].map((card, i) => {
               const Icon = card.icon;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  transition={{ duration: 0.4, delay: i * 0.07, ease: 'easeOut' }}
                   className={`p-5 rounded-lg border ${
                     card.accent
                       ? 'border-primary/40 bg-primary/5'
                       : 'border-border/50 bg-card/30'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 mb-3 ${card.accent ? 'text-primary' : 'text-muted-foreground'}`} />
-                  <p className="text-xs font-barlow uppercase tracking-wider text-muted-foreground mb-1">{card.label}</p>
-                  <p className={`font-barlow font-bold text-2xl mb-1 ${card.accent ? 'text-primary' : 'text-foreground'}`}>
+                  <Icon className={`w-5 h-5 mb-3 ${card.accent ? 'text-primary' : 'text-muted-foreground'}`} aria-hidden="true" />
+                  <p className="text-xs font-display uppercase tracking-wider text-muted-foreground mb-1">{card.label}</p>
+                  <p className={`font-display font-bold text-2xl mb-1 ${card.accent ? 'text-primary' : 'text-foreground'}`}>
                     {card.value}
                   </p>
                   <p className="text-xs text-muted-foreground">{card.sub}</p>
@@ -182,8 +189,27 @@ export default function ROICalculator() {
             })}
           </div>
 
-          <p className="mt-6 text-xs text-muted-foreground/60 font-mono">
-            * Estimates based on industry averages. Actual savings depend on site conditions, fleet type, and scope. Contact us for a precise quote.
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+            <Link
+              to="/contact?source=roi-calculator"
+              className="inline-flex items-center justify-center px-7 py-3.5 font-display font-semibold text-sm tracking-wider uppercase bg-lime text-white hover:bg-lime/90 transition-all duration-300 rounded glow-pulse"
+            >
+              {t('roi.requestBtn')}
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              {t('roi.or')}{' '}
+              <Link to="/about#projects" className="underline underline-offset-2 text-primary hover:text-primary/80 transition-colors">
+                {t('roi.viewResults')}
+              </Link>
+            </p>
+          </div>
+
+          <p className="mt-5 text-xs text-muted-foreground/70 font-mono">
+            {t('roi.disclaimer')}{' '}
+            <Link to="/contact" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">
+              {t('roi.contactUs')}
+            </Link>{' '}
+            {t('roi.forQuote')}
           </p>
         </motion.div>
       </div>

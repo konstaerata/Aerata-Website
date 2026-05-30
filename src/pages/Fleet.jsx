@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Cpu, Wind, Zap, Shield, Camera, Layers, Radar } from 'lucide-react';
 import { MEDIA } from '../lib/media';
+import { useLang } from '../lib/LanguageContext';
 
 const FLEET = [
   {
@@ -25,6 +26,15 @@ const FLEET = [
     desc: 'Our newest generation enterprise platform. The M350 RTK builds on the M300\'s proven architecture with an upgraded transmission system, improved IP54 weather sealing, and a redesigned battery system for faster turnarounds. Paired with the Zenmuse P1 or L1, it delivers the highest-accuracy aerial data available for professional surveying and construction monitoring.',
   },
   {
+    name: 'DJI Matrice 4E',
+    role: 'Enterprise Inspection Platform',
+    category: 'Aircraft',
+    image: MEDIA.fleet_matrice_4e_image,
+    specs: ['42 min flight time', 'IP54 rating', 'Integrated multi-sensor payload', '20 km video transmission', 'GNSS + RTK positioning', 'Omnidirectional obstacle avoidance'],
+    tags: ['Inspection', 'Thermal', 'Rapid Deploy', 'Mapping'],
+    desc: 'The Matrice 4E is DJI\'s enterprise-class inspection platform in the compact M4 series. It integrates wide, zoom, thermal, and laser-rangefinder sensors in a foldable body built for rapid deployment in demanding field conditions. IP54-rated for all-weather operations, it serves as a versatile platform for infrastructure inspections, environmental surveys, and corridor monitoring missions.',
+  },
+  {
     name: 'DJI Matrice 4TD',
     role: 'Compact Multi-Mission Drone',
     category: 'Aircraft',
@@ -32,6 +42,15 @@ const FLEET = [
     specs: ['42 min flight time', 'IP54 rating', 'Integrated 4-sensor payload', '20 km video transmission', 'GNSS + RTK positioning', 'Obstacle avoidance (omnidirectional)'],
     tags: ['Thermal', 'Inspection', 'Rapid Deploy', 'Infrastructure'],
     desc: 'The Matrice 4TD integrates a quad-sensor payload — wide, zoom, thermal, and laser rangefinder — into a compact, foldable body designed for rapid deployment. It excels in confined-space inspections, pipeline corridor surveys, and scenarios where portability and all-in-one sensing matter. The IP54 rating covers all-weather field operations.',
+  },
+  {
+    name: 'DJI Mavic Air 2S',
+    role: 'Compact Visual Documentation Drone',
+    category: 'Aircraft',
+    image: MEDIA.fleet_air2s_image,
+    specs: ['31 min flight time', '1-inch CMOS sensor', '20 MP stills / 5.4K video', '12 km O3 transmission', 'Omnidirectional obstacle sensing', 'Under 600 g takeoff weight'],
+    tags: ['Photography', 'Documentation', 'Rapid Deploy', 'Inspection'],
+    desc: 'The Mavic Air 2S is a compact, sub-600 g platform carrying a 1-inch CMOS sensor capable of 20 MP stills and 5.4K video. Used for rapid visual documentation, site reconnaissance, and lower-altitude inspection tasks where portability matters. Omnidirectional obstacle sensing and a 12 km O3 link make it a reliable backup and lightweight complement to heavier enterprise platforms.',
   },
   {
     name: 'DJI Air 3S',
@@ -78,6 +97,42 @@ const FLEET = [
     tags: ['LiDAR', 'DTM/DSM', 'Forestry', 'Corridor Mapping'],
     desc: 'The Zenmuse L1 integrates a Livox LiDAR module, a high-accuracy IMU, and a 20 MP RGB camera in a single payload for real-time 3D point cloud capture. Mounted on the M350 RTK, it delivers sub-3 cm point accuracy at 150 m range and up to 480,000 points per second. Ideal for vegetation canopy analysis, terrain modelling under forest cover, power-line corridor mapping, and flood-risk assessment.',
   },
+  {
+    name: 'DJI D-RTK 3 Multifunctional Station (×2)',
+    role: 'GNSS RTK Base Station',
+    category: 'GNSS Station',
+    image: MEDIA.fleet_drtk3_image,
+    specs: ['Multi-band GNSS (GPS/GLONASS/BeiDou/Galileo)', 'Base station & rover modes', 'Network RTK support', 'Centimetre-level corrections', 'Works with M350 RTK & M300 RTK', 'Integrated tilt compensation'],
+    tags: ['RTK', 'Base Station', 'Surveying', 'Positioning'],
+    desc: 'We operate two D-RTK 3 Multifunctional Stations, giving us a dedicated base-and-rover setup for the most demanding survey workflows. Each unit supports multi-constellation GNSS and can function as a base station, network RTK rover, or survey reference point. Pairing both stations enables dual-base configurations on large sites, ensuring continuous centimetre-level RTK corrections across long corridors or multi-zone operations.',
+  },
+  {
+    name: 'DJI D-RTK 2 GNSS Mobile Station',
+    role: 'High-Precision GNSS Rover',
+    category: 'GNSS Station',
+    image: MEDIA.fleet_drtk2_image,
+    specs: ['Dual-frequency GNSS', 'RTK accuracy ≤1 cm + 1 ppm', 'Compatible with M300 RTK', 'UHF & Wi-Fi data link', 'Tripod & pole mounting', 'IP67 ingress protection'],
+    tags: ['RTK', 'GCP', 'Surveying', 'M300'],
+    desc: 'The D-RTK 2 is DJI\'s second-generation high-precision GNSS mobile station, purpose-built as the reference receiver for the Matrice 300 RTK. It provides real-time RTK corrections via UHF or Wi-Fi, achieving centimetre-level horizontal accuracy. Used for placing and verifying ground control points, establishing local coordinate references, and supporting dual-RTK workflows where the aircraft receiver alone is insufficient.',
+  },
+  {
+    name: 'Topcon HiPer V GNSS Receiver',
+    role: 'Survey-Grade GNSS Rover',
+    category: 'GNSS Station',
+    image: MEDIA.fleet_topcon_hiper_image,
+    specs: ['226-channel dual-frequency GNSS', 'Integrated digital UHF radio', 'RTK accuracy: 3 mm + 0.5 ppm (H)', 'Bluetooth & Wi-Fi connectivity', 'Tilt-compensated pole measurements', 'IP67 / drop-resistant housing'],
+    tags: ['GNSS', 'GCP', 'Survey', 'Ground Truth'],
+    desc: 'The Topcon HiPer V is a professional survey-grade GNSS receiver used for ground control point placement, cadastral boundary measurement, and independent position verification. Its integrated digital UHF radio enables long-range RTK corrections from a base station in the field, while the 226-channel dual-frequency engine tracks all major satellite constellations for maximum reliability in challenging environments.',
+  },
+  {
+    name: 'Starlink',
+    role: 'Portable Satellite Internet',
+    category: 'Ground Support',
+    image: MEDIA.fleet_starlink_image,
+    specs: ['Low-earth-orbit satellite network', 'Download: up to 200 Mbps', 'Latency: 20–40 ms typical', 'Self-orienting antenna', 'Operational in remote locations', 'Compatible with DJI Cellular Dongle'],
+    tags: ['Connectivity', 'Remote Ops', 'Data Upload', 'Mission Planning'],
+    desc: 'Starlink provides high-speed broadband connectivity from any field location, eliminating reliance on ground-based mobile networks during remote operations. We use it to upload processed data to the cloud, access live mission-planning platforms, stream real-time situational awareness feeds, and maintain secure communications with clients and project teams during offshore, wilderness, and infrastructure corridor deployments.',
+  },
 ];
 
 const badges = [
@@ -91,9 +146,20 @@ const categoryColors = {
   'Aircraft': 'border-primary/30 text-primary bg-primary/8',
   'Camera Payload': 'border-lime/30 text-lime bg-lime/8',
   'LiDAR Payload': 'border-navy-light/40 text-navy-light bg-navy-light/8',
+  'GNSS Station': 'border-amber-400/30 text-amber-400 bg-amber-400/8',
+  'Ground Support': 'border-violet-400/30 text-violet-400 bg-violet-400/8',
 };
 
 export default function Fleet() {
+  const { t } = useLang();
+
+  const badges = [
+    { icon: Shield, label: t('fleetPage.badgeEasa') },
+    { icon: Cpu, label: t('fleetPage.badgeDji') },
+    { icon: Radar, label: t('fleetPage.badgeLidar') },
+    { icon: Wind, label: t('fleetPage.badgeWeather') },
+  ];
+
   return (
     <div>
       {/* Hero — navy brand background */}
@@ -103,13 +169,13 @@ export default function Fleet() {
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-16 h-px bg-lime" />
-              <span className="text-xs font-oxanium font-semibold tracking-[0.3em] uppercase text-lime">[Our Fleet]</span>
+              <span className="text-xs font-oxanium font-semibold tracking-[0.3em] uppercase text-lime">{t('fleetPage.badge')}</span>
             </div>
             <h1 className="font-oxanium font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight tracking-tight max-w-3xl mb-4">
-              Enterprise-Grade<br /><span className="text-lime">Aerial Platforms</span>
+              {t('fleetPage.title')}<br /><span className="text-lime">{t('fleetPage.titleHighlight')}</span>
             </h1>
             <p className="text-lg text-white/70 max-w-2xl font-light leading-relaxed">
-              Every mission demands the right tool. Our fleet combines the most advanced commercial drone platforms, sensors, and payloads available — each operated by certified, experienced pilots.
+              {t('fleetPage.description')}
             </p>
           </motion.div>
 
@@ -208,16 +274,16 @@ export default function Fleet() {
       {/* CTA */}
       <section className="py-20 bg-secondary/30 border-t border-border/30">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <div className="inline-block text-xs font-oxanium font-semibold tracking-[0.25em] uppercase text-primary mb-4">[ Deploy Our Fleet ]</div>
-          <h2 className="font-oxanium font-bold text-3xl md:text-4xl text-foreground mb-4 tracking-tight">Ready to launch your mission?</h2>
+          <div className="inline-block text-xs font-oxanium font-semibold tracking-[0.25em] uppercase text-primary mb-4">{t('fleetPage.deployLabel')}</div>
+          <h2 className="font-oxanium font-bold text-3xl md:text-4xl text-foreground mb-4 tracking-tight">{t('fleetPage.ctaTitle')}</h2>
           <p className="text-muted-foreground mb-8 font-light">
-            Tell us about your project and we'll match the right platform, sensors, and crew to your specific needs.
+            {t('fleetPage.ctaDesc')}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center px-8 py-3.5 font-oxanium font-semibold text-sm tracking-wide bg-primary text-white hover:bg-primary/90 transition-all duration-300 rounded shadow-md hover:shadow-[0_4px_20px_hsl(200_38%_28%/0.3)]"
           >
-            Request a Fleet Briefing
+            {t('fleetPage.ctaButton')}
           </Link>
         </div>
       </section>
