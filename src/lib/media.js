@@ -38,6 +38,18 @@ export const MEDIA = {
   home_hero_video:                     `${BASE_LOCAL}/promovideoforfrontpage.mp4`,
   home_hero_image:                     `${BASE_B44}/65a98b32e_generated_a74332b5.png`,
 
+  // ── Sectors Showcase (homepage IndustryCards) ────────────────────────────────
+  // Update these URLs to swap sector card background images
+  sector_card_renewable_image:         `${BASE_LOCAL}/solarfarm.jpg`,
+  sector_card_infrastructure_image:    `${BASE_LOCAL}/powerinspection.jpg`,
+  sector_card_surveying_image:         `${BASE_LOCAL}/photogrammetry.png`,
+  sector_card_oilgas_image:            `${BASE_LOCAL}/gaspipe.jpg`,
+  sector_card_environmental_image:     `${BASE_LOCAL}/environmentalmonitoring.png`,
+
+  // ── OG / Social share image ──────────────────────────────────────────────────
+  // Replace with a 1200×630 branded image for social sharing cards
+  og_image:                            `${BASE_LOCAL}/logo-1.png`,
+
   // ── About page ───────────────────────────────────────────────────────────────
   about_hero_image:                    `${BASE_LOCAL}/sitia.mp4`,
   about_case_solar_farm_image:         `${BASE_B44}/c8d2cb737_generated_7a5a50ca.png`,
@@ -50,12 +62,18 @@ export const MEDIA = {
   // ── Fleet page ───────────────────────────────────────────────────────────────
   fleet_matrice_300_image:             `${BASE_LOCAL}/windmatrice.jpg`,
   fleet_matrice_350_video:             `${BASE_LOCAL}/m350.webp`,
+  fleet_matrice_4e_image:              `${BASE_LOCAL}/matrice4e.png`,
   fleet_matrice_4td_image:             `${BASE_LOCAL}/4td.png`,
   fleet_air3s_image:                   `${BASE_LOCAL}/air3s.webp`,
+  fleet_air2s_image:                   `${BASE_LOCAL}/air2s.jpg`,
   fleet_neo_image:                     `${BASE_LOCAL}/dji neo.jpg`,
   fleet_h20t_image:                    `${BASE_LOCAL}/h20t.jpg`,
   fleet_p1_image:                      `${BASE_LOCAL}/p1.jpg`,
   fleet_l1_image:                      `${BASE_LOCAL}/l1.webp`,
+  fleet_drtk3_image:                   `${BASE_LOCAL}/rtk3.jpg`,
+  fleet_drtk2_image:                   `${BASE_LOCAL}/rtk2.png`,
+  fleet_topcon_hiper_image:            `${BASE_LOCAL}/topcon.jpg`,
+  fleet_starlink_image:                `${BASE_LOCAL}/starlink.webp`,
 
   // ── News page ────────────────────────────────────────────────────────────────
   news_article_lidar_tech_image:       `${BASE_B44}/65a98b32e_generated_a74332b5.png`,
@@ -89,6 +107,8 @@ export const MEDIA = {
   renewable_section_wind_image:        `${BASE_LOCAL}/IMG_1840.jpg`,
   renewable_thermal_slider_thermal:    `${BASE_LOCAL}/irsolar.png`,
   renewable_thermal_slider_standard:   `${BASE_LOCAL}/normalsolar.png`,
+  renewable_workflow_image:            `${BASE_LOCAL}/renewableworkflow.png`,
+  renewable_why_aerata_image:          `${BASE_LOCAL}/renewablewhy.png`,
 
   // ── Infrastructure page ──────────────────────────────────────────────────────
   infra_hero_image:                    `${BASE_B44}/bea0ea3d1_generated_5b243c29.png`,
@@ -96,6 +116,7 @@ export const MEDIA = {
   infra_section_powerlines_image:      `${BASE_LOCAL}/powerinspection.jpg`,
   infra_report_transmission_image:     `${BASE_LOCAL}/powertransmissiontower.jpg`,
   infra_report_tower_audit_image:      `${BASE_LOCAL}/powertower.jpg`,
+  infra_why_aerata_image:              `${BASE_LOCAL}/infrastructurewhy.png`,
 
   // ── Oil & Gas page ───────────────────────────────────────────────────────────
   oilgas_hero_image:                   `${BASE_B44}/f380e9e02_generated_a743b199.png`,
@@ -103,4 +124,14 @@ export const MEDIA = {
   oilgas_section_safety_image:         `${BASE_B44}/04b2da82d_generated_65a9eb1f.png`,
   oilgas_report_pipeline_image:        `${BASE_LOCAL}/oilandgas.jpg`,
   oilgas_report_flare_stack_image:     `${BASE_LOCAL}/powertower.jpg`,
+  oilgas_workflow_image:               `${BASE_LOCAL}/oilgasworkflow.png`,
+  oilgas_why_aerata_image:             `${BASE_LOCAL}/oilgaswhy.png`,
+
+  // ── Surveying page (bottom sections) ─────────────────────────────────────────
+  surveying_capabilities_image:        `${BASE_LOCAL}/surveyingwhy.png`,
+  surveying_workflow_image:            `${BASE_LOCAL}/surveyingworkflow.png`,
+
+  // ── Environmental Monitoring page (bottom sections) ───────────────────────────
+  env_capabilities_image:              `${BASE_LOCAL}/environmentalwhy.png`,
+  env_workflow_image:                  `${BASE_LOCAL}/environmentalworkflow.png`,
 };

@@ -10,11 +10,11 @@
     --font-inter: 'Inter', sans-serif;
 
     /* Light background — matches real aerata.com */
-    --background: 210 20% 98%;
+    --background: 210 22% 93%;
     --foreground: 210 35% 12%;
-    --card: 0 0% 100%;
+    --card: 210 15% 98%;
     --card-foreground: 210 35% 12%;
-    --popover: 0 0% 100%;
+    --popover: 210 15% 96%;
     --popover-foreground: 210 35% 12%;
 
     /* Primary: dark navy-teal from logo */
@@ -25,7 +25,7 @@
     --accent: 88 48% 52%;
     --accent-foreground: 0 0% 100%;
 
-    --secondary: 210 20% 94%;
+    --secondary: 210 25% 87%;
     --secondary-foreground: 210 35% 20%;
     --muted: 210 15% 92%;
     --muted-foreground: 210 20% 45%;
@@ -123,14 +123,65 @@
   animation: glowPulse 3s ease-in-out infinite;
 }
 
-/* Subtle grid trace */
+/* Subtle grid trace — animates slowly for a live-data feel */
 .data-trace {
   background-image:
     linear-gradient(hsl(200 38% 28% / 0.03) 1px, transparent 1px),
     linear-gradient(90deg, hsl(200 38% 28% / 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+  animation: dataDrift 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-trace { animation: none; }
+}
+
+@keyframes dataDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 60px 60px; }
+}
+
+/* Scanline sweep — one-shot on load (used by hero) */
+@keyframes scanDown {
+  0%   { transform: translateY(-100%); opacity: 0.8; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: hsl(88 48% 52% / 0.6);
+  animation: scanDown 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline { display: none; }
+}
+
+/* Sector card border-trace hover — a perimeter line draws in on hover */
+.sector-card {
+  position: relative;
+  overflow: hidden;
+}
+.sector-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid hsl(88 48% 52% / 0);
+  border-radius: inherit;
+  transition: border-color 0.35s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.sector-card:hover::before {
+  border-color: hsl(88 48% 52% / 0.7);
 }
 
 /* HubSpot form brand styles are injected dynamically via JS in Contact.jsx
    (HS_BRAND_CSS constant + onFormReady callback) so they appear after
    HubSpot's own injected <style> tags and win the cascade. */
+   

@@ -5,6 +5,10 @@ module.exports = {
   theme: {
   	extend: {
       fontFamily: {
+        // Semantic aliases — use these in new code
+        display: ['var(--font-oxanium)'],
+        body: ['var(--font-oxanium)'],
+        // Legacy aliases — kept for backward compat, all resolve to Oxanium
         oxanium: ['var(--font-oxanium)'],
         inter: ['var(--font-inter)'],
         exo: ['var(--font-oxanium)'],
@@ -29,8 +33,9 @@ module.exports = {
           DEFAULT: 'hsl(88 48% 52%)',
           dim: 'hsl(88 48% 52% / 0.15)',
         },
-        obsidian: 'hsl(210 35% 8%)',
+        obsidian: '#1B2025',
         steel: 'hsl(210 35% 11%)',
+        steelBlue: '#8CABBC',
         ember: 'hsl(14 100% 50%)',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
