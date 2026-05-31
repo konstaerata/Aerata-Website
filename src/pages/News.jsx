@@ -8,147 +8,8 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
 import SectionHeading from '../components/shared/SectionHeading';
-import { MEDIA } from '../lib/media';
-import { fetchIndustryNews } from '../hooks/useIndustryNews';
 import { useLang } from '../lib/LanguageContext';
-
-const SAMPLE_ARTICLES = [
-  {
-    id: 1,
-    title: 'How Thermal Drone Surveys Cut Solar Farm Revenue Loss by 35%',
-    excerpt: 'IEC-compliant thermal inspections across Aerata\'s 237 MWp Isolar portfolio demonstrate how early fault detection translates directly into recovered energy yield and reduced maintenance cost.',
-    category: 'renewable_energy',
-    featured_image: MEDIA.news_article_lidar_tech_image,
-    created_date: new Date('2025-04-12'),
-    published: true,
-  },
-  {
-    id: 2,
-    title: 'Reducing Powerline Inspection Time by 60% Without Rope Access',
-    excerpt: 'A 120 km transmission corridor in mountainous Greece — surveyed in days, not weeks. How LiDAR and RGB sensors are transforming linear infrastructure inspection across Europe.',
-    category: 'infrastructure',
-    featured_image: MEDIA.news_article_infrastructure_image,
-    created_date: new Date('2025-03-28'),
-    published: true,
-  },
-  {
-    id: 3,
-    title: 'LiDAR vs Photogrammetry: Choosing the Right Survey Method for Your Project',
-    excerpt: 'Both technologies deliver engineering-grade spatial data — but the right choice depends on terrain, deliverable format, and budget. A practical guide for project managers and surveyors.',
-    category: 'technology',
-    featured_image: MEDIA.news_article_ai_analytics_image,
-    created_date: new Date('2025-03-14'),
-    published: true,
-  },
-  {
-    id: 4,
-    title: 'Centimetre-Accurate Archaeological Mapping in the Peloponnese',
-    excerpt: 'Sub-centimetre GSD orthomosaics and 3D point clouds of a 12-hectare dig site gave archaeologists GIS-ready data for excavation planning — delivered in under two days.',
-    category: 'surveying',
-    featured_image: MEDIA.news_article_surveying_image,
-    created_date: new Date('2025-02-24'),
-    published: true,
-  },
-  {
-    id: 5,
-    title: 'EASA Specific Category: What It Means for Your Inspection Project',
-    excerpt: 'Not all drone operators are equal. Understanding the EASA Specific Category authorisation — and why it matters for high-risk commercial operations over infrastructure and energy assets.',
-    category: 'company_news',
-    featured_image: MEDIA.news_article_company_news_image,
-    created_date: new Date('2025-02-10'),
-    published: true,
-  },
-  {
-    id: 6,
-    title: 'Offshore Platform Inspections: Eliminating Rope Access Risk in the North Sea',
-    excerpt: 'Scaffold-free structural inspection of offshore assets using close-visual drone workflows. How Aerata delivered a complete corrosion mapping report with zero platform downtime.',
-    category: 'oil_gas',
-    featured_image: MEDIA.news_article_oil_gas_image,
-    created_date: new Date('2025-01-30'),
-    published: true,
-  },
-  {
-    id: 7,
-    title: 'Wetland Habitat Mapping: 200 Hectares Surveyed in Two Flights',
-    excerpt: 'Multi-spectral and RGB drone surveys captured vegetation density, water quality indicators, and biodiversity zones across a protected delta reserve — producing compliance-ready reports.',
-    category: 'environmental',
-    featured_image: MEDIA.news_article_lidar_tech_image,
-    created_date: new Date('2025-01-15'),
-    published: true,
-  },
-  {
-    id: 8,
-    title: 'Drone Inspection ROI: Real Numbers from the Field',
-    excerpt: 'Solar: 30× faster at 65% lower cost. Pipelines: 6× faster at 69% savings. Construction surveys: 40× faster at 90% cost reduction. The business case for drone-first inspection is now indisputable.',
-    category: 'infrastructure',
-    featured_image: MEDIA.news_article_infrastructure_image,
-    created_date: new Date('2025-01-05'),
-    published: true,
-  },
-  {
-    id: 9,
-    title: 'Night Operations and Beyond Visual Line of Sight: What Is Now Possible in Europe',
-    excerpt: 'BVLOS and night-ops authorisations are changing what\'s achievable for infrastructure and energy operators. An overview of the current regulatory landscape and what Aerata\'s authorisations enable.',
-    category: 'technology',
-    featured_image: MEDIA.news_article_ai_analytics_image,
-    created_date: new Date('2024-12-18'),
-    published: true,
-  },
-  {
-    id: 10,
-    title: 'Construction Site Monitoring: How Weekly Drone Surveys Reduced Rework by 30%',
-    excerpt: 'Automated volume calculations and as-built vs. design comparisons delivered weekly across an 18-month residential development in Delft. The measurable impact on project delivery timelines.',
-    category: 'surveying',
-    featured_image: MEDIA.news_article_surveying_image,
-    created_date: new Date('2024-12-05'),
-    published: true,
-  },
-  {
-    id: 11,
-    title: 'Aerata Partners with DroneLicense.eu for EU Drone Pilot Certification',
-    excerpt: 'Aerata has formalised its training partnership with DroneLicense.eu to support EU-wide pilot certification. Together we provide end-to-end pathways from A1/A3 Open category to Specific category operations.',
-    category: 'company_news',
-    featured_image: MEDIA.news_article_company_news_image,
-    created_date: new Date('2024-11-22'),
-    published: true,
-  },
-  {
-    id: 12,
-    title: 'Wind Turbine Blade Inspections: From Hours to Minutes Per Turbine',
-    excerpt: 'Working alongside Sulzer Schmid Laboratories, Aerata\'s drone-based blade inspection workflow identifies surface defects, lightning strike damage, and erosion at a fraction of traditional inspection time.',
-    category: 'renewable_energy',
-    featured_image: MEDIA.news_article_lidar_tech_image,
-    created_date: new Date('2024-11-08'),
-    published: true,
-  },
-  {
-    id: 13,
-    title: 'AI Anomaly Detection in Solar Thermography: How It Works',
-    excerpt: 'Machine learning models trained on thousands of IEC thermal datasets now flag cell-level defects, soiling patterns, and bypass diode failures with greater consistency than manual review.',
-    category: 'technology',
-    featured_image: MEDIA.news_article_ai_analytics_image,
-    created_date: new Date('2024-10-25'),
-    published: true,
-  },
-  {
-    id: 14,
-    title: 'Lake Marathon Multispectral Survey: Monitoring Drinking Water from Above',
-    excerpt: 'Commissioned by VITO and EYDAP, Aerata\'s multispectral drone surveys of Lake Marathon provided early indicators of algal bloom risk and turbidity changes in one of Athens\' primary water sources.',
-    category: 'environmental',
-    featured_image: MEDIA.news_article_lidar_tech_image,
-    created_date: new Date('2024-10-10'),
-    published: true,
-  },
-  {
-    id: 15,
-    title: 'Aerata Opens Athens Office to Serve Mediterranean and Southeast European Markets',
-    excerpt: 'With a growing project pipeline across Greece and the broader Mediterranean region, Aerata has established a permanent operational base in Alimos, Athens, enabling faster mobilisation for regional projects.',
-    category: 'company_news',
-    featured_image: MEDIA.news_article_company_news_image,
-    created_date: new Date('2024-09-20'),
-    published: true,
-  },
-];
+import { SAMPLE_ARTICLES } from '../lib/sampleArticles';
 
 export default function News() {
   const { t } = useLang();
@@ -166,22 +27,18 @@ export default function News() {
     { value: 'technology', label: t('news.catTechnology') },
   ];
 
-  const { data: posts = [], isLoading } = useQuery({
+  const { data: posts = SAMPLE_ARTICLES } = useQuery({
     queryKey: ['blogPosts'],
     queryFn: async () => {
       try {
         const result = await base44.entities.BlogPost.list('-created_date');
-        if (result && result.length > 0) return result;
-      } catch (_) {}
-      // Fall back to live industry RSS feeds
-      try {
-        const industry = await fetchIndustryNews();
-        if (industry.length > 0) return industry;
+        if (Array.isArray(result) && result.length > 0) return result;
       } catch (_) {}
       return SAMPLE_ARTICLES;
     },
     staleTime: 1000 * 60 * 30,
     retry: false,
+    initialData: SAMPLE_ARTICLES,
   });
 
   const filteredPosts = posts.filter(p => {
@@ -231,20 +88,7 @@ export default function News() {
           </div>
 
           {/* Posts Grid */}
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="rounded-lg border border-border/50 bg-card/30 animate-pulse">
-                  <div className="h-48 bg-secondary" />
-                  <div className="p-6 space-y-3">
-                    <div className="h-4 bg-secondary rounded w-3/4" />
-                    <div className="h-3 bg-secondary rounded w-full" />
-                    <div className="h-3 bg-secondary rounded w-1/2" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : filteredPosts.length === 0 ? (
+          {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-muted-foreground text-lg">{t('news.noResults')}</p>
               <p className="text-sm text-muted-foreground mt-2">{t('news.noResultsDesc')}</p>
