@@ -28,7 +28,7 @@ const INTERVAL = 4500;
 const team = [
   { name: 'Konstantinos Konstantinopoulos', role: 'Co-Founder',             photo: null, linkedin: 'https://www.linkedin.com/in/konstantinos-konstantinopoulos-92067a28a/' },
   { name: 'Michalis Michalas',              role: 'Research & Development', photo: null, linkedin: 'https://www.linkedin.com/in/michalis-michalas-b37aa3177/' },
-  { name: 'Spyridon Konstantinopoulos',     role: 'Director of Operations', photo: null, linkedin: 'https://www.linkedin.com/in/spyridon-konstantinopoulos-195ab734/' },
+  { name: 'Spyridon Konstantinopoulos',     role: 'Founder',                photo: null, linkedin: 'https://www.linkedin.com/in/spyridon-konstantinopoulos-195ab734/' },
   { name: 'Markos Foros',                   role: 'Client Relations',       photo: null, linkedin: 'https://www.linkedin.com/in/markosforos/' },
   { name: 'Spyros Karapanagiotis',          role: 'Compliance',             photo: null, linkedin: 'https://www.linkedin.com/in/spiros-karapanagiotis-640695412/' },
   { name: 'Alexandros Lapokonstantakis',    role: 'Operations',             photo: null, linkedin: null },
