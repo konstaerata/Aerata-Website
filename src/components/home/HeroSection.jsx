@@ -9,10 +9,26 @@ export default function HeroSection({ heroImage, heroVideo }) {
   const prefersReducedMotion = useReducedMotion();
   const [hudVisible, setHudVisible] = useState(false);
 
-  // Pause video when user prefers reduced motion
+  // Explicitly trigger play — autoPlay attribute alone is unreliable
+  // when React commits it after the browser's initial autoplay window.
   useEffect(() => {
-    if (prefersReducedMotion && videoRef.current) {
-      videoRef.current.pause();
+    const video = videoRef.current;
+    if (!video) return;
+    if (prefersReducedMotion) {
+      video.pause();
+      return;
+    }
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Blocked by browser policy — leave paused; overlay still looks fine
+      });
+    };
+    // If data is already buffered, play immediately; otherwise wait for canplay
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener('canplay', tryPlay, { once: true });
+      return () => video.removeEventListener('canplay', tryPlay);
     }
   }, [prefersReducedMotion]);
 
@@ -38,6 +54,7 @@ export default function HeroSection({ heroImage, heroVideo }) {
             muted
             loop
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
             aria-hidden="true"
           />
