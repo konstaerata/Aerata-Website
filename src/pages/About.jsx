@@ -30,7 +30,7 @@ const team = [
   { name: 'Michalis Michalas',              role: 'Research & Development', photo: null, linkedin: 'https://www.linkedin.com/in/michalis-michalas-b37aa3177/' },
   { name: 'Spyridon Konstantinopoulos',     role: 'Founder',                photo: null, linkedin: 'https://www.linkedin.com/in/spyridon-konstantinopoulos-195ab734/' },
   { name: 'Markos Foros',                   role: 'Client Relations',       photo: null, linkedin: 'https://www.linkedin.com/in/markosforos/' },
-  { name: 'Spyros Karapanagiotis',          role: 'Compliance',             photo: null, linkedin: 'https://www.linkedin.com/in/spiros-karapanagiotis-640695412/' },
+  { name: 'Spyros Karapanagiotis',          role: 'Compliance',             photo: null, linkedin: 'https://www.linkedin.com/in/spyros-karapanagiotis-833ba3412/' },
   { name: 'Alexandros Lapokonstantakis',    role: 'Operations',             photo: null, linkedin: null },
 ];
 
