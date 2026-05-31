@@ -14,7 +14,7 @@ const partners = [
   { name: 'Elicas Group',                    relationship: 'Wind energy developer' },
   { name: 'Sunel',                           relationship: 'Solar energy company' },
   { name: 'ABO WIND',                        relationship: 'Renewable energy developer' },
-  { name: 'HELIKA S.A.',                     relationship: 'Renewable energy construction & development' },
+  { name: 'Metlen',                           relationship: 'Renewable energy company' },
   { name: 'VALOREM',                         relationship: 'Renewable energy developer' },
   { name: 'STR Power Group',                 relationship: 'Solar EPC contractor' },
   { name: 'DJI Enterprise',                  relationship: 'Drone technology manufacturer' },

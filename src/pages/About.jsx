@@ -16,7 +16,7 @@ const partners = [
   { name: 'Elicas Group',                   sector: 'Wind Energy',           rel: 'Wind energy developer' },
   { name: 'Sunel',                          sector: 'Solar Energy',          rel: 'Solar energy company' },
   { name: 'ABO WIND',                       sector: 'Wind & Solar',          rel: 'Renewable energy developer' },
-  { name: 'HELIKA S.A.',                    sector: 'Renewable Energy',      rel: 'Renewable energy construction & development' },
+  { name: 'Metlen',                          sector: 'Renewable Energy',      rel: 'Renewable energy company' },
   { name: 'VALOREM',                        sector: 'Renewable Energy',      rel: 'Renewable energy developer' },
   { name: 'STR Power Group',               sector: 'Solar Energy',          rel: 'Solar EPC contractor' },
   { name: 'Embiria Consultancy',            sector: 'Construction',          rel: 'Engineering consultancy' },
