@@ -26,12 +26,12 @@ const partners = [
 const INTERVAL = 4500;
 
 const team = [
-  { name: 'Konstantinos Konstantinopoulos', role: 'Co-Founder',             photo: null, linkedin: 'https://www.linkedin.com/in/konstantinos-konstantinopoulos-92067a28a/' },
-  { name: 'Michalis Michalas',              role: 'Research & Development', photo: null, linkedin: 'https://www.linkedin.com/in/michalis-michalas-b37aa3177/' },
   { name: 'Spyridon Konstantinopoulos',     role: 'Founder',                photo: null, linkedin: 'https://www.linkedin.com/in/spyridon-konstantinopoulos-195ab734/' },
+  { name: 'Konstantinos Konstantinopoulos', role: 'Co-Founder',             photo: null, linkedin: 'https://www.linkedin.com/in/konstantinos-konstantinopoulos-92067a28a/' },
   { name: 'Markos Foros',                   role: 'Client Relations',       photo: null, linkedin: 'https://www.linkedin.com/in/markosforos/' },
+  { name: 'Alexandros Lapokonstantakis',    role: 'Operations',             photo: null, linkedin: 'https://www.linkedin.com/in/alexander-lapokonstantakis-805b30414/' },
   { name: 'Spyros Karapanagiotis',          role: 'Compliance',             photo: null, linkedin: 'https://www.linkedin.com/in/spyros-karapanagiotis-833ba3412/' },
-  { name: 'Alexandros Lapokonstantakis',    role: 'Operations',             photo: null, linkedin: null },
+  { name: 'Michalis Michalas',              role: 'Research & Development', photo: null, linkedin: 'https://www.linkedin.com/in/michalis-michalas-b37aa3177/' },
 ];
 
 function PartnersCarousel({ prefersReducedMotion, light = false }) {
@@ -121,20 +121,38 @@ function PartnersCarousel({ prefersReducedMotion, light = false }) {
             style={{ backgroundColor: 'hsl(88,48%,52%)', scaleX: progress }}
           />
         </div>
-        <div className="flex gap-1.5 shrink-0">
-          {partners.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => advance(i)}
-              className="rounded-full transition-all duration-300 focus:outline-none"
-              style={{
-                width: i === index ? '16px' : '5px',
-                height: '5px',
-                backgroundColor: i === index ? 'hsl(88,48%,52%)' : dotInactiveColor,
-              }}
-              aria-label={`Go to partner ${i + 1}`}
-            />
-          ))}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => advance((index - 1 + partners.length) % partners.length)}
+            className="flex items-center justify-center w-7 h-7 rounded-full transition-colors focus:outline-none"
+            style={{ color: counterColor, border: `1px solid ${trackColor}` }}
+            aria-label="Previous partner"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L4 6l3.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+          <div className="flex gap-1.5">
+            {partners.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => advance(i)}
+                className="rounded-full transition-all duration-300 focus:outline-none"
+                style={{
+                  width: i === index ? '16px' : '5px',
+                  height: '5px',
+                  backgroundColor: i === index ? 'hsl(88,48%,52%)' : dotInactiveColor,
+                }}
+                aria-label={`Go to partner ${i + 1}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => advance((index + 1) % partners.length)}
+            className="flex items-center justify-center w-7 h-7 rounded-full transition-colors focus:outline-none"
+            style={{ color: counterColor, border: `1px solid ${trackColor}` }}
+            aria-label="Next partner"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L8 6l-3.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
         </div>
       </div>
     </div>

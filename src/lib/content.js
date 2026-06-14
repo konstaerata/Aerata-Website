@@ -54,10 +54,6 @@ export const CONTENT = {
 
     partners: [
       {
-        name: 'Sulzer Schmid Laboratories AG',
-        relationship: 'Wind turbine inspection technology partner',
-      },
-      {
         name: 'EYDAP',
         relationship: 'Water infrastructure inspection client',
       },
