@@ -1,0 +1,8 @@
+# Aerata B.V. — robots.txt
+User-agent: *
+Allow: /
+Disallow: /portal
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://aerata.com/sitemap.xml

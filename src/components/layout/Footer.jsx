@@ -89,7 +89,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               {socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label} aria-label={`Aerata on ${s.label}`}
                   className="w-8 h-8 rounded-md border border-white/20 flex items-center justify-center text-white/60 hover:text-lime hover:border-lime/50 transition-all duration-200">
                   {s.icon}
                 </a>
@@ -128,9 +128,19 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <Link to="/" className="block text-white/70 hover:text-lime transition-colors">{t('footer.home')}</Link>
               <Link to="/about" className="block text-white/70 hover:text-lime transition-colors">{t('footer.company')}</Link>
+              <Link to="/fleet" className="block text-white/70 hover:text-lime transition-colors">Our Fleet</Link>
               <Link to="/news" className="block text-white/70 hover:text-lime transition-colors">{t('footer.news')}</Link>
+              <Link to="/training" className="block text-white/70 hover:text-lime transition-colors">Training</Link>
               <Link to="/contact" className="block text-white/70 hover:text-lime transition-colors">{t('footer.contact')}</Link>
               <Link to="/privacy" className="block text-white/70 hover:text-lime transition-colors">{t('footer.privacy')}</Link>
+            </div>
+            <h4 className="font-oxanium font-semibold text-white text-sm tracking-wider uppercase mt-6 mb-3">Services</h4>
+            <div className="space-y-2 text-sm">
+              <Link to="/services/renewable-energy" className="block text-white/70 hover:text-lime transition-colors">Renewable Energy Inspections</Link>
+              <Link to="/services/infrastructure" className="block text-white/70 hover:text-lime transition-colors">Infrastructure Inspections</Link>
+              <Link to="/services/surveying" className="block text-white/70 hover:text-lime transition-colors">Aerial Surveying & Mapping</Link>
+              <Link to="/services/environmental" className="block text-white/70 hover:text-lime transition-colors">Environmental Monitoring</Link>
+              <Link to="/services/oil-gas" className="block text-white/70 hover:text-lime transition-colors">Oil & Gas Inspections</Link>
             </div>
           </div>
         </div>

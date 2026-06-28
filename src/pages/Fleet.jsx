@@ -3,8 +3,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Cpu, Wind, Zap, Shield, Camera, Layers, Radar } from 'lucide-react';
+import SEO from '../components/SEO';
 import { MEDIA } from '../lib/media';
 import { useLang } from '../lib/LanguageContext';
+import { breadcrumbSchema } from '../lib/schemas';
 
 const FLEET = [
   {
@@ -89,13 +91,13 @@ const FLEET = [
     desc: 'The Zenmuse P1 is a full-frame 45 MP camera payload engineered for professional photogrammetric mapping. With interchangeable prime lenses (24 mm, 35 mm, 50 mm) and an RTK-integrated georeferencing workflow, it achieves 0.5 cm/pixel ground sampling distance from 80 m altitude. Used on the M350 RTK, the P1 is our primary tool for large-area orthomosaic production, 3D asset reconstruction, and cadastral survey.',
   },
   {
-    name: 'DJI Zenmuse L1',
+    name: 'DJI Zenmuse L2',
     role: 'LiDAR & RGB Survey Payload',
     category: 'LiDAR Payload',
     image: MEDIA.fleet_l1_image,
     specs: ['Up to 240 m range', '480,000 pts/sec (single return)', 'Point accuracy ≤3 cm (150 m)', 'Integrated 20 MP RGB camera', 'IMU real-time data fusion', '3 returns per laser pulse'],
     tags: ['LiDAR', 'DTM/DSM', 'Forestry', 'Corridor Mapping'],
-    desc: 'The Zenmuse L1 integrates a Livox LiDAR module, a high-accuracy IMU, and a 20 MP RGB camera in a single payload for real-time 3D point cloud capture. Mounted on the M350 RTK, it delivers sub-3 cm point accuracy at 150 m range and up to 480,000 points per second. Ideal for vegetation canopy analysis, terrain modelling under forest cover, power-line corridor mapping, and flood-risk assessment.',
+    desc: 'The Zenmuse L2 integrates a Livox LiDAR module, a high-accuracy IMU, and a 20 MP RGB camera in a single payload for real-time 3D point cloud capture. Mounted on the M350 RTK, it delivers sub-3 cm point accuracy at 150 m range and up to 480,000 points per second. Ideal for vegetation canopy analysis, terrain modelling under forest cover, power-line corridor mapping, and flood-risk assessment.',
   },
   {
     name: 'DJI D-RTK 3 Multifunctional Station (×2)',
@@ -162,6 +164,15 @@ export default function Fleet() {
 
   return (
     <div>
+      <SEO
+        title="Drone Fleet — DJI Enterprise & LiDAR Equipment"
+        description="Explore Aerata's professional drone fleet: DJI Matrice 300/350 RTK, Zenmuse P1 photogrammetry, L2 LiDAR, H20T thermal sensors, and GNSS base stations for survey-grade accuracy."
+        path="/fleet"
+        jsonLd={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Our Fleet' },
+        ])}
+      />
       {/* Hero — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="absolute inset-0 data-trace opacity-20" />
@@ -227,6 +238,7 @@ export default function Fleet() {
                     <img
                       src={drone.image}
                       alt={drone.name}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                   )}

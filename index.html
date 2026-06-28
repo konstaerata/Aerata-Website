@@ -7,38 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
 
+    <!-- Canonical — overridden per-page by react-helmet-async -->
+    <link rel="canonical" href="https://aerata.com/" />
+
+    <!-- Search Console & Webmaster verification placeholders -->
+    <!-- Replace content="" values with your actual verification tokens -->
+    <meta name="google-site-verification" content="PASTE_GOOGLE_VERIFICATION_TOKEN_HERE" />
+    <meta name="msvalidate.01" content="PASTE_BING_VERIFICATION_TOKEN_HERE" />
+
     <!-- CDN preconnect — reduces latency for all R2-hosted media -->
     <link rel="preconnect" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://media.base44.com" crossorigin />
+    <link rel="preconnect" href="https://js-eu1.hs-scripts.com" crossorigin />
+    <link rel="preconnect" href="https://js-eu1.hsforms.net" crossorigin />
 
     <!-- Hero image preload — prevents LCP delay on first paint -->
-    <link rel="preload" as="image" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/solarfarm.jpg" />
+    <link rel="preload" as="image" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/solarfarm.jpg" fetchpriority="high" />
 
     <title>Aerata B.V. — Aerial Intelligence for Industry</title>
     <meta name="description" content="Aerata delivers enterprise drone services across Europe — thermal, LiDAR, and photogrammetric data for renewable energy, infrastructure, surveying, and oil &amp; gas. Headquartered in Delft, Netherlands." />
     <meta name="keywords" content="drone inspections, aerial intelligence, drone services, solar thermal inspection, wind turbine inspection, LiDAR survey, IEC thermography, EASA certified, Netherlands, Delft, Greece, Athens" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph — defaults, overridden per-page by react-helmet-async -->
     <meta property="og:title" content="Aerata B.V. — Aerial Intelligence for Industry" />
     <meta property="og:description" content="Enterprise drone crews across Europe. Thermal, LiDAR, and photogrammetric data — faster and safer than ground-based methods." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aerata.com" />
-    <meta property="og:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/logo-1.png" />
+    <meta property="og:site_name" content="Aerata B.V." />
+    <meta property="og:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/og-aerata-1200x630.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aerata_bv" />
     <meta name="twitter:title" content="Aerata B.V. — Aerial Intelligence for Industry" />
     <meta name="twitter:description" content="Enterprise drone services across Europe. Thermal, LiDAR, and photogrammetric inspections." />
-    <meta name="twitter:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/logo-1.png" />
+    <meta name="twitter:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/og-aerata-1200x630.png" />
 
     <!-- HubSpot Analytics -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25483745.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;text-align:center;font-family:sans-serif">
+        <h1>Aerata B.V. — Aerial Intelligence for Industry</h1>
+        <p>Enterprise drone inspection and aerial data services across Europe. Thermal imaging, LiDAR surveys, and photogrammetric mapping for renewable energy, infrastructure, surveying, and oil &amp; gas industries.</p>
+        <p>Please enable JavaScript to use the full Aerata website, or contact us at <a href="mailto:info@aerata.com">info@aerata.com</a> or call <a href="tel:+31638165193">+31 6 38165193</a>.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -27,7 +27,7 @@ export default function ServiceSection({ title, description, features, image, re
       </div>
       <div className={`relative group ${reversed ? 'lg:order-1' : ''}`}>
         <div className="overflow-hidden rounded-lg border border-border/50">
-          <img src={image} alt={title} className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105" />
+          <img src={image} alt={title} loading="lazy" className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105" />
           {/* Hover scan overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
@@ -40,8 +40,8 @@ export default function ServiceSection({ title, description, features, image, re
           </div>
         </div>
         {/* Corner accents */}
-        <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" />
-        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" />
+        <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
+        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />
       </div>
     </motion.div>
   );

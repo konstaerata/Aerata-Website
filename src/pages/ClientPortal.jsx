@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Lock, FileText, Map, BarChart2, Mail } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const PORTAL_FEATURES = [
   { icon: FileText, title: 'Inspection Reports', desc: 'Access your full library of delivered reports, annotated imagery, and thermal data.' },
@@ -13,6 +14,12 @@ const PORTAL_FEATURES = [
 export default function ClientPortal() {
   return (
     <div>
+      <SEO
+        title="Client Portal — Aerata B.V."
+        description="Access your Aerata inspection reports, mission tracking, and analytics dashboard."
+        path="/portal"
+        noindex
+      />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 min-h-[80vh] flex items-center overflow-hidden bg-navy-dark">
         {/* Subtle grid */}

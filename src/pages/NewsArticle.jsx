@@ -4,7 +4,9 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
+import SEO from '../components/SEO';
 import { SAMPLE_ARTICLES } from '../lib/sampleArticles';
+import { articleSchema, breadcrumbSchema } from '../lib/schemas';
 
 const CATEGORY_LABELS = {
   renewable_energy: 'Renewable Energy',
@@ -32,8 +34,34 @@ export default function NewsArticle() {
     );
   }
 
+  const postJsonLd = post.created_date ? [
+    articleSchema({
+      headline: post.title,
+      excerpt: post.excerpt || '',
+      datePublished: post.created_date,
+      dateModified: post.created_date,
+      url: `/news/${post.id}`,
+    }),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'News', url: '/news' },
+      { name: post.title },
+    ]),
+  ] : breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'News', url: '/news' },
+    { name: post.title },
+  ]);
+
   return (
     <div className="pt-32 pb-20">
+      <SEO
+        title={`${post.title} — Aerata B.V.`}
+        description={post.excerpt || `Read about ${post.title} from Aerata B.V., enterprise drone service provider.`}
+        path={`/news/${post.id}`}
+        type="article"
+        jsonLd={postJsonLd}
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <Link
           to="/news"

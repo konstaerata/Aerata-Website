@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import SEO from '../components/SEO';
+import { breadcrumbSchema } from '../lib/schemas';
 
 // HubSpot's `css` option forces the form into an iframe and injects this CSS
 // into that iframe's <head>. We also import Oxanium here because the parent
@@ -207,6 +209,15 @@ export default function Contact() {
 
   return (
     <div>
+      <SEO
+        title="Contact Aerata — Get a Drone Inspection Quote"
+        description="Reach our expert drone team in Delft or Athens. Request a free consultation for thermal, LiDAR, or photogrammetric inspection services across Europe."
+        path="/contact"
+        jsonLd={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Contact' },
+        ])}
+      />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

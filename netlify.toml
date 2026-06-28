@@ -1,0 +1,76 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# ── Redirects ────────────────────────────────────────────────────────────────
+
+# www → non-www (canonical domain)
+[[redirects]]
+  from = "https://www.aerata.com/*"
+  to = "https://aerata.com/:splat"
+  status = 301
+  force = true
+
+# Custom 404
+[[redirects]]
+  from = "/404"
+  to = "/404.html"
+  status = 404
+
+# SPA catch-all — must be last
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ── Security Headers (all pages) ────────────────────────────────────────────
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://js.hsforms.net https://forms-eu1.hsforms.com https://js.hs-banner.com https://js.hs-analytics.net https://js.hubspot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev https://media.base44.com https://*.hubspot.com https://*.hsforms.com; media-src 'self' https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev; connect-src 'self' https://*.hubspot.com https://*.hsforms.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.base44.com https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev; frame-src 'self' https://*.hubspot.com https://*.hsforms.com https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://*.hubspot.com https://*.hsforms.com"
+
+# ── Cache: hashed static assets (immutable) ─────────────────────────────────
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Cache: HTML pages (always revalidate) ────────────────────────────────────
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Cache: static media in /media/ ───────────────────────────────────────────
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ── Sitemap & robots ────────────────────────────────────────────────────────
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"

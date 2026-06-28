@@ -1,9 +1,11 @@
 // @ts-nocheck
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import SEO from '../components/SEO';
 import SectionHeading from '../components/shared/SectionHeading';
 import { MEDIA } from '../lib/media';
 import { useLang } from '../lib/LanguageContext';
+import { localBusinessSchema, breadcrumbSchema } from '../lib/schemas';
 
 const partners = [
   { name: 'iSOLAR',                        sector: 'Solar Energy',          rel: 'Solar farm maintenance company' },
@@ -163,8 +165,22 @@ export default function About() {
   const prefersReducedMotion = useReducedMotion();
   const { t } = useLang();
 
+  const aboutJsonLd = [
+    localBusinessSchema,
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'About Us' },
+    ]),
+  ];
+
   return (
     <div>
+      <SEO
+        title="About Aerata B.V. — Drone Inspection Team & Partners"
+        description="Meet the Aerata team and partners. Based in Delft, Netherlands, we deliver certified drone inspections for renewable energy, infrastructure, and industrial clients across Europe."
+        path="/about"
+        jsonLd={aboutJsonLd}
+      />
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0" aria-hidden="true">
           <video

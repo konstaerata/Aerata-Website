@@ -1,10 +1,21 @@
 // @ts-nocheck
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
+import { breadcrumbSchema } from '../lib/schemas';
 
 export default function Privacy() {
   return (
     <div className="pt-32 pb-20">
+      <SEO
+        title="Privacy Policy — Aerata B.V."
+        description="Aerata B.V. privacy policy. Learn how we collect, use, and protect your personal data in compliance with GDPR regulations."
+        path="/privacy"
+        jsonLd={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Privacy Policy' },
+        ])}
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <div className="flex items-center gap-3 mb-6">

@@ -11,7 +11,7 @@ export default function ServicePageHero({ title, subtitle, image, video, ctaText
         {video ? (
           <video src={video} autoPlay muted loop playsInline className="w-full h-full object-cover" />
         ) : (
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+          <img src={image} alt={title} fetchpriority="high" className="w-full h-full object-cover" />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
       </div>
@@ -38,8 +38,8 @@ export default function ServicePageHero({ title, subtitle, image, video, ctaText
         </motion.div>
       </div>
       {/* Corner brackets */}
-      <div className="absolute top-8 left-8 w-8 h-8 border-l border-t border-primary/20 hidden md:block" />
-      <div className="absolute bottom-8 right-8 w-8 h-8 border-r border-b border-primary/20 hidden md:block" />
+      <div className="absolute top-8 left-8 w-8 h-8 border-l border-t border-primary/20 hidden md:block" aria-hidden="true" />
+      <div className="absolute bottom-8 right-8 w-8 h-8 border-r border-b border-primary/20 hidden md:block" aria-hidden="true" />
     </section>
   );
 }

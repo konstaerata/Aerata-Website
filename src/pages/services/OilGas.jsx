@@ -2,11 +2,13 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Cpu, ShieldCheck, Gauge, FileSearch } from 'lucide-react';
+import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 export default function OilGas() {
   const prefersReducedMotion = useReducedMotion();
@@ -35,6 +37,15 @@ export default function OilGas() {
 
   return (
     <div>
+      <SEO
+        title="Oil & Gas Drone Inspections — Pipeline & Flare Stack"
+        description="Thermal and visual drone inspections for oil and gas pipelines, flare stacks, and offshore platforms. IP45-rated all-weather operations with 48-hour report delivery."
+        path="/services/oil-gas"
+        jsonLd={[
+          serviceSchema({ name: 'Oil & Gas Drone Inspection', description: 'Thermal, visual, and gas-detection drone inspections for pipelines, refineries, flare stacks, and offshore platforms.' }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Oil & Gas' }]),
+        ]}
+      />
       <ServicePageHero
         title={t('oilgas.heroTitle')}
         subtitle={t('oilgas.heroSubtitle')}
@@ -122,7 +133,7 @@ export default function OilGas() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.oilgas_workflow_image} alt="Gas pipeline aerial inspection corridor" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.oilgas_workflow_image} alt="Gas pipeline aerial inspection corridor" loading="lazy" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {['PERMIT PLANNING', 'MULTI-SENSOR CAPTURE', '48H REPORT'].map(tag => (
@@ -153,7 +164,7 @@ export default function OilGas() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.oilgas_why_aerata_image} alt="Drone inspection of offshore platform" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.oilgas_why_aerata_image} alt="Drone inspection of offshore platform" loading="lazy" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />

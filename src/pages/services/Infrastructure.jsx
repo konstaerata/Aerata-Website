@@ -2,11 +2,13 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Shield, Zap, Target, CircleDollarSign, Radio, Bolt } from 'lucide-react';
+import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import SectionHeading from '../../components/shared/SectionHeading';
 import CTABanner from '../../components/shared/CTABanner';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 function ServiceGrid({ title, image, services, icon: Icon, desc }) {
   const prefersReducedMotion = useReducedMotion();
@@ -89,6 +91,15 @@ export default function Infrastructure() {
 
   return (
     <div>
+      <SEO
+        title="Infrastructure Drone Inspections — Towers & Power Lines"
+        description="Drone inspections for telecom towers, power lines, and critical infrastructure. 5x faster than rope access with centimetre-accurate GPS-tagged imagery."
+        path="/services/infrastructure"
+        jsonLd={[
+          serviceSchema({ name: 'Critical Infrastructure Drone Inspection', description: 'Drone-based visual and thermal inspections for telecom towers, power transmission lines, and critical infrastructure assets.' }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Infrastructure' }]),
+        ]}
+      />
       <ServicePageHero
         title={t('infra.heroTitle')}
         subtitle={t('infra.heroSubtitle')}
@@ -152,7 +163,7 @@ export default function Infrastructure() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.infra_why_aerata_image} alt="Drone inspection of power transmission lines" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.infra_why_aerata_image} alt="Drone inspection of power transmission lines" loading="lazy" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />

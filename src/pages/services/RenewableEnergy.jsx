@@ -2,11 +2,13 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Shield, Zap, FileText } from 'lucide-react';
+import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 function ThermalSlider({ t }) {
   const [pos, setPos] = useState(50);
@@ -94,6 +96,15 @@ export default function RenewableEnergy() {
 
   return (
     <div>
+      <SEO
+        title="Solar & Wind Drone Inspections — Aerata B.V."
+        description="IEC-compliant thermal drone inspections for solar farms and wind turbines. Detect hotspots, cracks, and defects 5x faster than ground crews. 48-hour report delivery."
+        path="/services/renewable-energy"
+        jsonLd={[
+          serviceSchema({ name: 'Renewable Energy Drone Inspection', description: 'IEC-compliant thermal and visual drone inspections for solar farms and wind turbines across Europe.' }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Renewable Energy' }]),
+        ]}
+      />
       <ServicePageHero
         title={t('renewable.heroTitle')}
         subtitle={t('renewable.heroSubtitle')}
@@ -183,7 +194,7 @@ export default function RenewableEnergy() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.renewable_workflow_image} alt="Solar farm thermal inspection from above" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.renewable_workflow_image} alt="Solar farm thermal inspection from above" loading="lazy" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {['SITE ASSESSMENT', 'THERMAL CAPTURE', '48H DELIVERY'].map(tag => (
@@ -214,7 +225,7 @@ export default function RenewableEnergy() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.renewable_why_aerata_image} alt="Wind turbine blade drone inspection" className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.renewable_why_aerata_image} alt="Wind turbine blade drone inspection" loading="lazy" className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />

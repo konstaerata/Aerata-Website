@@ -2,11 +2,13 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Layers, Crosshair, Clock, FileDown } from 'lucide-react';
+import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 export default function Surveying() {
   const prefersReducedMotion = useReducedMotion();
@@ -35,6 +37,15 @@ export default function Surveying() {
 
   return (
     <div>
+      <SEO
+        title="Aerial Surveying & LiDAR Mapping — Aerata B.V."
+        description="Sub-2cm accuracy aerial surveys using photogrammetry, LiDAR, and RTK-GNSS. Orthomosaics, 3D models, point clouds, and construction monitoring across Europe."
+        path="/services/surveying"
+        jsonLd={[
+          serviceSchema({ name: 'Aerial Surveying & LiDAR Mapping', description: 'High-accuracy aerial surveying using photogrammetry, LiDAR, and RTK-GNSS for orthomosaics, 3D models, DTM/DSM, and construction monitoring.' }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Surveying & Mapping' }]),
+        ]}
+      />
       <ServicePageHero
         title={t('surveying.heroTitle')}
         subtitle={t('surveying.heroSubtitle')}
@@ -108,7 +119,7 @@ export default function Surveying() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.surveying_capabilities_image} alt="LiDAR point cloud data over terrain" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.surveying_capabilities_image} alt="LiDAR point cloud data over terrain" loading="lazy" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />
@@ -184,7 +195,7 @@ export default function Surveying() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.surveying_workflow_image} alt="Drone survey in progress over a construction site" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={MEDIA.surveying_workflow_image} alt="Drone survey in progress over a construction site" loading="lazy" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {['SITE PLANNING', 'DATA CAPTURE', 'CAD DELIVERY'].map(tag => (

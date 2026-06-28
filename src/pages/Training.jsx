@@ -2,10 +2,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, ExternalLink, Award, BookOpen, Users } from 'lucide-react';
+import SEO from '../components/SEO';
+import { breadcrumbSchema } from '../lib/schemas';
 
 export default function Training() {
   return (
     <div>
+      <SEO
+        title="Drone Pilot Training & EASA Licensing — Aerata"
+        description="Get EU-certified drone pilot training through Aerata's partnership with DroneLicense.eu. EASA-compliant courses from beginner to advanced commercial operations."
+        path="/training"
+        jsonLd={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Training' },
+        ])}
+      />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -7,9 +7,11 @@ import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
+import SEO from '../components/SEO';
 import SectionHeading from '../components/shared/SectionHeading';
 import { useLang } from '../lib/LanguageContext';
 import { SAMPLE_ARTICLES } from '../lib/sampleArticles';
+import { breadcrumbSchema } from '../lib/schemas';
 
 export default function News() {
   const { t } = useLang();
@@ -50,6 +52,15 @@ export default function News() {
 
   return (
     <div>
+      <SEO
+        title="Drone Industry News & Insights — Aerata B.V."
+        description="Latest news on drone inspections, aerial surveying, renewable energy, and industrial technology from Aerata's team of enterprise drone operators."
+        path="/news"
+        jsonLd={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'News' },
+        ])}
+      />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
