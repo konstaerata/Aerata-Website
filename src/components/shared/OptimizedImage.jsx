@@ -32,7 +32,7 @@ export default function OptimizedImage({
   fill = false,
   className = '',
   imgClassName = '',
-  style,
+  style = undefined,
   ...rest
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +43,14 @@ export default function OptimizedImage({
   const wrapperClassName = fill
     ? `absolute inset-0 overflow-hidden ${className}`
     : `relative block overflow-hidden ${className}`;
+
+  // Passed via spread rather than a direct JSX attribute: eslint-plugin-react
+  // and @types/react both expect the camelCase `fetchPriority`, but the
+  // installed react-dom (18.3.1) warns on that at runtime and expects the
+  // lowercase DOM attribute name instead (verified via live browser render).
+  // Spreading an untyped object sidesteps both static tools while still
+  // rendering the attribute the actual runtime wants.
+  const fetchPriorityProp = { fetchpriority: priority ? 'high' : 'low' };
 
   return (
     <span
@@ -62,7 +70,7 @@ export default function OptimizedImage({
         height={height}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
-        fetchPriority={priority ? 'high' : 'low'}
+        {...fetchPriorityProp}
         onLoad={() => setLoaded(true)}
         className={`w-full h-full object-cover ${loaded ? 'opacity-100' : 'opacity-0'} ${imgClassName}`}
         {...rest}

@@ -89,6 +89,10 @@ export const MEDIA = {
   fleet_neo_image:                     `${BASE_LOCAL}/dji neo.jpg`,
   fleet_h20t_image:                    `${BASE_LOCAL}/h20t.jpg`,
   fleet_p1_image:                      `${BASE_LOCAL}/p1.jpg`,
+  // NOTE: key/filename say "l1" but this is used as the Zenmuse L2 fleet
+  // image (Fleet.jsx) — the L1 payload was retired/upgraded to L2. Left as
+  // "l1" rather than renamed since the underlying R2 file itself (l1.webp)
+  // wasn't visually re-verified to confirm it's actually an L2 product photo.
   fleet_l1_image:                      `${BASE_LOCAL}/l1.webp`,
   fleet_drtk3_image:                   `${BASE_LOCAL}/rtk3.jpg`,
   fleet_drtk2_image:                   `${BASE_LOCAL}/rtk2.png`,
@@ -182,6 +186,8 @@ function splitMediaUrl(url) {
  * Falls back to the untransformed original when transforms aren't enabled
  * (see MEDIA_TRANSFORMS_ENABLED) or the URL isn't from our R2 bucket
  * (e.g. base44-hosted placeholders, external URLs).
+ * @param {string} originalUrl
+ * @param {{ width?: number, format?: string, quality?: number, fit?: string }} [options]
  */
 export function mediaUrl(originalUrl, { width, format = 'auto', quality = 82, fit = 'cover' } = {}) {
   if (!originalUrl) return originalUrl;
@@ -198,6 +204,8 @@ export function mediaUrl(originalUrl, { width, format = 'auto', quality = 82, fi
  * given original media URL and target format. Returns null when transforms
  * aren't available, so callers can omit `srcSet` entirely (browser then
  * falls back to plain `src`).
+ * @param {string} originalUrl
+ * @param {{ format?: string, quality?: number, widths?: number[] }} [options]
  */
 export function mediaSrcSet(originalUrl, { format = 'auto', quality = 82, widths = RESPONSIVE_WIDTHS } = {}) {
   if (!originalUrl) return null;

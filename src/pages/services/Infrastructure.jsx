@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Shield, Zap, Target, CircleDollarSign, Radio, Bolt } from 'lucide-react';
 import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
-import SectionHeading from '../../components/shared/SectionHeading';
 import CTABanner from '../../components/shared/CTABanner';
 import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';

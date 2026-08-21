@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Cpu, Wind, Zap, Shield, Camera, Layers, Radar } from 'lucide-react';
+import { Cpu, Wind, Shield, Radar } from 'lucide-react';
 import SEO from '../components/SEO';
 import OptimizedImage from '../components/shared/OptimizedImage';
 import { MEDIA } from '../lib/media';
@@ -26,7 +26,7 @@ const FLEET = [
     image: MEDIA.fleet_matrice_350_video,
     specs: ['55 min flight time', 'IP54 all-weather rating', 'Dual operator mode', 'O3 Enterprise 20 km link', 'Upgraded RTK module', 'Hot-swap battery system'],
     tags: ['Mapping', 'Photogrammetry', 'Construction', 'Survey'],
-    desc: 'Our newest generation enterprise platform. The M350 RTK builds on the M300\'s proven architecture with an upgraded transmission system, improved IP54 weather sealing, and a redesigned battery system for faster turnarounds. Paired with the Zenmuse P1 or L1, it delivers the highest-accuracy aerial data available for professional surveying and construction monitoring.',
+    desc: 'Our newest generation enterprise platform. The M350 RTK builds on the M300\'s proven architecture with an upgraded transmission system, improved IP54 weather sealing, and a redesigned battery system for faster turnarounds. Paired with the Zenmuse P1 or L2, it delivers the highest-accuracy aerial data available for professional surveying and construction monitoring.',
   },
   {
     name: 'DJI Matrice 4E',

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Calculator, TrendingDown, Clock, DollarSign } from 'lucide-react';
+import { TrendingDown, Clock, DollarSign } from 'lucide-react';
 import { useLang } from '../../lib/LanguageContext';
 
 function fmt(n) {
