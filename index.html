@@ -24,22 +24,6 @@
     <link rel="preconnect" href="https://js-eu1.hs-scripts.com" crossorigin />
     <link rel="preconnect" href="https://js-eu1.hsforms.net" crossorigin />
 
-    <!-- Fonts — loaded non-render-blocking via the preload+onload swap pattern.
-         Moved out of src/index.css (was a render-blocking @import) so the rest
-         of the stylesheet isn't gated on this fetch. -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-      />
-    </noscript>
-
     <!-- Homepage hero video preload — prevents LCP delay on first paint.
          Must match src/lib/media.js MEDIA.home_hero_video. Update both if the
          homepage hero asset changes; this preload is homepage-specific and

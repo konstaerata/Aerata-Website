@@ -18,8 +18,8 @@ export default function ServicePageHero({ title, subtitle, image, video, ctaText
             width={1920}
             height={1080}
             priority
+            fill
             sizes="100vw"
-            className="absolute inset-0 w-full h-full"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />

@@ -10,8 +10,15 @@ import { mediaUrl, mediaSrcSet, MEDIA_TRANSFORMS_ENABLED } from '@/lib/media';
  * - defaults to lazy/async/low-priority loading unless marked `priority`
  * - fades in on load, optionally over a solid placeholder color
  *
+ * The wrapper only reserves an aspect-ratio box when the caller isn't
+ * already sizing the box itself (e.g. `absolute inset-0` hero fills, or a
+ * fixed-height parent) — otherwise the two sizing rules fight and force
+ * extra layout/paint work, which is especially visible on scroll-tied or
+ * hover-scale animations (framer-motion parallax, group-hover:scale-*).
+ * Pass `fill` explicitly to force absolute-fill mode.
+ *
  * Usage:
- *   <OptimizedImage src={MEDIA.renewable_hero_image} alt="Solar farm" width={1920} height={1080} priority />
+ *   <OptimizedImage src={MEDIA.renewable_hero_image} alt="Solar farm" width={1920} height={1080} priority fill />
  *   <OptimizedImage src={MEDIA.fleet_p1_image} alt="DJI P1" width={800} height={600} sizes="(min-width: 1024px) 33vw, 100vw" />
  */
 export default function OptimizedImage({
@@ -22,6 +29,7 @@ export default function OptimizedImage({
   sizes = '100vw',
   priority = false,
   placeholderColor = '#0a1a1f',
+  fill = false,
   className = '',
   imgClassName = '',
   style,
@@ -32,10 +40,18 @@ export default function OptimizedImage({
   const finalSrc = mediaUrl(src, { width });
   const srcSet = mediaSrcSet(src);
 
+  const wrapperClassName = fill
+    ? `absolute inset-0 overflow-hidden ${className}`
+    : `relative block overflow-hidden ${className}`;
+
   return (
     <span
-      className={`relative block overflow-hidden ${className}`}
-      style={{ backgroundColor: placeholderColor, aspectRatio: width && height ? `${width} / ${height}` : undefined, ...style }}
+      className={wrapperClassName}
+      style={{
+        backgroundColor: placeholderColor,
+        aspectRatio: !fill && width && height ? `${width} / ${height}` : undefined,
+        ...style,
+      }}
     >
       <img
         src={finalSrc}
@@ -48,7 +64,7 @@ export default function OptimizedImage({
         decoding="async"
         fetchPriority={priority ? 'high' : 'low'}
         onLoad={() => setLoaded(true)}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'} ${imgClassName}`}
+        className={`w-full h-full object-cover ${loaded ? 'opacity-100' : 'opacity-0'} ${imgClassName}`}
         {...rest}
       />
     </span>
