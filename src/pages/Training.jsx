@@ -12,6 +12,7 @@ export default function Training() {
         title="Drone Pilot Training & EASA Licensing — Aerata"
         description="Get EU-certified drone pilot training through Aerata's partnership with DroneLicense.eu. EASA-compliant courses from beginner to advanced commercial operations."
         path="/training"
+        noindex
         jsonLd={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'Training' },
