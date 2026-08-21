@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
@@ -218,6 +219,8 @@ export default function Environmental() {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="environmental" />
 
       <CTABanner title={t('environment.ctaTitle')} subtitle={t('environment.ctaSub')} />
     </div>

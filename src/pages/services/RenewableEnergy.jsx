@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
@@ -274,6 +275,8 @@ export default function RenewableEnergy() {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="renewable-energy" />
 
       <CTABanner title={t('renewable.ctaTitle')} subtitle={t('renewable.ctaSub')} />
     </div>

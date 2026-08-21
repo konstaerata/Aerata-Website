@@ -2,8 +2,9 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-export default function SectionHeading({ label, title, description, align = 'center', light = false }) {
+export default function SectionHeading({ label, title, description, align = 'center', light = false, as = 'h2' }) {
   const prefersReducedMotion = useReducedMotion();
+  const HeadingTag = motion[as];
 
   return (
     <div className={`mb-12 ${align === 'center' ? 'text-center' : 'text-left'}`}>
@@ -36,7 +37,7 @@ export default function SectionHeading({ label, title, description, align = 'cen
         </motion.div>
       )}
 
-      <motion.h2
+      <HeadingTag
         initial={prefersReducedMotion ? false : { opacity: 0.3, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
@@ -46,7 +47,7 @@ export default function SectionHeading({ label, title, description, align = 'cen
         }`}
       >
         {title}
-      </motion.h2>
+      </HeadingTag>
 
       {description && (
         <motion.p

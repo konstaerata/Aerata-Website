@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
@@ -219,6 +220,8 @@ export default function OilGas() {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="oil-gas" />
 
       <CTABanner title={t('oilgas.ctaTitle')} subtitle={t('oilgas.ctaSub')} />
     </div>

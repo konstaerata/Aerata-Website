@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import SectionHeading from '../components/shared/SectionHeading';
 import { MEDIA } from '../lib/media';
 import { useLang } from '../lib/LanguageContext';
-import { localBusinessSchema, breadcrumbSchema } from '../lib/schemas';
+import { breadcrumbSchema } from '../lib/schemas';
 
 const partners = [
   { name: 'iSOLAR',                        sector: 'Solar Energy',          rel: 'Solar farm maintenance company' },
@@ -163,13 +163,10 @@ export default function About() {
   const prefersReducedMotion = useReducedMotion();
   const { t } = useLang();
 
-  const aboutJsonLd = [
-    localBusinessSchema,
-    breadcrumbSchema([
-      { name: 'Home', url: '/' },
-      { name: 'About Us' },
-    ]),
-  ];
+  const aboutJsonLd = breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'About Us' },
+  ]);
 
   return (
     <div>

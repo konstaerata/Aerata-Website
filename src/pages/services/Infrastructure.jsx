@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import SectionHeading from '../../components/shared/SectionHeading';
 import CTABanner from '../../components/shared/CTABanner';
+import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
@@ -204,6 +205,8 @@ export default function Infrastructure() {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="infrastructure" />
 
       <CTABanner title={t('infra.ctaTitle')} subtitle={t('infra.ctaSub')} />
     </div>

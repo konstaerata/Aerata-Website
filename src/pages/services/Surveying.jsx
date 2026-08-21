@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import RelatedServices from '../../components/shared/RelatedServices';
 import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
@@ -262,6 +263,8 @@ export default function Surveying() {
           <p className="mt-3 text-xs text-muted-foreground/60 font-mono">{t('surveying.demoNote')}</p>
         </div>
       </motion.section>
+
+      <RelatedServices current="surveying" />
 
       <CTABanner title={t('surveying.ctaTitle')} subtitle={t('surveying.ctaSub')} />
     </div>

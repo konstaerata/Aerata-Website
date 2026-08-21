@@ -1,12 +1,14 @@
 // @ts-nocheck
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import SEO from '../components/SEO';
+import RelatedArticles from '../components/shared/RelatedArticles';
 import { SAMPLE_ARTICLES } from '../lib/sampleArticles';
 import { articleSchema, breadcrumbSchema } from '../lib/schemas';
+import { SERVICES } from '../lib/services';
 
 const CATEGORY_LABELS = {
   renewable_energy: 'Renewable Energy',
@@ -18,10 +20,22 @@ const CATEGORY_LABELS = {
   technology:       'Technology',
 };
 
+// Maps article categories onto the corresponding service page, where one
+// exists — company_news/technology have no single matching service.
+const CATEGORY_TO_SERVICE_KEY = {
+  renewable_energy: 'renewable-energy',
+  infrastructure:   'infrastructure',
+  surveying:        'surveying',
+  oil_gas:          'oil-gas',
+  environmental:    'environmental',
+};
+
 export default function NewsArticle() {
   const { id } = useParams();
 
   const post = SAMPLE_ARTICLES.find(a => String(a.id) === String(id));
+  const relatedServiceKey = post ? CATEGORY_TO_SERVICE_KEY[post.category] : undefined;
+  const relatedService = relatedServiceKey ? SERVICES.find((s) => s.key === relatedServiceKey) : undefined;
 
   if (!post) {
     return (
@@ -119,6 +133,22 @@ export default function NewsArticle() {
             </ReactMarkdown>
           </div>
         </div>
+
+        {relatedService && (
+          <div className="mb-10 p-5 rounded-lg border border-primary/20 bg-primary/5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 justify-between">
+            <p className="text-sm text-muted-foreground">
+              Learn more about our <span className="font-semibold text-foreground">{relatedService.name}</span> services.
+            </p>
+            <Link
+              to={relatedService.path}
+              className="inline-flex items-center gap-1.5 shrink-0 text-sm font-semibold text-primary hover:underline"
+            >
+              View {relatedService.name} <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        )}
+
+        <RelatedArticles current={post} articles={SAMPLE_ARTICLES} categoryLabel={CATEGORY_LABELS[post.category]} />
 
         <div className="flex items-center justify-between">
           <Link

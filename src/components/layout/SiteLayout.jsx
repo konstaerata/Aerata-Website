@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../CookieConsent';
+import { organizationSchema, localBusinessSchema } from '../../lib/schemas';
+
+// Sitewide Organization + LocalBusiness JSON-LD, present on every page via
+// this shared layout — previously Organization only appeared on Home and
+// LocalBusiness only on About, understating Aerata's local/NAP relevance
+// for search on every other page.
+const SITEWIDE_JSON_LD = { '@context': 'https://schema.org', '@graph': [organizationSchema, localBusinessSchema] };
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -35,6 +43,9 @@ export default function SiteLayout() {
 
   return (
     <div className="min-h-screen bg-background relative">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(SITEWIDE_JSON_LD)}</script>
+      </Helmet>
       <ScrollToTop />
       <Navbar />
       

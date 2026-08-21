@@ -65,7 +65,7 @@ export default function News() {
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <SectionHeading label={t('news.label')} title={t('news.title')} align="left" light />
+            <SectionHeading label={t('news.label')} title={t('news.title')} align="left" light as="h1" />
           </motion.div>
         </div>
       </section>
