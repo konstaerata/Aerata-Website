@@ -74,6 +74,7 @@ export default function NewsArticle() {
         description={post.excerpt || `Read about ${post.title} from Aerata B.V., enterprise drone service provider.`}
         path={`/news/${post.id}`}
         type="article"
+        translated={false}
         jsonLd={postJsonLd}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6">

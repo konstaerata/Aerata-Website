@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Canonical — overridden per-page by react-helmet-async -->
-    <link rel="canonical" href="https://aerata.com/" />
-
     <!-- Search Console & Webmaster verification placeholders -->
     <!-- Replace content="" values with your actual verification tokens -->
     <meta name="google-site-verification" content="PASTE_GOOGLE_VERIFICATION_TOKEN_HERE" />
@@ -30,26 +27,20 @@
          doesn't help other routes since index.html is shared by the whole SPA. -->
     <link rel="preload" as="video" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/promovideoforfrontpage.mp4" fetchpriority="high" />
 
+    <!-- Fallback title/description/OG/Twitter tags for the brief pre-hydration
+         window and for the noscript view below. Every real route overrides
+         all of these via react-helmet-async (see src/components/SEO.jsx) —
+         but react-helmet-async only manages tags IT renders; it does not
+         remove tags already present in this static HTML. Previously this
+         file also had a static canonical + duplicate og:*/twitter:* tags
+         that were never removed once a page's <SEO> mounted, so every route
+         briefly shipped two conflicting canonical/OG tags. Keep this block
+         to the minimum needed for noscript/pre-hydration; do not add a
+         static <link rel="canonical"> or duplicate og:*/twitter:* tags here
+         again — they will conflict with every page's own <SEO>. -->
     <title>Aerata B.V. — Aerial Intelligence for Industry</title>
     <meta name="description" content="Aerata delivers enterprise drone services across Europe — thermal, LiDAR, and photogrammetric data for renewable energy, infrastructure, surveying, and oil &amp; gas. Headquartered in Delft, Netherlands." />
     <meta name="keywords" content="drone inspections, aerial intelligence, drone services, solar thermal inspection, wind turbine inspection, LiDAR survey, IEC thermography, EASA certified, Netherlands, Delft, Greece, Athens" />
-
-    <!-- Open Graph — defaults, overridden per-page by react-helmet-async -->
-    <meta property="og:title" content="Aerata B.V. — Aerial Intelligence for Industry" />
-    <meta property="og:description" content="Enterprise drone crews across Europe. Thermal, LiDAR, and photogrammetric data — faster and safer than ground-based methods." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://aerata.com" />
-    <meta property="og:site_name" content="Aerata B.V." />
-    <meta property="og:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/og-aerata-1200x630.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter / X card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@aerata_bv" />
-    <meta name="twitter:title" content="Aerata B.V. — Aerial Intelligence for Industry" />
-    <meta name="twitter:description" content="Enterprise drone services across Europe. Thermal, LiDAR, and photogrammetric inspections." />
-    <meta name="twitter:image" content="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/og-aerata-1200x630.png" />
 
     <!-- HubSpot Analytics -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25483745.js"></script>

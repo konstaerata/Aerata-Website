@@ -1,73 +1,331 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aerata.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://aerata.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/about" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/about" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/about" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/about" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/about" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/about" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/about" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/about" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/about" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://aerata.com/services/renewable-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/renewable-energy" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/services/renewable-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/renewable-energy" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/services/renewable-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/renewable-energy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/renewable-energy" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aerata.com/services/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/infrastructure" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/services/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/infrastructure" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/services/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/infrastructure" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/infrastructure" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aerata.com/services/surveying</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/surveying" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/services/surveying</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/surveying" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/services/surveying</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/surveying" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/surveying" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aerata.com/services/environmental</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/environmental" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/services/environmental</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/environmental" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/services/environmental</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/environmental" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/environmental" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aerata.com/services/oil-gas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/oil-gas" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/services/oil-gas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/oil-gas" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/services/oil-gas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/services/oil-gas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/services/oil-gas" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aerata.com/fleet</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/fleet" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/fleet" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/fleet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/fleet" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aerata.com/training</loc>
+    <loc>https://aerata.com/nl/fleet</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/fleet" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/fleet" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/fleet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/fleet" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/fleet</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/fleet" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/fleet" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/fleet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/fleet" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://aerata.com/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/news" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/news" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/news" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/news" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/news" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/news" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/news" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/news" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/news" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://aerata.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/contact" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/contact" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/contact" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/contact" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/contact" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/contact" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/contact" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/contact" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/contact" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://aerata.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/privacy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/privacy" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/nl/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/privacy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/privacy" />
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://aerata.com/el/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aerata.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://aerata.com/nl/privacy" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://aerata.com/el/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aerata.com/privacy" />
     <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

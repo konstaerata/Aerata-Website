@@ -13,6 +13,13 @@
  * source, so it sitemaps SAMPLE_ARTICLES only. If/when articles move fully
  * into the live CMS, point this script at that data source instead so the
  * sitemap doesn't drift from what's actually published.
+ *
+ * MULTILINGUAL: each static route gets an <xhtml:link rel="alternate"> per
+ * language (matching src/components/SEO.jsx's hreflang output) rather than
+ * being listed 3x as separate unrelated <url> entries — this is Google's
+ * documented pattern for multilingual sitemaps. Articles are English-only
+ * (src/pages/NewsArticle.jsx passes translated={false} to <SEO>), so they
+ * get no alternates, consistent with not emitting hreflang for them either.
  */
 import { writeFileSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -23,8 +30,14 @@ const OUT_PATH = resolve(__dirname, '../public/sitemap.xml');
 const SITE_URL = 'https://aerata.com';
 const TODAY = new Date().toISOString().slice(0, 10);
 
-// Static routes — keep in sync with src/App.jsx. /portal is intentionally
-// excluded (noindex + robots-disallowed).
+// Keep in sync with src/lib/LanguageContext.jsx's LANGUAGES/DEFAULT_LANG.
+const LANGUAGES = ['en', 'nl', 'el'];
+const DEFAULT_LANG = 'en';
+const localizedLoc = (path, lang) => `${SITE_URL}${lang === DEFAULT_LANG ? '' : `/${lang}`}${path}`;
+
+// Static routes — keep in sync with src/App.jsx. /portal and /training are
+// intentionally excluded (both noindex — /training because it's a thin
+// affiliate-link page with no unique content, per docs/content-roadmap.md).
 const STATIC_ROUTES = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/about', changefreq: 'monthly', priority: '0.8' },
@@ -34,7 +47,6 @@ const STATIC_ROUTES = [
   { path: '/services/environmental', changefreq: 'monthly', priority: '0.9' },
   { path: '/services/oil-gas', changefreq: 'monthly', priority: '0.9' },
   { path: '/fleet', changefreq: 'monthly', priority: '0.7' },
-  { path: '/training', changefreq: 'monthly', priority: '0.6' },
   { path: '/news', changefreq: 'weekly', priority: '0.7' },
   { path: '/contact', changefreq: 'monthly', priority: '0.8' },
   { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
@@ -72,10 +84,14 @@ function loadArticles() {
   return articles;
 }
 
-function buildUrlEntry({ loc, lastmod, changefreq, priority }) {
+function buildUrlEntry({ loc, lastmod, changefreq, priority, alternates }) {
+  const alternateLines = (alternates ?? []).map(
+    ({ hreflang, href }) => `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}" />`
+  );
   return [
     '  <url>',
     `    <loc>${loc}</loc>`,
+    ...alternateLines,
     `    <lastmod>${lastmod}</lastmod>`,
     `    <changefreq>${changefreq}</changefreq>`,
     `    <priority>${priority}</priority>`,
@@ -86,14 +102,23 @@ function buildUrlEntry({ loc, lastmod, changefreq, priority }) {
 async function main() {
   const articles = loadArticles();
 
-  const staticEntries = STATIC_ROUTES.map((r) =>
-    buildUrlEntry({
-      loc: `${SITE_URL}${r.path}`,
-      lastmod: TODAY,
-      changefreq: r.changefreq,
-      priority: r.priority,
-    })
-  );
+  // One <url> per (route, language) pair, each carrying the full set of
+  // alternates (including itself and x-default) — matches SEO.jsx exactly.
+  const staticEntries = STATIC_ROUTES.flatMap((r) => {
+    const alternates = [
+      ...LANGUAGES.map((lang) => ({ hreflang: lang, href: localizedLoc(r.path, lang) })),
+      { hreflang: 'x-default', href: localizedLoc(r.path, DEFAULT_LANG) },
+    ];
+    return LANGUAGES.map((lang) =>
+      buildUrlEntry({
+        loc: localizedLoc(r.path, lang),
+        lastmod: TODAY,
+        changefreq: r.changefreq,
+        priority: r.priority,
+        alternates,
+      })
+    );
+  });
 
   const articleEntries = articles
     .filter((a) => a.published)
@@ -108,7 +133,7 @@ async function main() {
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ...staticEntries,
     ...articleEntries,
     '</urlset>',
@@ -116,7 +141,7 @@ async function main() {
   ].join('\n');
 
   writeFileSync(OUT_PATH, xml, 'utf-8');
-  console.log(`sitemap.xml written: ${STATIC_ROUTES.length} static routes + ${articleEntries.length} articles`);
+  console.log(`sitemap.xml written: ${STATIC_ROUTES.length} static routes x ${LANGUAGES.length} languages + ${articleEntries.length} articles`);
 }
 
 main();
