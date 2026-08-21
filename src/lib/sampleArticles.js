@@ -47,7 +47,7 @@ The corridor ran through remote terrain with elevation changes exceeding 800 m, 
 
 ## The Approach
 
-Aerata deployed the DJI Matrice 300 RTK with both the Zenmuse L1 LiDAR and H20T thermal-RGB payload. The LiDAR provided centimetre-accurate 3D point clouds of each tower and conductor span, while the H20T thermal camera flagged electrical anomalies and corrosion hotspots.
+Aerata deployed the DJI Matrice 300 RTK with both the Zenmuse L2 LiDAR and H20T thermal-RGB payload. The LiDAR provided centimetre-accurate 3D point clouds of each tower and conductor span, while the H20T thermal camera flagged electrical anomalies and corrosion hotspots.
 
 ## Outcomes
 
@@ -91,7 +91,7 @@ The GIS-ready data was integrated directly into the client's asset management sy
 
 ## Hybrid Approaches
 
-For most infrastructure projects, Aerata deploys the DJI Zenmuse L1 — a combined LiDAR and RGB camera payload — delivering both datasets simultaneously. This eliminates the need to choose and provides redundant verification.
+For most infrastructure projects, Aerata deploys the DJI Zenmuse L2 — a combined LiDAR and RGB camera payload — delivering both datasets simultaneously. This eliminates the need to choose and provides redundant verification.
 
 Speak to our survey team to determine the right approach for your project.`,
     category: 'technology',
