@@ -34,10 +34,10 @@ export const organizationSchema = {
   ],
 };
 
-export const localBusinessSchema = {
+export const delftLocalBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': `${SITE_URL}/#business`,
+  '@id': `${SITE_URL}/#business-delft`,
   name: 'Aerata B.V.',
   url: SITE_URL,
   logo: LOGO_URL,
@@ -73,6 +73,45 @@ export const localBusinessSchema = {
     'https://www.youtube.com/@aerata6588',
   ],
 };
+
+// Athens (Alimos) office — added alongside Delft so both real locations are
+// equally discoverable in search/maps, not just the HQ. NAP matches
+// src/components/layout/Footer.jsx and src/pages/Contact.jsx exactly.
+export const athensLocalBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business-athens`,
+  name: 'Aerata B.V. — Athens Office',
+  url: SITE_URL,
+  logo: LOGO_URL,
+  image: LOGO_URL,
+  telephone: '+30-697-190-4421',
+  email: 'info@aerata.com',
+  description: 'Aerata B.V. Athens office, serving Greece, Cyprus, and the Southeast European market with drone inspection, LiDAR, and thermal imaging services.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Leoforos Alimou 8',
+    addressLocality: 'Alimos',
+    addressRegion: 'Attica',
+    postalCode: '17455',
+    addressCountry: 'GR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 37.9147,
+    longitude: 23.7085,
+  },
+  priceRange: '$$',
+  sameAs: [
+    'https://www.linkedin.com/company/aerata',
+    'https://www.instagram.com/aerata_bv',
+    'https://www.youtube.com/@aerata6588',
+  ],
+};
+
+// Backward-compatible alias — several files still import `localBusinessSchema`
+// by its original (pre-Athens) name.
+export const localBusinessSchema = delftLocalBusinessSchema;
 
 export function breadcrumbSchema(items) {
   return {

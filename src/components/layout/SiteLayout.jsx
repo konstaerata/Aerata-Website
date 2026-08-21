@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../CookieConsent';
-import { organizationSchema, localBusinessSchema } from '../../lib/schemas';
+import PageNotFound from '../../lib/PageNotFound';
+import { LanguageProvider, LANGUAGE_CODES, DEFAULT_LANG } from '../../lib/LanguageContext';
+import { organizationSchema, delftLocalBusinessSchema, athensLocalBusinessSchema } from '../../lib/schemas';
 
 // Sitewide Organization + LocalBusiness JSON-LD, present on every page via
 // this shared layout — previously Organization only appeared on Home and
 // LocalBusiness only on About, understating Aerata's local/NAP relevance
-// for search on every other page.
-const SITEWIDE_JSON_LD = { '@context': 'https://schema.org', '@graph': [organizationSchema, localBusinessSchema] };
+// for search on every other page. Both offices (Delft HQ, Athens) are
+// included so each is equally discoverable, not just the HQ.
+const SITEWIDE_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema, delftLocalBusinessSchema, athensLocalBusinessSchema],
+};
+
+// Non-English codes only — the unprefixed English mount has no :lang param.
+const PREFIXABLE_LANG_CODES = LANGUAGE_CODES.filter((c) => c !== DEFAULT_LANG);
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -21,6 +30,24 @@ function ScrollToTop() {
 }
 
 export default function SiteLayout() {
+  const { lang } = useParams();
+
+  // SiteLayout is mounted twice: once unprefixed (no :lang param, always
+  // English) and once under /:lang/*. In the second mount, anything other
+  // than a real language code (e.g. someone hitting /xyz/about) should 404
+  // rather than silently render as English content at a bogus URL.
+  if (lang !== undefined && !PREFIXABLE_LANG_CODES.includes(lang)) {
+    return <PageNotFound />;
+  }
+
+  return (
+    <LanguageProvider>
+      <SiteLayoutInner lang={lang || DEFAULT_LANG} />
+    </LanguageProvider>
+  );
+}
+
+function SiteLayoutInner({ lang }) {
   const [scrollY, setScrollY] = useState(0);
   const [docHeight, setDocHeight] = useState(1);
 
@@ -43,12 +70,12 @@ export default function SiteLayout() {
 
   return (
     <div className="min-h-screen bg-background relative">
-      <Helmet>
+      <Helmet htmlAttributes={{ lang }}>
         <script type="application/ld+json">{JSON.stringify(SITEWIDE_JSON_LD)}</script>
       </Helmet>
       <ScrollToTop />
       <Navbar />
-      
+
       {/* Altitude Scroll Bar */}
       <div className="fixed right-3 top-24 bottom-24 w-px bg-border z-30 hidden xl:block">
         <div className="absolute top-0 w-px transition-all duration-100" style={{ height: `${progress}%`, background: 'hsl(88 48% 52%)' }} />
