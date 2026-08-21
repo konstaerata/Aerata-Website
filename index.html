@@ -53,6 +53,18 @@
 
     <!-- HubSpot Analytics -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25483745.js"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M55H84G01Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // Page views are sent manually per-route by useGA4Tracking (see src/lib/useGA4Tracking.js)
+      // since this is a client-side-routed SPA — the default automatic page_view on load
+      // only ever sees the first URL.
+      gtag('config', 'G-M55H84G01Q', { send_page_view: false });
+    </script>
   </head>
   <body>
     <div id="root"></div>

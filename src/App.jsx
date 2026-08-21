@@ -7,9 +7,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LanguageProvider } from './lib/LanguageContext';
 import PageNotFound from './lib/PageNotFound';
 import { useHubSpotTracking } from './lib/useHubSpotTracking';
+import { useGA4Tracking, useGA4ClickTracking } from './lib/useGA4Tracking';
 
 function HubSpotPageTracker() {
   useHubSpotTracking();
+  return null;
+}
+
+function GA4PageTracker() {
+  useGA4Tracking();
+  useGA4ClickTracking();
   return null;
 }
 
@@ -38,6 +45,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <HubSpotPageTracker />
+          <GA4PageTracker />
           <Suspense fallback={null}>
             <Routes>
               <Route element={<SiteLayout />}>
