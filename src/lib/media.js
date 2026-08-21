@@ -36,7 +36,7 @@ const BASE_LOCAL = 'https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev';
  * as plain originals from BASE_LOCAL.
  */
 const MEDIA_TRANSFORM_HOST = 'https://media.aerata.com';
-export const MEDIA_TRANSFORMS_ENABLED = false;
+export const MEDIA_TRANSFORMS_ENABLED = true;
 
 /** External image CDN (base44) */
 const BASE_B44 = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774';
@@ -158,7 +158,12 @@ export const MEDIA = {
 
 // ── Image transform helpers ──────────────────────────────────────────────────
 
-const RESPONSIVE_WIDTHS = [320, 480, 640, 768, 1024, 1280, 1536, 1920];
+// Kept short deliberately: each width is a distinct Cloudflare cache key, and
+// a cold cache-miss transform takes 800ms-1s+ vs ~30ms once warm (measured).
+// A long width ladder means the first visitors after every deploy fan out
+// into many simultaneous slow transforms — this covers mobile / tablet /
+// laptop / large-desktop without that fan-out.
+const RESPONSIVE_WIDTHS = [480, 768, 1280, 1920];
 
 /**
  * Splits an R2 URL into { host, path } so transform helpers can rebuild it

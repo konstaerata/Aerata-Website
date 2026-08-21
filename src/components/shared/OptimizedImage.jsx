@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { mediaUrl, mediaSrcSet, MEDIA_TRANSFORMS_ENABLED } from '@/lib/media';
 
 /**
@@ -37,8 +37,8 @@ export default function OptimizedImage({
 }) {
   const [loaded, setLoaded] = useState(false);
 
-  const finalSrc = mediaUrl(src, { width });
-  const srcSet = mediaSrcSet(src);
+  const finalSrc = useMemo(() => mediaUrl(src, { width }), [src, width]);
+  const srcSet = useMemo(() => mediaSrcSet(src), [src]);
 
   const wrapperClassName = fill
     ? `absolute inset-0 overflow-hidden ${className}`
