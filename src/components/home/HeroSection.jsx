@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLang } from '../../lib/LanguageContext';
+import OptimizedImage from '../shared/OptimizedImage';
 
 export default function HeroSection({ heroImage, heroVideo }) {
   const videoRef = useRef(null);
@@ -59,7 +60,16 @@ export default function HeroSection({ heroImage, heroVideo }) {
             aria-hidden="true"
           />
         ) : (
-          <img src={heroImage} alt="" role="presentation" className="w-full h-full object-cover" />
+          <OptimizedImage
+            src={heroImage}
+            alt=""
+            role="presentation"
+            width={1920}
+            height={1080}
+            priority
+            sizes="100vw"
+            className="absolute inset-0 w-full h-full"
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-obsidian/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />

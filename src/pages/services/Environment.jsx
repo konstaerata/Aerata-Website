@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
@@ -112,7 +113,15 @@ export default function Environmental() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.env_capabilities_image} alt="Multispectral environmental data capture" loading="lazy" className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <OptimizedImage
+                  src={MEDIA.env_capabilities_image}
+                  alt="Multispectral environmental data capture"
+                  width={800}
+                  height={96}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full h-96"
+                  imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />
@@ -188,7 +197,15 @@ export default function Environmental() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.env_workflow_image} alt="Multispectral drone survey in progress" loading="lazy" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <OptimizedImage
+                  src={MEDIA.env_workflow_image}
+                  alt="Multispectral drone survey in progress"
+                  width={800}
+                  height={420}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full h-[420px]"
+                  imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
               </div>
               <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {['SENSOR CALIBRATION', 'SPECTRAL PROCESSING', 'GIS DELIVERY'].map(tag => (

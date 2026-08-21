@@ -11,12 +11,32 @@
  *
  * • For BASE_B44 placeholders: upload your own photo to R2, then replace
  *   the `${BASE_B44}/...` value with `${BASE_LOCAL}/your-photo.jpg`.
+ *
+ * IMAGE TRANSFORMS
+ * ─────────────────
+ * `mediaUrl()` / `srcSet()` (below) build Cloudflare Image Resizing URLs
+ * (`/cdn-cgi/image/...`) against MEDIA_TRANSFORM_HOST. This ONLY works when
+ * that host is a custom domain attached to the R2 bucket and proxied
+ * (orange-clouded) through a Cloudflare zone with Image Resizing enabled —
+ * it does NOT work on the free `pub-xxxx.r2.dev` dev subdomain. Until the
+ * custom domain is live, transform helpers fall back to serving the
+ * original file untransformed.
  */
 
 // ── Base paths ─────────────────────────────────────────────────────────────────
 
-/** Cloudflare R2 — all media served from here in both dev and production */
+/** Cloudflare R2 dev subdomain — plain file hosting, no transforms available here */
 const BASE_LOCAL = 'https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev';
+
+/**
+ * Custom domain for R2, proxied through Cloudflare with Image Resizing enabled.
+ * Set this once the domain is attached in the Cloudflare dashboard
+ * (R2 bucket → Settings → Custom Domains → media.aerata.com).
+ * Until then, MEDIA_TRANSFORMS_ENABLED stays false and all images serve
+ * as plain originals from BASE_LOCAL.
+ */
+const MEDIA_TRANSFORM_HOST = 'https://media.aerata.com';
+export const MEDIA_TRANSFORMS_ENABLED = false;
 
 /** External image CDN (base44) */
 const BASE_B44 = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774';
@@ -135,3 +155,53 @@ export const MEDIA = {
   env_capabilities_image:              `${BASE_LOCAL}/environmentalwhy.png`,
   env_workflow_image:                  `${BASE_LOCAL}/environmentalworkflow.png`,
 };
+
+// ── Image transform helpers ──────────────────────────────────────────────────
+
+const RESPONSIVE_WIDTHS = [320, 480, 640, 768, 1024, 1280, 1536, 1920];
+
+/**
+ * Splits an R2 URL into { host, path } so transform helpers can rebuild it
+ * against MEDIA_TRANSFORM_HOST regardless of which base the registry entry used.
+ */
+function splitMediaUrl(url) {
+  if (url.startsWith(BASE_LOCAL)) return { path: url.slice(BASE_LOCAL.length), transformable: true };
+  if (MEDIA_TRANSFORMS_ENABLED && url.startsWith(MEDIA_TRANSFORM_HOST)) {
+    return { path: url.slice(MEDIA_TRANSFORM_HOST.length), transformable: true };
+  }
+  return { path: null, transformable: false };
+}
+
+/**
+ * Builds a single Cloudflare Image Resizing URL for the given original media URL.
+ * Falls back to the untransformed original when transforms aren't enabled
+ * (see MEDIA_TRANSFORMS_ENABLED) or the URL isn't from our R2 bucket
+ * (e.g. base44-hosted placeholders, external URLs).
+ */
+export function mediaUrl(originalUrl, { width, format = 'auto', quality = 82, fit = 'cover' } = {}) {
+  if (!originalUrl) return originalUrl;
+  const { path, transformable } = splitMediaUrl(originalUrl);
+  if (!MEDIA_TRANSFORMS_ENABLED || !transformable) return originalUrl;
+
+  const opts = [`format=${format}`, `quality=${quality}`, `fit=${fit}`];
+  if (width) opts.push(`width=${width}`);
+  return `${MEDIA_TRANSFORM_HOST}/cdn-cgi/image/${opts.join(',')}${path}`;
+}
+
+/**
+ * Builds a srcset string across the standard responsive width ladder for a
+ * given original media URL and target format. Returns null when transforms
+ * aren't available, so callers can omit `srcSet` entirely (browser then
+ * falls back to plain `src`).
+ */
+export function mediaSrcSet(originalUrl, { format = 'auto', quality = 82, widths = RESPONSIVE_WIDTHS } = {}) {
+  if (!originalUrl) return null;
+  const { transformable } = splitMediaUrl(originalUrl);
+  if (!MEDIA_TRANSFORMS_ENABLED || !transformable) return null;
+
+  return widths
+    .map((w) => `${mediaUrl(originalUrl, { width: w, format, quality })} ${w}w`)
+    .join(', ');
+}
+
+export { RESPONSIVE_WIDTHS };

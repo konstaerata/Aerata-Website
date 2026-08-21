@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { motion } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 
 export default function ServiceSection({ title, description, features, image, reversed = false }) {
   return (
@@ -27,7 +28,15 @@ export default function ServiceSection({ title, description, features, image, re
       </div>
       <div className={`relative group ${reversed ? 'lg:order-1' : ''}`}>
         <div className="overflow-hidden rounded-lg border border-border/50">
-          <img src={image} alt={title} loading="lazy" className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105" />
+          <OptimizedImage
+            src={image}
+            alt={title}
+            width={800}
+            height={320}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="w-full h-80"
+            imgClassName="transition-transform duration-700 group-hover:scale-105"
+          />
           {/* Hover scan overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />

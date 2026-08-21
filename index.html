@@ -24,8 +24,27 @@
     <link rel="preconnect" href="https://js-eu1.hs-scripts.com" crossorigin />
     <link rel="preconnect" href="https://js-eu1.hsforms.net" crossorigin />
 
-    <!-- Hero image preload — prevents LCP delay on first paint -->
-    <link rel="preload" as="image" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/solarfarm.jpg" fetchpriority="high" />
+    <!-- Fonts — loaded non-render-blocking via the preload+onload swap pattern.
+         Moved out of src/index.css (was a render-blocking @import) so the rest
+         of the stylesheet isn't gated on this fetch. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Homepage hero video preload — prevents LCP delay on first paint.
+         Must match src/lib/media.js MEDIA.home_hero_video. Update both if the
+         homepage hero asset changes; this preload is homepage-specific and
+         doesn't help other routes since index.html is shared by the whole SPA. -->
+    <link rel="preload" as="video" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/promovideoforfrontpage.mp4" fetchpriority="high" />
 
     <title>Aerata B.V. — Aerial Intelligence for Industry</title>
     <meta name="description" content="Aerata delivers enterprise drone services across Europe — thermal, LiDAR, and photogrammetric data for renewable energy, infrastructure, surveying, and oil &amp; gas. Headquartered in Delft, Netherlands." />

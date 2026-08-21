@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import SectionHeading from '../../components/shared/SectionHeading';
 import CTABanner from '../../components/shared/CTABanner';
+import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
@@ -47,7 +48,15 @@ function ServiceGrid({ title, image, services, icon: Icon, desc }) {
             </div>
           </div>
           <div className="relative group">
-            <img src={image} alt={title} className="w-full h-96 object-cover rounded-xl border border-border/50 transition-transform duration-700 group-hover:scale-[1.02]" />
+            <OptimizedImage
+              src={image}
+              alt={title}
+              width={800}
+              height={384}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="w-full h-96 rounded-xl border border-border/50"
+              imgClassName="transition-transform duration-700 group-hover:scale-[1.02]"
+            />
             <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
             <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />
           </div>

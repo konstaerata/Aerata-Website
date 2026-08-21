@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import ServicePageHero from '../../components/shared/ServicePageHero';
 import ServiceSection from '../../components/shared/ServiceSection';
 import CTABanner from '../../components/shared/CTABanner';
+import OptimizedImage from '../../components/shared/OptimizedImage';
 import { MEDIA } from '../../lib/media';
 import { useLang } from '../../lib/LanguageContext';
 import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
@@ -194,7 +195,15 @@ export default function RenewableEnergy() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.renewable_workflow_image} alt="Solar farm thermal inspection from above" loading="lazy" className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <OptimizedImage
+                  src={MEDIA.renewable_workflow_image}
+                  alt="Solar farm thermal inspection from above"
+                  width={800}
+                  height={420}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full h-[420px]"
+                  imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
               </div>
               <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {['SITE ASSESSMENT', 'THERMAL CAPTURE', '48H DELIVERY'].map(tag => (
@@ -225,7 +234,15 @@ export default function RenewableEnergy() {
               className="relative group"
             >
               <div className="overflow-hidden rounded-xl border border-border/50">
-                <img src={MEDIA.renewable_why_aerata_image} alt="Wind turbine blade drone inspection" loading="lazy" className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <OptimizedImage
+                  src={MEDIA.renewable_why_aerata_image}
+                  alt="Wind turbine blade drone inspection"
+                  width={800}
+                  height={400}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full h-[400px]"
+                  imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
               </div>
               <div className="absolute -top-2 -left-2 w-6 h-6 border-l border-t border-primary/30" aria-hidden="true" />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r border-b border-primary/30" aria-hidden="true" />

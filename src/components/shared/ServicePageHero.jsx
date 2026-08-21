@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 // Pass `video` prop with a direct .mp4 URL for video background
 export default function ServicePageHero({ title, subtitle, image, video, ctaText = "Get a Free Consultation", ctaLink = "/contact" }) {
@@ -11,7 +12,15 @@ export default function ServicePageHero({ title, subtitle, image, video, ctaText
         {video ? (
           <video src={video} autoPlay muted loop playsInline className="w-full h-full object-cover" />
         ) : (
-          <img src={image} alt={title} fetchpriority="high" className="w-full h-full object-cover" />
+          <OptimizedImage
+            src={image}
+            alt={title}
+            width={1920}
+            height={1080}
+            priority
+            sizes="100vw"
+            className="absolute inset-0 w-full h-full"
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
       </div>

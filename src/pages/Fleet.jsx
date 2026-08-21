@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Cpu, Wind, Zap, Shield, Camera, Layers, Radar } from 'lucide-react';
 import SEO from '../components/SEO';
+import OptimizedImage from '../components/shared/OptimizedImage';
 import { MEDIA } from '../lib/media';
 import { useLang } from '../lib/LanguageContext';
 import { breadcrumbSchema } from '../lib/schemas';
@@ -235,11 +236,14 @@ export default function Fleet() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                   ) : (
-                    <img
+                    <OptimizedImage
                       src={drone.image}
                       alt={drone.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      width={400}
+                      height={208}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="w-full h-full"
+                      imgClassName="transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-obsidian/75 via-obsidian/20 to-transparent" />
