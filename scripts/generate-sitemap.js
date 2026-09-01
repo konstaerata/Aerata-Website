@@ -24,16 +24,20 @@
 import { writeFileSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { SITE_ORIGINS, DEFAULT_LANG, localizedUrl } from '../src/lib/siteOrigins.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = resolve(__dirname, '../public/sitemap.xml');
-const SITE_URL = 'https://aerata.com';
+const SITE_URL = SITE_ORIGINS[DEFAULT_LANG];
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // Keep in sync with src/lib/LanguageContext.jsx's LANGUAGES/DEFAULT_LANG.
+// localizedUrl (src/lib/siteOrigins.js) resolves en/nl against aerata.com
+// and el against aerata.gr — the sitemap therefore lists aerata.gr/... as
+// the Greek <loc> (never aerata.com/el/...), since a sitemap should only
+// list canonical URLs, and aerata.gr is Greek's canonical home.
 const LANGUAGES = ['en', 'nl', 'el'];
-const DEFAULT_LANG = 'en';
-const localizedLoc = (path, lang) => `${SITE_URL}${lang === DEFAULT_LANG ? '' : `/${lang}`}${path}`;
+const localizedLoc = localizedUrl;
 
 // Static routes — keep in sync with src/App.jsx. /portal and /training are
 // intentionally excluded (both noindex — /training because it's a thin
