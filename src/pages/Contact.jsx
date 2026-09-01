@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useLang } from '../lib/LanguageContext';
 import { breadcrumbSchema } from '../lib/schemas';
 
 // HubSpot's `css` option forces the form into an iframe and injects this CSS
@@ -206,6 +207,7 @@ function HubSpotForm() {
 }
 
 export default function Contact() {
+  const { lang } = useLang();
 
   return (
     <div>
@@ -216,7 +218,7 @@ export default function Contact() {
         jsonLd={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'Contact' },
-        ])}
+        ], lang)}
       />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">

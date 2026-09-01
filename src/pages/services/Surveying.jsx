@@ -14,7 +14,7 @@ import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 export default function Surveying() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const stats = [
     { value: '<2 cm', label: t('surveying.stat0Label'), sub: t('surveying.stat0Sub') },
@@ -44,8 +44,8 @@ export default function Surveying() {
         description="Sub-2cm accuracy aerial surveys using photogrammetry, LiDAR, and RTK-GNSS. Orthomosaics, 3D models, point clouds, and construction monitoring across Europe."
         path="/services/surveying"
         jsonLd={[
-          serviceSchema({ name: 'Aerial Surveying & LiDAR Mapping', description: 'High-accuracy aerial surveying using photogrammetry, LiDAR, and RTK-GNSS for orthomosaics, 3D models, DTM/DSM, and construction monitoring.' }),
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Surveying & Mapping' }]),
+          serviceSchema({ name: 'Aerial Surveying & LiDAR Mapping', description: 'High-accuracy aerial surveying using photogrammetry, LiDAR, and RTK-GNSS for orthomosaics, 3D models, DTM/DSM, and construction monitoring.', lang }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Surveying & Mapping' }], lang),
         ]}
       />
       <ServicePageHero

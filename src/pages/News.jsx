@@ -14,7 +14,7 @@ import { SAMPLE_ARTICLES } from '../lib/sampleArticles';
 import { breadcrumbSchema } from '../lib/schemas';
 
 export default function News() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
 
@@ -59,7 +59,7 @@ export default function News() {
         jsonLd={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'News' },
-        ])}
+        ], lang)}
       />
       {/* Page title — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">

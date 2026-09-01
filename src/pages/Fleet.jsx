@@ -154,7 +154,7 @@ const categoryColors = {
 };
 
 export default function Fleet() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const badges = [
     { icon: Shield, label: t('fleetPage.badgeEasa') },
@@ -172,7 +172,7 @@ export default function Fleet() {
         jsonLd={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'Our Fleet' },
-        ])}
+        ], lang)}
       />
       {/* Hero — navy brand background */}
       <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">

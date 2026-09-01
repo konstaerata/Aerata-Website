@@ -74,7 +74,7 @@ function ThermalSlider({ t }) {
 
 export default function RenewableEnergy() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const stats = [
     { value: '30+', label: t('renewable.stat0Label'), sub: t('renewable.stat0Sub') },
@@ -103,8 +103,8 @@ export default function RenewableEnergy() {
         description="IEC-compliant thermal drone inspections for solar farms and wind turbines. Detect hotspots, cracks, and defects 5x faster than ground crews. 48-hour report delivery."
         path="/services/renewable-energy"
         jsonLd={[
-          serviceSchema({ name: 'Renewable Energy Drone Inspection', description: 'IEC-compliant thermal and visual drone inspections for solar farms and wind turbines across Europe.' }),
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Renewable Energy' }]),
+          serviceSchema({ name: 'Renewable Energy Drone Inspection', description: 'IEC-compliant thermal and visual drone inspections for solar farms and wind turbines across Europe.', lang }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Renewable Energy' }], lang),
         ]}
       />
       <ServicePageHero

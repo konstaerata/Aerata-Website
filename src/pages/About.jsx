@@ -161,12 +161,12 @@ function PartnersCarousel({ prefersReducedMotion, light = false }) {
 
 export default function About() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const aboutJsonLd = breadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'About Us' },
-  ]);
+  ], lang);
 
   return (
     <div>

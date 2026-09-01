@@ -1,4 +1,6 @@
-const SITE_URL = 'https://aerata.com';
+import { SITE_ORIGINS, DEFAULT_LANG, localizedUrl } from './siteOrigins';
+
+const SITE_URL = SITE_ORIGINS[DEFAULT_LANG];
 const LOGO_URL = 'https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/logo-1.png';
 
 export const organizationSchema = {
@@ -77,12 +79,15 @@ export const delftLocalBusinessSchema = {
 // Athens (Alimos) office — added alongside Delft so both real locations are
 // equally discoverable in search/maps, not just the HQ. NAP matches
 // src/components/layout/Footer.jsx and src/pages/Contact.jsx exactly.
+// url/@id point at aerata.gr (SITE_ORIGINS.el), not aerata.com — Athens is
+// the Greek-market office, and aerata.gr is now the Greek-market domain.
+const ATHENS_URL = SITE_ORIGINS.el;
 export const athensLocalBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': `${SITE_URL}/#business-athens`,
+  '@id': `${ATHENS_URL}/#business-athens`,
   name: 'Aerata B.V. — Athens Office',
-  url: SITE_URL,
+  url: ATHENS_URL,
   logo: LOGO_URL,
   image: LOGO_URL,
   telephone: '+30-697-190-4421',
@@ -113,7 +118,14 @@ export const athensLocalBusinessSchema = {
 // by its original (pre-Athens) name.
 export const localBusinessSchema = delftLocalBusinessSchema;
 
-export function breadcrumbSchema(items) {
+/**
+ * @param {{ name: string, url?: string }[]} items
+ * @param {string} [lang] resolves item URLs against the correct per-language
+ *   domain (aerata.com for en/nl, aerata.gr for el). Defaults to English if
+ *   omitted, matching the previous (pre-.gr) behavior for any caller not yet
+ *   updated to pass it.
+ */
+export function breadcrumbSchema(items, lang = DEFAULT_LANG) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -121,12 +133,15 @@ export function breadcrumbSchema(items) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: item.url ? `${SITE_URL}${item.url}` : undefined,
+      item: item.url ? localizedUrl(item.url, lang) : undefined,
     })),
   };
 }
 
-export function serviceSchema({ name, description, areaServed = ['Netherlands', 'Greece', 'Europe'] }) {
+/**
+ * @param {{ name: string, description: string, areaServed?: string[], lang?: string }} options
+ */
+export function serviceSchema({ name, description, areaServed = ['Netherlands', 'Greece', 'Europe'], lang = DEFAULT_LANG }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -134,7 +149,7 @@ export function serviceSchema({ name, description, areaServed = ['Netherlands', 
     provider: {
       '@type': 'Organization',
       name: 'Aerata B.V.',
-      url: SITE_URL,
+      url: localizedUrl('/', lang),
     },
     description,
     areaServed: areaServed.map(area => ({
@@ -144,6 +159,11 @@ export function serviceSchema({ name, description, areaServed = ['Netherlands', 
   };
 }
 
+/**
+ * Articles are English-only today (see src/pages/NewsArticle.jsx's
+ * translated={false}), so this intentionally has no lang parameter — every
+ * article URL resolves against the English/aerata.com origin.
+ */
 export function articleSchema({ headline, excerpt, datePublished, dateModified, url }) {
   return {
     '@context': 'https://schema.org',

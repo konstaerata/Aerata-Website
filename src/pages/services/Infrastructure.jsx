@@ -68,7 +68,7 @@ function ServiceGrid({ title, image, services, icon: Icon, desc }) {
 
 export default function Infrastructure() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const stats = [
     { value: '5×', label: t('infra.stat0Label'), sub: t('infra.stat0Sub') },
@@ -105,8 +105,8 @@ export default function Infrastructure() {
         description="Drone inspections for telecom towers, power lines, and critical infrastructure. 5x faster than rope access with centimetre-accurate GPS-tagged imagery."
         path="/services/infrastructure"
         jsonLd={[
-          serviceSchema({ name: 'Critical Infrastructure Drone Inspection', description: 'Drone-based visual and thermal inspections for telecom towers, power transmission lines, and critical infrastructure assets.' }),
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Infrastructure' }]),
+          serviceSchema({ name: 'Critical Infrastructure Drone Inspection', description: 'Drone-based visual and thermal inspections for telecom towers, power transmission lines, and critical infrastructure assets.', lang }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Infrastructure' }], lang),
         ]}
       />
       <ServicePageHero

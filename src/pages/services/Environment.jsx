@@ -14,7 +14,7 @@ import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 export default function Environmental() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const stats = [
     { value: '200+', label: t('environment.stat0Label'), sub: t('environment.stat0Sub') },
@@ -44,8 +44,8 @@ export default function Environmental() {
         description="Multispectral drone surveys for environmental monitoring, NDVI vegetation analysis, biodiversity assessment, and precision agriculture across Europe."
         path="/services/environmental"
         jsonLd={[
-          serviceSchema({ name: 'Environmental Drone Monitoring', description: 'Multispectral and thermal drone surveys for environmental monitoring, habitat mapping, biodiversity assessment, and precision agriculture.' }),
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Environmental Monitoring' }]),
+          serviceSchema({ name: 'Environmental Drone Monitoring', description: 'Multispectral and thermal drone surveys for environmental monitoring, habitat mapping, biodiversity assessment, and precision agriculture.', lang }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Environmental Monitoring' }], lang),
         ]}
       />
       <ServicePageHero

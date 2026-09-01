@@ -2,9 +2,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
+import { useLang } from '../lib/LanguageContext';
 import { breadcrumbSchema } from '../lib/schemas';
 
 export default function Privacy() {
+  const { lang } = useLang();
   return (
     <div className="pt-32 pb-20">
       <SEO
@@ -14,7 +16,7 @@ export default function Privacy() {
         jsonLd={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'Privacy Policy' },
-        ])}
+        ], lang)}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>

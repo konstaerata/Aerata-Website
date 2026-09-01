@@ -14,7 +14,7 @@ import { serviceSchema, breadcrumbSchema } from '../../lib/schemas';
 
 export default function OilGas() {
   const prefersReducedMotion = useReducedMotion();
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const stats = [
     { value: '40 km', label: t('oilgas.stat0Label'), sub: t('oilgas.stat0Sub') },
@@ -44,8 +44,8 @@ export default function OilGas() {
         description="Thermal and visual drone inspections for oil and gas pipelines, flare stacks, and offshore platforms. IP45-rated all-weather operations with 48-hour report delivery."
         path="/services/oil-gas"
         jsonLd={[
-          serviceSchema({ name: 'Oil & Gas Drone Inspection', description: 'Thermal, visual, and gas-detection drone inspections for pipelines, refineries, flare stacks, and offshore platforms.' }),
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Oil & Gas' }]),
+          serviceSchema({ name: 'Oil & Gas Drone Inspection', description: 'Thermal, visual, and gas-detection drone inspections for pipelines, refineries, flare stacks, and offshore platforms.', lang }),
+          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Services' }, { name: 'Oil & Gas' }], lang),
         ]}
       />
       <ServicePageHero
