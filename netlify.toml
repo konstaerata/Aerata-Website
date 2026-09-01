@@ -11,6 +11,26 @@
   status = 301
   force = true
 
+# www.aerata.gr → aerata.gr (mirrors the .com normalization above)
+[[redirects]]
+  from = "https://www.aerata.gr/*"
+  to = "https://aerata.gr/:splat"
+  status = 301
+  force = true
+
+# robots.txt is fetched directly by crawlers (never JS-rendered), so it's the
+# one place that can't be made host-aware client-side — serve a .gr-specific
+# file on that host. force = true is required: /robots.txt already exists as
+# a static file, and Netlify skips redirects that match an existing file
+# unless forced. status = 200 (rewrite, not a redirect) so the URL bar and
+# crawler both see /robots.txt, just with different content per host.
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots-gr.txt"
+  status = 200
+  force = true
+  conditions = {Host = ["aerata.gr", "www.aerata.gr"]}
+
 # Custom 404
 [[redirects]]
   from = "/404"

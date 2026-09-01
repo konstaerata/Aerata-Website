@@ -1,0 +1,11 @@
+# Aerata B.V. — robots.txt (aerata.gr)
+# Served at https://aerata.gr/robots.txt via a host-conditional Netlify
+# redirect (see netlify.toml) — same policy as public/robots.txt, only the
+# Sitemap: line differs since it must self-reference the requesting host.
+User-agent: *
+Allow: /
+Disallow: /portal
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://aerata.gr/sitemap.xml
