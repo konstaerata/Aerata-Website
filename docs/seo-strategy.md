@@ -107,6 +107,17 @@ This split is new-page/new-copy work requiring sign-off before building — not 
 
 **Given the market context** (Greece is the primary market, Netherlands second): if there's a choice to invest further translation/localization effort in only one language first, Greek should take priority over Dutch, even though the company is Dutch-incorporated — the current fully-equal EN/NL/EL translation coverage doesn't force that choice today, but it should guide where future content (case studies, articles, the solar-PV split if greenlit) gets translated first.
 
+### Update (2026-09-01): aerata.gr domain split
+
+Greek's canonical home moved from `aerata.com/el/...` to its own domain, `aerata.gr`, at the URL root (e.g. `aerata.gr/about`, not `aerata.gr/el/about`) — `aerata.gr` was added in production as a domain alias on the same Netlify site as `aerata.com`. This is a stronger signal than a path prefix: a market-specific ccTLD (`.gr`) is itself a geo-targeting signal Google uses independent of hreflang, and it's the pattern both verified competitors (OPSISS, WizePM) effectively achieve via their own `.com`/ccTLD or subdirectory choices.
+
+What changed:
+- `src/lib/siteOrigins.js` (new, shared by `SEO.jsx`, `schemas.js`, `scripts/generate-sitemap.js`) maps `el` → `https://aerata.gr` (root, no prefix) while `en`/`nl` stay under `aerata.com` exactly as before.
+- The legacy `aerata.com/el/...` routes **still render** (no broken links, no 404s for anything that was already indexed or bookmarked there) but their canonical tag now points to the equivalent `aerata.gr/...` URL — a standard, low-risk demotion rather than a hard redirect. Revisit a hard 301 once `aerata.gr` has accumulated its own indexing history.
+- Athens `LocalBusiness` JSON-LD (`src/lib/schemas.js`) now points at `aerata.gr` instead of `aerata.com` — the Greek-market office's canonical URL is now the Greek-market domain, while Delft stays `aerata.com` and the umbrella `Organization` entity stays `aerata.com`.
+- `robots.txt` is the one place this couldn't be handled client-side (crawlers fetch it directly, never through the React app) — a new `public/robots-gr.txt` is served on the `.gr`/`www.gr` host via a Netlify host-conditional redirect in `netlify.toml`, pointing its `Sitemap:` line at `https://aerata.gr/sitemap.xml`.
+- Internal in-page links (nav, footer, cross-links, CTAs) were **not** rewired to be `.gr`-aware — same accepted tradeoff as the original `/nl/`/`/el/` work above, now extended to cover the domain split too. Only the language switcher does a real cross-origin navigation between `.com` and `.gr`.
+
 ---
 
 ## Backlink / authority strategy (directional)
