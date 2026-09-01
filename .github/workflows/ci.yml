@@ -25,7 +25,10 @@ jobs:
         run: npm run typecheck
 
       - name: SEO basics check
-        run: node scripts/check-seo-basics.js
+        run: npm run check:seo-basics
 
       - name: Build (includes sitemap generation)
         run: npm run build
+
+      - name: Domain SEO check (aerata.com / aerata.gr canonical + hreflang)
+        run: npm run check:domain-seo

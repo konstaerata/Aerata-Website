@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "npm run generate:sitemap && vite build",
     "generate:sitemap": "node scripts/generate-sitemap.js",
+    "check:seo-basics": "node scripts/check-seo-basics.js",
+    "check:domain-seo": "node scripts/check-domain-seo.js",
     "lint": "eslint . --quiet",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p ./jsconfig.json",
