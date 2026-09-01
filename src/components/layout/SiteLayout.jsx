@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../CookieConsent';
 import PageNotFound from '../../lib/PageNotFound';
-import { LanguageProvider, LANGUAGE_CODES, DEFAULT_LANG } from '../../lib/LanguageContext';
+import { LanguageProvider, useLang, LANGUAGE_CODES, DEFAULT_LANG } from '../../lib/LanguageContext';
 import { organizationSchema, delftLocalBusinessSchema, athensLocalBusinessSchema } from '../../lib/schemas';
 
 // Sitewide Organization + LocalBusiness JSON-LD, present on every page via
@@ -42,12 +42,17 @@ export default function SiteLayout() {
 
   return (
     <LanguageProvider>
-      <SiteLayoutInner lang={lang || DEFAULT_LANG} />
+      <SiteLayoutInner />
     </LanguageProvider>
   );
 }
 
-function SiteLayoutInner({ lang }) {
+function SiteLayoutInner() {
+  // Read lang from context (LanguageProvider), not from the :lang URL param
+  // directly — the param is undefined on aerata.gr (Greek renders at that
+  // domain's own root, no /el prefix there), so only the context's
+  // hostname-aware resolution gives the correct value in every case.
+  const { lang } = useLang();
   const [scrollY, setScrollY] = useState(0);
   const [docHeight, setDocHeight] = useState(1);
 
