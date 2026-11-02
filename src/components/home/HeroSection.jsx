@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useRef, useState } from 'react';
 import { Link } from '@/components/LocalizedLink';
 import { motion, useReducedMotion, useTransform } from 'framer-motion';

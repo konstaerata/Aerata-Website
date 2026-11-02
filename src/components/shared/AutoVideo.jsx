@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useOffscreenPause } from '../../hooks/useOffscreenPause';

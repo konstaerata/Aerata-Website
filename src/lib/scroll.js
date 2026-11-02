@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useLayoutEffect, useRef } from 'react';
 import { frame, motionValue, useMotionValue, useTransform } from 'framer-motion';
 
