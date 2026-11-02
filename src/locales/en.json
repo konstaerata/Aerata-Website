@@ -8,7 +8,12 @@
     "news": "News",
     "clientLogin": "Client Login",
     "getInTouch": "Get in Touch",
-    "connectTeam": "Connect With Our Expert Team"
+    "connectTeam": "Connect With Our Expert Team",
+    "sectors": "Sectors",
+    "allServices": "Our services",
+    "allServicesCta": "See all services",
+    "language": "Language",
+    "menu": "Menu"
   },
   "services": {
     "surveying": "Aerial Surveying & Mapping",
@@ -18,16 +23,16 @@
     "oilGas": "Oil & Gas"
   },
   "hero": {
-    "badge": "Aerial Intelligence for Industry",
+    "badge": "Drone services for energy, infrastructure and industry",
     "title1": "Cut Inspection Time.",
     "titleHighlight": "Reduce Costs.",
     "title2": "Fly Safer.",
     "subtitle": "Aerata deploys enterprise drone crews across Europe — delivering thermal, LiDAR, and photogrammetric data faster and safer than ground-based methods.",
-    "cta": "Book a 15-Minute Assessment",
+    "cta": "Talk to us about your site",
     "ctaSecondary": "View Previous Projects"
   },
   "footer": {
-    "tagline": "Aerial Intelligence for Industry. Professional drone services for industries that demand precision.",
+    "tagline": "Drone services for energy, infrastructure and industry. Offices in Delft and Athens.",
     "hqTitle": "Headquarters — Delft",
     "athensTitle": "Athens Office",
     "quickLinks": "Quick Links",
@@ -37,27 +42,66 @@
     "contact": "Contact Us",
     "privacy": "Privacy Policy",
     "copyright": "Copyright 2026 – Aerata.com",
-    "ctaTitle": "Reduce Costs, Increase Efficiency.",
-    "ctaDesc": "Schedule your drone inspection now and discover how aerial intelligence can transform your operations.",
-    "ctaButton": "Book a 15-Minute Assessment",
+    "ctaTitle": "Tell us about your site.",
+    "ctaDesc": "Tell us about the site and the problem you want to solve. We reply with a technical proposal, followed by a formal quote once the scope is agreed.",
+    "ctaButton": "Talk to us",
     "open": "Open",
-    "closed": "Closed"
+    "closed": "Closed",
+    "rights": "All rights reserved.",
+    "vat": "VAT"
   },
   "whyAerata": {
-    "label": "Why Aerata",
-    "title": "Why Choose Aerata?",
-    "description": "We combine expertise, technology, and reliability to deliver exceptional aerial assessment solutions across Europe.",
+    "label": "Why it matters",
+    "title": "Why owners and operators work with Aerata",
+    "description": "We help owners, operators and contractors find problems before they become outages, spend repair budgets where they matter, keep people out of dangerous places, and back big decisions with independent evidence.",
     "reasons": {
-      "certified": { "title": "Certified Pilots & Engineers", "desc": "Fully licensed and experienced team with aviation authority certifications." },
-      "technology": { "title": "Advanced DJI Technology", "desc": "Enterprise-grade DJI platforms with thermal, LiDAR, and multi-spectral sensors." },
-      "ai": { "title": "AI-Powered Analytics", "desc": "Machine learning algorithms for anomaly detection and predictive maintenance." },
-      "gdpr": { "title": "GDPR-Compliant Data Handling", "desc": "End-to-end data security aligned with European privacy regulations." },
-      "offices": { "title": "Offices in Netherlands & Greece", "desc": "Strategic presence serving European and Mediterranean markets." }
+      "certified": {
+        "title": "Certified Pilots & Engineers",
+        "desc": "Fully licensed and experienced team with aviation authority certifications."
+      },
+      "technology": {
+        "title": "Advanced DJI Technology",
+        "desc": "Enterprise-grade DJI platforms with thermal, LiDAR, and multi-spectral sensors."
+      },
+      "ai": {
+        "title": "AI-Powered Analytics",
+        "desc": "Machine learning algorithms for anomaly detection and predictive maintenance."
+      },
+      "gdpr": {
+        "title": "GDPR-Compliant Data Handling",
+        "desc": "End-to-end data security aligned with European privacy regulations."
+      },
+      "offices": {
+        "title": "Offices in Netherlands & Greece",
+        "desc": "Strategic presence serving European and Mediterranean markets."
+      }
     },
     "easaLabel": "EASA Specific Category",
     "easaText": "EASA Approved Specific Category Operator for complex and high-risk missions.",
     "insuredLabel": "Fully Insured",
-    "insuredText": "Fully Insured under Industry Standard Aviation Policy for all commercial drone operations."
+    "insuredText": "Fully Insured under Industry Standard Aviation Policy for all commercial drone operations.",
+    "benefits": [
+      {
+        "title": "Lower risk",
+        "desc": "Fewer people working at height, near live equipment or on unstable ground means less exposure to accidents and less liability for you."
+      },
+      {
+        "title": "Lower cost",
+        "desc": "Money goes to confirmed problems, not to search crews, scaffolding, cranes or long shutdowns. Problems found early are cheaper to fix than problems found late."
+      },
+      {
+        "title": "Stronger evidence",
+        "desc": "Independent, comparable records support warranty claims, insurance claims, contractor payments, lender reporting and asset sales, and help settle disputes."
+      },
+      {
+        "title": "Better decisions",
+        "desc": "You plan maintenance and spending from facts measured the same way every time, so change is easy to see."
+      },
+      {
+        "title": "One partner over the life of the asset",
+        "desc": "From construction to operation, your records stay in the same hands and build on each other."
+      }
+    ]
   },
   "fleet": {
     "label": "Our Fleet",
@@ -75,8 +119,8 @@
   },
   "industries": {
     "label": "Sectors",
-    "title": "Aerial Intelligence Across Industries",
-    "description": "From large-scale solar portfolios to offshore platform inspections — Aerata delivers mission-critical drone data across European industry.",
+    "title": "Where we work",
+    "description": "Six sectors, one way of working: measured the same way every time, every finding located, and records that build on each other.",
     "explore": "Explore",
     "renewable": {
       "title": "Renewable Energy",
@@ -115,10 +159,22 @@
     }
   },
   "statsBar": {
-    "hectares": { "label": "Hectares Surveyed", "sub": "across Europe since 2022" },
-    "time": { "label": "Reduction in Inspection Time", "sub": "vs. traditional ground methods" },
-    "energy": { "label": "Renewable Energy Surveyed", "sub": "solar & wind assets across Europe" },
-    "pilots": { "label": "Certified Pilots & Engineers", "sub": "EASA Specific Category approved" }
+    "hectares": {
+      "label": "Hectares Surveyed",
+      "sub": "across Europe since 2022"
+    },
+    "time": {
+      "label": "Reduction in Inspection Time",
+      "sub": "vs. traditional ground methods"
+    },
+    "energy": {
+      "label": "Renewable Energy Surveyed",
+      "sub": "solar & wind assets across Europe"
+    },
+    "pilots": {
+      "label": "Certified Pilots & Engineers",
+      "sub": "EASA Specific Category approved"
+    }
   },
   "roi": {
     "label": "ROI Tool",
@@ -128,8 +184,8 @@
     "volume": "Volume",
     "solarLabel": "Solar / Wind Inspection",
     "solarUnit": "MW of capacity",
-    "oilgasLabel": "Oil & Gas / Pipeline",
-    "oilgasUnit": "km of pipeline / asset",
+    "oilgasLabel": "Power Lines & Grid",
+    "oilgasUnit": "km of line / asset",
     "constructionLabel": "Construction / Mapping",
     "constructionUnit": "hectares surveyed",
     "traditionalTime": "Traditional Time",
@@ -197,7 +253,13 @@
     "howWeWork": "How We Work",
     "whyAerata": "Why Aerata",
     "technicalCaps": "Technical Capabilities",
-    "days": "days"
+    "days": "days",
+    "getStarted": "Get Started",
+    "viewAllProjects": "View all projects",
+    "projectsShown": "projects shown",
+    "projectsCompleted": "projects completed in this sector",
+    "aiIllustration": "AI-generated illustration",
+    "skipToContent": "Skip to content"
   },
   "renewable": {
     "heroTitle": "Renewable Energy Inspections",
@@ -460,5 +522,1129 @@
     "demoNote": "Outputs delivered as .LAS / .E57 point clouds, Potree web viewer, or integrated GIS layers.",
     "ctaTitle": "Need Precision Aerial Mapping?",
     "ctaSub": "Contact us for a free consultation on your surveying or construction monitoring project."
+  },
+  "quote": {
+    "stepSector": "Sector",
+    "stepSize": "Site size",
+    "stepTiming": "Timing",
+    "step": "Step",
+    "of": "of",
+    "sectorPrompt": "What are we inspecting?",
+    "sizePrompt": "How large is the site?",
+    "timingPrompt": "When do you need the inspection?",
+    "timing2w": "Within 2 weeks",
+    "timingMonth": "This month",
+    "timingQuarter": "Next quarter",
+    "timingExploring": "Just exploring",
+    "location": "Site location (optional)",
+    "locationPlaceholder": "e.g. Thessaly, Greece",
+    "back": "Back",
+    "next": "Next",
+    "planTitle": "Your inspection plan",
+    "planEdit": "Edit plan",
+    "planSector": "Sector",
+    "planSize": "Site size",
+    "planTiming": "Timing",
+    "planLocation": "Location",
+    "planSavings": "Estimated savings",
+    "planNote": "We have added these details to the form. Review them and send.",
+    "prefillIntro": "Inspection plan (from the website planner):",
+    "resultLabel": "Estimated saving vs. traditional inspection",
+    "saved": "saved",
+    "traditional": "Traditional inspection",
+    "withAerata": "With Aerata drones",
+    "fewerDays": "fewer days on site",
+    "dockCta": "Plan your inspection"
+  },
+  "contactPage": {
+    "titleA": "Talk to",
+    "titleB": "us",
+    "intro": "Tell us about the site and the problem you want to solve. We reply with a technical proposal, followed by a formal quote once the scope is agreed.",
+    "formLabel": "// MISSION PARAMETERS",
+    "mapLoad": "Show map",
+    "mapNote": "The map is provided by Google Maps, which may set cookies.",
+    "mapOpen": "Open in Google Maps"
+  },
+  "servicesPage": {
+    "eyebrow": "AERATA SERVICES",
+    "heroTitle": "Six services, one standard of evidence",
+    "heroSub": "Thermal, visual, LiDAR and survey data captured by certified pilots, checked by our analysts and delivered in formats your team already uses.",
+    "equipmentLabel": "Equipment",
+    "outputsLabel": "You receive",
+    "sectorsLabel": "Used in",
+    "stripLabel": "Services",
+    "stripTitle": "What we do",
+    "stripCta": "All services",
+    "list": [
+      {
+        "id": "pv-thermal",
+        "title": "PV thermal inspection",
+        "short": "Panels, strings, combiner boxes and inverters in one visit.",
+        "desc": "Panels, strings, combiner boxes and inverters checked in one visit, with every fault located so your operations and maintenance (O&M) team knows what to fix first.",
+        "detail": "We fly when irradiance and weather meet the conditions in IEC TS 62446-3, the standard for aerial thermography of PV plants, so results stay comparable from one year to the next. Combiner boxes and inverters are checked on the ground by our thermographer during the same visit.",
+        "equipment": "Radiometric thermal and zoom cameras, RTK positioning, handheld thermal camera",
+        "outputs": [
+          "Fault report to IEC TS 62446-3",
+          "Thermal and RGB orthomosaics",
+          "Fault list for your O&M system (CSV, KML, SHP)"
+        ]
+      },
+      {
+        "id": "wind",
+        "title": "Wind turbine inspection",
+        "short": "Blades, tower, nacelle and base equipment, no rope access.",
+        "desc": "Blades, tower, the outside of the nacelle and the electrical equipment at the base, without rope access.",
+        "detail": "The turbine stops for a short time with the blades in a set position. High-resolution zoom images cover each blade from all sides, and every finding is located along the blade so it can be found again at the next inspection.",
+        "equipment": "High-resolution zoom and thermal cameras on enterprise drones",
+        "outputs": [
+          "Report per turbine and per blade",
+          "Full image archive per blade",
+          "Defect history across inspections"
+        ]
+      },
+      {
+        "id": "power-line",
+        "title": "Power line inspection",
+        "short": "Poles, pylons, fittings, vegetation and clearances, plus substations.",
+        "desc": "Poles and pylons, insulators, fittings, vegetation and conductor clearances along the whole route, plus substations.",
+        "detail": "Visual, thermal and LiDAR data are captured along the route and tied to each pole or pylon, so your crews get a work list in route order instead of a stack of photos.",
+        "equipment": "Zoom and thermal cameras, LiDAR scanner, RTK positioning",
+        "outputs": [
+          "Pole and pylon register with findings",
+          "Vegetation and clearance maps (GIS, KML)",
+          "Classified point cloud (LAS/LAZ)"
+        ]
+      },
+      {
+        "id": "lidar",
+        "title": "LiDAR surveying (laser scanning)",
+        "short": "Accurate 3D terrain and asset data, even through vegetation.",
+        "desc": "Accurate 3D terrain and asset data for design and clearance checks, even through vegetation.",
+        "detail": "Laser pulses pass through gaps in the canopy, so we can model the ground under trees and measure conductors, slopes and structures. Accuracy is checked against independent GNSS checkpoints.",
+        "equipment": "Drone LiDAR scanner, GNSS base station and rover",
+        "outputs": [
+          "Classified point cloud (LAS/LAZ, E57)",
+          "Terrain model and contours (GeoTIFF, DXF)",
+          "Checkpoint accuracy report"
+        ]
+      },
+      {
+        "id": "mapping",
+        "title": "Photogrammetry and mapping",
+        "short": "Up-to-date maps and 3D models of sites and structures.",
+        "desc": "Up-to-date maps and 3D models of sites, buildings and structures.",
+        "detail": "Overlapping high-resolution photos are processed into orthophotos, surface models and textured 3D models, delivered in your coordinate system and ready to measure on in CAD or GIS.",
+        "equipment": "Full-frame survey camera, mapping drones, RTK and ground control",
+        "outputs": [
+          "Orthophoto (GeoTIFF)",
+          "Surface model and volumes",
+          "Textured 3D model (OBJ) and point cloud"
+        ]
+      },
+      {
+        "id": "security",
+        "title": "Construction-site security and monitoring",
+        "short": "Kooi camera units and DJI Dock drone patrols, monitored 24/7.",
+        "desc": "Visible deterrence and remote monitoring of the site, from the ground and from the air.",
+        "detail": "Mobile camera units from our partner Kooi are connected around the clock to the Kooi Alarm Center. A DJI Dock on site adds automated drone patrols on a schedule or on alarm. A drone survey before installation shows where cameras and the dock should stand.",
+        "equipment": "Kooi UFO mobile camera units, RED fire early warning, DJI Dock with Matrice 4TD thermal drone",
+        "outputs": [
+          "Security map with camera and dock positions",
+          "Alarms verified from the ground and the air",
+          "Damage records for police and insurer"
+        ]
+      }
+    ],
+    "seoTitle": "Drone Inspection, LiDAR & Mapping Services | Aerata",
+    "seoDesc": "PV thermal and wind turbine inspection, power line inspection, LiDAR surveying, photogrammetry and site security with Kooi, from offices in Delft and Athens."
+  },
+  "sectorPages": {
+    "common": {
+      "eyebrow": "AERATA SECTORS",
+      "onThisPage": "On this page",
+      "checkLabel": "What we check",
+      "receiveLabel": "What you receive",
+      "receiveTitle": "Data you can act on",
+      "receiveDesc": "Every delivery is checked by our analysts before it reaches you, and arrives in formats your team already works with.",
+      "howLabel": "How we work",
+      "howTitle": "From first call to final report",
+      "compareLabel": "Side by side",
+      "compareHint": "Drag to compare",
+      "projectsLabel": "Project experience",
+      "projectsTitle": "Recent work in this sector",
+      "relatedLabel": "More sectors",
+      "relatedTitle": "Where else we work",
+      "learnMore": "Learn more",
+      "heroCta": "Talk to us about your site",
+      "ctaTitle": "Talk to us",
+      "ctaSub": "Tell us about the site and the problem you want to solve. We reply with a technical proposal, followed by a formal quote once the scope is agreed.",
+      "ctaButton": "Talk to us",
+      "partnerLabel": "Our partner",
+      "partnerLink": "Visit 247kooi.com",
+      "glanceLabel": "At a glance",
+      "servicesUsed": "Services used",
+      "jumpTo": "Go to chapter",
+      "glanceChapters": "chapters",
+      "glanceChecks": "checks",
+      "glanceServices": "services"
+    },
+    "how": [
+      {
+        "title": "Scope",
+        "desc": "Tell us about the site and the problem. We review maps, drawings and access, then agree what to measure, how accurate it needs to be and what you will receive."
+      },
+      {
+        "title": "Plan and approve",
+        "desc": "We plan the flights, check the airspace and arrange the flight approvals and site permissions the job needs. Safety rules and site access are agreed in advance."
+      },
+      {
+        "title": "Capture",
+        "desc": "Certified pilots fly the site with the right sensor for the job: thermal, zoom, LiDAR or survey camera, in the weather and operating conditions the method requires."
+      },
+      {
+        "title": "Analyse and deliver",
+        "desc": "Our analysts process and check the data, locate every finding and deliver a report and files you can use straight away. We walk you through the results."
+      }
+    ],
+    "renewables": {
+      "name": "Renewable energy",
+      "menu": "Solar and wind: thermal and blade inspection, and construction monitoring.",
+      "seoTitle": "Solar & Wind Drone Inspection & Construction Monitoring | Aerata",
+      "seoDesc": "Thermal drone inspection of PV plants, wind turbine blade inspection without rope access, and independent construction progress measurement for solar and wind.",
+      "heroTitle": "Renewable energy",
+      "heroSub": "Solar plants and wind farms, from the first pile to years of operation: we find the faults that quietly cost you production, and measure what has really been built.",
+      "card": {
+        "tag": "Solar & wind",
+        "o1": "The whole PV electrical chain checked in one visit, panel to inverter",
+        "o2": "Every blade inspected with a short stop and no rope access",
+        "o3": "Independent progress measurement for payments and drawdowns"
+      },
+      "sections": [
+        {
+          "id": "solar-operation",
+          "label": "Solar in operation",
+          "title": "Solar power plants in operation",
+          "intro": "Production loss in a solar plant is quiet. A dead string, a loose connection or an overheating inverter terminal can run for months before it shows in your numbers, and your ground team will not see it. Aerata checks the whole electrical chain in one visit, from the panel to the inverter, so you know what is wrong, where it is and what to fix first.",
+          "items": [
+            {
+              "lead": "Panels and strings",
+              "text": "Hot spots, cell faults, failed bypass diodes, strings that are switched off or not producing, and soiling and shading patterns, located by plant section."
+            },
+            {
+              "lead": "Combiner boxes",
+              "text": "Our thermographer checks the cabinets where strings join for overheating fuses and loose or degraded cable connections."
+            },
+            {
+              "lead": "Inverters",
+              "text": "Overheating at terminals, connector bars and cable connections, checked at close range while the plant produces."
+            },
+            {
+              "lead": "Visible panel damage",
+              "text": "Broken glass and other visible damage to panels."
+            },
+            {
+              "lead": "Battery storage and substations",
+              "text": "BESS and substation checks can be added to the same visit."
+            }
+          ],
+          "closing": "Repeat inspections show what is new, what is getting worse and what has been repaired. That is the evidence you need before a warranty ends, after hail or storms, and before a sale or refinancing.",
+          "key": "solarOperation"
+        },
+        {
+          "id": "solar-construction",
+          "label": "Solar construction",
+          "title": "Solar plant construction",
+          "intro": "Solar construction money moves on progress claims. Aerata gives owners, lenders and contractors an independent measurement of what has actually been built, section by section, so payments and drawdowns follow facts and errors are caught while they are cheap to fix.",
+          "items": [
+            {
+              "lead": "Progress by plant section",
+              "text": "Piles, mounting tables or trackers, and modules installed."
+            },
+            {
+              "lead": "Earthworks",
+              "text": "Excavation, fill and stockpile volumes by zone and period, plus progress on roads, drainage and fencing."
+            },
+            {
+              "lead": "Built against design",
+              "text": "Piles and tables out of position, row alignment, and cable trench routes mapped before backfilling."
+            },
+            {
+              "lead": "Materials and reporting",
+              "text": "Material counts in storage areas, and a monthly progress report with timelapse for your site meeting."
+            },
+            {
+              "lead": "Handover inspection",
+              "text": "A thermal inspection of the energised plant at handover, while the contractor is still liable for defects."
+            }
+          ],
+          "closing": "Reporting is shaped for whoever pays for it: contractor, owner, owner’s engineer or lender’s technical adviser.",
+          "key": "solarConstruction"
+        },
+        {
+          "id": "wind-operation",
+          "label": "Wind in operation",
+          "title": "Wind turbines in operation",
+          "intro": "Blade damage starts small and gets expensive. Aerata inspects each turbine with a short stop and no rope access, so you find damage while the repair is still minor and plan it around your wind and maintenance calendar.",
+          "items": [
+            {
+              "lead": "Blades",
+              "text": "Cracks, lightning damage, coating loss and leading-edge erosion, located along every blade."
+            },
+            {
+              "lead": "Tower and nacelle",
+              "text": "Corrosion, coating condition and oil leaks visible from outside on the tower and the nacelle (the housing on top of the tower)."
+            },
+            {
+              "lead": "Electrical equipment at the base",
+              "text": "Thermal checks of cabinets and panels and, where housed there, the converter and transformer."
+            },
+            {
+              "lead": "A history for each blade",
+              "text": "See which defects are growing from one inspection to the next."
+            }
+          ],
+          "closing": "Start with a pilot on a few turbines and see the results on your own site. The strongest moments to inspect are before the manufacturer warranty ends, after lightning or storms, and before a sale.",
+          "key": "windOperation"
+        },
+        {
+          "id": "wind-construction",
+          "label": "Wind construction",
+          "title": "Wind farm construction",
+          "intro": "Roads, crane pads, foundations and cable trenches are where wind projects hide their costs. Aerata measures them independently, so you can check what you are paying for and record the work before it is buried.",
+          "items": [
+            {
+              "lead": "Progress",
+              "text": "Measured at every turbine position and at the substation."
+            },
+            {
+              "lead": "Earthworks",
+              "text": "Volumes for roads and crane pads, and slope movement between visits."
+            },
+            {
+              "lead": "Foundations and cable trenches",
+              "text": "Foundations and medium-voltage trenches recorded before backfilling, with position checked against the design."
+            },
+            {
+              "lead": "Restoration",
+              "text": "Slope and vegetation restoration documented against the original ground, for permit conditions."
+            },
+            {
+              "lead": "Route surveys",
+              "text": "For blade and tower transport and for the grid connection line."
+            },
+            {
+              "lead": "At handover and beyond",
+              "text": "Turbine inspection at handover, light-load drone delivery to places with no road access (subject to flight approval), and security for stored components."
+            }
+          ],
+          "key": "windConstruction"
+        }
+      ],
+      "receive": [
+        {
+          "title": "Fault report to IEC TS 62446-3",
+          "desc": "Every anomaly classified, photographed in thermal and RGB, and located by section, row and string.",
+          "formats": [
+            "PDF"
+          ]
+        },
+        {
+          "title": "Fault list for your O&M system",
+          "desc": "One line per fault with coordinates, ready to import and assign.",
+          "formats": [
+            "CSV",
+            "XLSX",
+            "KML",
+            "SHP"
+          ]
+        },
+        {
+          "title": "Report per turbine and per blade",
+          "desc": "Each finding with its position along the blade, side and photo, ready for your repair planning.",
+          "formats": [
+            "PDF",
+            "XLSX"
+          ]
+        },
+        {
+          "title": "Construction records",
+          "desc": "Progress per section and turbine position, volumes, as-built checks and before-backfill records, with timelapse.",
+          "formats": [
+            "PDF",
+            "DXF",
+            "GeoTIFF",
+            "MP4"
+          ]
+        }
+      ]
+    },
+    "grid": {
+      "name": "Power grids & telecom",
+      "menu": "Medium- and high-voltage lines, substations and telecom masts.",
+      "seoTitle": "Power Line, Substation & Telecom Mast Drone Inspection | Aerata",
+      "seoDesc": "Drone surveys of medium- and high-voltage lines, substations and telecom masts: lean, clearances, vegetation, hot connections and 3D models of each structure.",
+      "heroTitle": "Power grids and telecom",
+      "heroSub": "Survey the whole network from the air, so climbs, outages and crews go where the evidence says they are needed.",
+      "card": {
+        "tag": "Lines, substations & masts",
+        "o1": "Every pole and pylon measured for position, height and lean",
+        "o2": "Vegetation inside your clearance distance mapped before the fire season",
+        "o3": "Fewer climbs, and crews arrive with the right parts"
+      },
+      "sections": [
+        {
+          "id": "medium-voltage",
+          "key": "mv",
+          "label": "Medium voltage",
+          "title": "Medium-voltage power lines",
+          "intro": "A leaning pole or a tree too close to a conductor means outages, fire risk and liability. Aerata surveys the whole line, so your crews go straight to the poles and trees that matter instead of driving the route.",
+          "items": [
+            {
+              "lead": "Every pole",
+              "text": "Position, height and lean, so the worst can be reached first."
+            },
+            {
+              "lead": "Vegetation",
+              "text": "Trees and vegetation inside your clearance distance, located on the map before the fire season."
+            },
+            {
+              "lead": "Conductor clearance",
+              "text": "To the ground, roads and buildings on the day of flight."
+            },
+            {
+              "lead": "Hardware and hot connections",
+              "text": "Insulators, cross-arms and fittings checked close up, and hot connections found while the line is under load."
+            },
+            {
+              "lead": "After a storm or fire",
+              "text": "A rapid check of the affected section with live video to your control room."
+            },
+            {
+              "lead": "Substations and delivery",
+              "text": "Substation inspection after a site study, and light-load delivery to poles with no road access, subject to flight approval."
+            }
+          ]
+        },
+        {
+          "id": "high-voltage",
+          "key": "hv",
+          "label": "High voltage",
+          "title": "High-voltage lines and substations",
+          "intro": "Climbing every pylon is slow, costly and dangerous. Aerata looks first, so climbs and outages are planned around evidence and crews arrive with the right parts and work lists.",
+          "items": [
+            {
+              "lead": "Every pylon",
+              "text": "Position, height and lean."
+            },
+            {
+              "lead": "Line hardware",
+              "text": "Insulator strings, cross-arms, fittings, spacers and dampers, earth wire and aviation marker balls."
+            },
+            {
+              "lead": "Structure",
+              "text": "Corrosion, missing members and bird nests."
+            },
+            {
+              "lead": "Hot connections",
+              "text": "Found while the line carries load."
+            },
+            {
+              "lead": "Corridor",
+              "text": "Vegetation and conductor clearances along the route."
+            },
+            {
+              "lead": "Substations",
+              "text": "After a site study, transformers, circuit breakers, disconnectors, busbars and connections, from positions your operator allows, plus a 3D model for planning extensions."
+            },
+            {
+              "lead": "After storms, fire or lightning",
+              "text": "Rapid damage checks."
+            }
+          ],
+          "closing": "The work complements your existing climbing and helicopter programmes, with fewer climbs and better-prepared outages."
+        },
+        {
+          "id": "telecom",
+          "key": "telecom",
+          "label": "Telecom",
+          "title": "Telecommunications",
+          "intro": "Sending climbers up a mast just to look at it costs time and puts people at risk. Aerata builds a remote record of each site, so you send crews only where there is a finding or a job.",
+          "items": [
+            {
+              "lead": "3D model of each mast",
+              "text": "With its tilt and the height and position of antennas, radio units and microwave dishes."
+            },
+            {
+              "lead": "Equipment register",
+              "text": "Antennas and equipment listed by sector."
+            },
+            {
+              "lead": "Structure and fittings",
+              "text": "Corrosion, bolting, missing members, guy wires, lightning protection, aviation lights, feeders and cable trays."
+            },
+            {
+              "lead": "Thermal checks",
+              "text": "Radio and power equipment, including rectifiers, battery and power cabinets and generators at the base."
+            },
+            {
+              "lead": "New sites and upgrades",
+              "text": "Surveys for new sites and fibre routes, and records before and after every upgrade."
+            },
+            {
+              "lead": "Storms and theft",
+              "text": "Checks after storms or fire, and security against theft of batteries, fuel and copper at remote sites."
+            }
+          ]
+        }
+      ],
+      "receive": [
+        {
+          "title": "Asset register with findings",
+          "desc": "Every pole, pylon or mast with position, height, lean and findings, in route or site order.",
+          "formats": [
+            "XLSX",
+            "SHP",
+            "KML"
+          ]
+        },
+        {
+          "title": "Vegetation and clearance maps",
+          "desc": "Trees and conductors closer than your clearance distance, ready for your vegetation contractor.",
+          "formats": [
+            "SHP",
+            "KML",
+            "PDF"
+          ]
+        },
+        {
+          "title": "Point clouds and 3D models",
+          "desc": "Classified LiDAR of the corridor and 3D models of masts and substations.",
+          "formats": [
+            "LAS/LAZ",
+            "OBJ"
+          ]
+        },
+        {
+          "title": "Thermal findings",
+          "desc": "Hot connections with temperature, location and the load at the time of flight.",
+          "formats": [
+            "PDF"
+          ]
+        }
+      ]
+    },
+    "build": {
+      "name": "Construction, surveying & mining",
+      "menu": "Progress, volumes and survey-grade maps for sites that change.",
+      "seoTitle": "Drone Surveying, Construction Progress & Mining Volumes | Aerata",
+      "seoDesc": "Drone progress monitoring for building sites, LiDAR and photogrammetry surveys in your coordinate system, and stockpile volumes for quarries and landfills.",
+      "heroTitle": "Construction, surveying and mining",
+      "heroSub": "Measured progress, volumes and current maps for sites that change every week, captured faster than a ground crew and without sending people onto unsafe ground.",
+      "card": {
+        "tag": "Build, survey & extract",
+        "o1": "Payments tied to measured progress, with timelapse",
+        "o2": "Accuracy agreed per project and verified on checkpoints",
+        "o3": "Volumes and site change on your month-end schedule"
+      },
+      "sections": [
+        {
+          "id": "building",
+          "key": "building",
+          "label": "Building construction",
+          "title": "Building construction",
+          "intro": "Disputes over progress, quantities and defects are expensive. Aerata ties payments to measured progress and records what was built before it is covered.",
+          "items": [
+            {
+              "lead": "Progress by zone and phase",
+              "text": "For site meetings and payment milestones, with timelapse."
+            },
+            {
+              "lead": "Earthworks",
+              "text": "Volumes by zone and period, measured from a baseline taken before work starts."
+            },
+            {
+              "lead": "Built against design",
+              "text": "With trenches and foundations recorded before backfilling."
+            },
+            {
+              "lead": "Roof and façade inspection before handover",
+              "text": "Visible damage, moisture and thermal bridges, while the contractor is still on site."
+            },
+            {
+              "lead": "Extra services",
+              "text": "Drone washing of façades and roofs with water, delivery of light materials to sites without road access, and site security."
+            }
+          ]
+        },
+        {
+          "id": "surveying",
+          "key": "surveying",
+          "label": "Surveying & mapping",
+          "title": "Surveying and mapping",
+          "intro": "Current site data prevents redesign, delay and nasty surprises. Aerata surveys large and hard-to-reach land faster than a ground crew, with less exposure to steep or unsafe ground.",
+          "items": [
+            {
+              "lead": "Current site map",
+              "text": "A map of the whole site that you can measure on and draw over in CAD or GIS."
+            },
+            {
+              "lead": "Terrain and surface models",
+              "text": "Contours, cross-sections, profiles, and stockpile and excavation volumes on the survey date."
+            },
+            {
+              "lead": "LiDAR",
+              "text": "Where vegetation hides the ground."
+            },
+            {
+              "lead": "3D models",
+              "text": "Buildings, installations and monuments, with heights and dimensions (monuments only with Ministry of Culture permission)."
+            },
+            {
+              "lead": "Verified accuracy",
+              "text": "Agreed for each project and checked on independent checkpoints, delivered in your coordinate system. Where a signed survey is required, a licensed engineer signs it."
+            }
+          ]
+        },
+        {
+          "id": "mining",
+          "key": "mining",
+          "label": "Mining, quarries & landfill",
+          "title": "Mining, quarries and landfill",
+          "intro": "What you cannot measure you cannot manage. Aerata gives you measured volumes and site change on a schedule that matches your month-end.",
+          "items": [
+            {
+              "lead": "Stockpiles",
+              "text": "Volumes and the change since the last flight, for inventory and production reconciliation."
+            },
+            {
+              "lead": "Excavation and faces",
+              "text": "Progress against the mine plan and the licence boundary."
+            },
+            {
+              "lead": "Haul roads",
+              "text": "Width, gradients, safety berms and drainage."
+            },
+            {
+              "lead": "Landfill cells",
+              "text": "Volume, filling rate and remaining capacity."
+            },
+            {
+              "lead": "Faces and slopes",
+              "text": "3D models showing cracks and rockfall areas, for your geotechnical and blasting engineers."
+            },
+            {
+              "lead": "Before and after blasts",
+              "text": "Live video to check the exclusion zone, then the blast pile volume and new face profile."
+            },
+            {
+              "lead": "Restoration and ponds",
+              "text": "Restoration progress, settling and tailings ponds above the waterline, and thermal surface maps of landfills showing hot spots."
+            }
+          ]
+        }
+      ],
+      "receive": [
+        {
+          "title": "Orthophoto and site map",
+          "desc": "A current, true-to-scale picture of the site in your coordinate system, such as RD New in the Netherlands or GGRS87 in Greece.",
+          "formats": [
+            "GeoTIFF",
+            "ECW"
+          ]
+        },
+        {
+          "title": "Terrain, contours and sections",
+          "desc": "Surface and terrain models, contours, profiles and cross-sections for design.",
+          "formats": [
+            "DXF",
+            "DWG",
+            "LandXML"
+          ]
+        },
+        {
+          "title": "Volumes and change reports",
+          "desc": "Stockpile, cut-and-fill and landfill volumes per period, with the change since the last flight.",
+          "formats": [
+            "PDF",
+            "XLSX"
+          ]
+        },
+        {
+          "title": "Point clouds, 3D models and accuracy report",
+          "desc": "Point clouds and textured models, with the checkpoint results that show the accuracy achieved.",
+          "formats": [
+            "LAS/LAZ",
+            "E57",
+            "OBJ"
+          ]
+        }
+      ]
+    },
+    "infra": {
+      "name": "Infrastructure & industry",
+      "menu": "Bridges, dams, plants, ports and ski lifts, inspected from a distance.",
+      "seoTitle": "Bridge, Industrial, Port & Ski Lift Drone Inspection | Aerata",
+      "seoDesc": "Drone inspection of bridges, dams, roads and rail, oil and gas and industrial plants, ports and ships, and ski lifts, with findings located on the structure.",
+      "heroTitle": "Infrastructure and industry",
+      "heroSub": "Inspect structures from a distance, so lifting equipment, scaffolding, rope access and shutdowns are planned around real findings.",
+      "card": {
+        "tag": "Structures, plants, ports & lifts",
+        "o1": "Less lifting equipment, scaffolding and traffic management",
+        "o2": "Turnaround work lists planned before the shutdown",
+        "o3": "Every finding located on photos and 3D models"
+      },
+      "sections": [
+        {
+          "id": "bridges-dams-roads-rail",
+          "key": "infrastructure",
+          "label": "Bridges, dams, roads & rail",
+          "title": "Infrastructure: bridges, dams, roads and rail",
+          "intro": "Public structures carry safety and liability responsibilities, and deterioration is cheapest to fix when found early. Aerata inspects from a distance, reducing the need for lifting equipment, traffic management and work at height.",
+          "items": [
+            {
+              "lead": "Bridges",
+              "text": "Cracks, spalling (concrete flaking) and corrosion on piers, abutments, beams and decks, plus bearings, expansion joints and deck drainage, each finding located on the structure."
+            },
+            {
+              "lead": "Digital twin",
+              "text": "A 3D model of the structure as a baseline for later comparison."
+            },
+            {
+              "lead": "Dams, canals and reservoirs",
+              "text": "Downstream face, crest and spillway, surface anomalies, and thermal indications of seepage above the waterline."
+            },
+            {
+              "lead": "Road and rail corridors",
+              "text": "Surface condition, cross-sections, slopes and drainage, an inventory of signs, barriers and lighting, and vegetation near the railway line."
+            },
+            {
+              "lead": "Slopes and natural hazards",
+              "text": "Slope, landslide and rockfall monitoring, and rapid mapping after floods, earthquakes or landslides."
+            }
+          ]
+        },
+        {
+          "id": "oil-gas-industrial",
+          "key": "industrial",
+          "label": "Oil, gas & industrial",
+          "title": "Oil, gas and industrial facilities",
+          "intro": "Scaffolding, rope access and shutdowns are among the biggest costs in industrial maintenance. Aerata shows you where access is really needed, so turnaround work lists, materials and scaffolding are planned in advance.",
+          "items": [
+            {
+              "lead": "Structures and vessels",
+              "text": "Tanks, chimneys, flares, pipe racks, steel structures, pressure vessel exteriors, silos and cooling towers, for visible corrosion, coating and support condition."
+            },
+            {
+              "lead": "Insulation and pipework",
+              "text": "Heat loss and hot spots."
+            },
+            {
+              "lead": "Pipeline corridors",
+              "text": "Third-party interference, ground erosion and vegetation."
+            },
+            {
+              "lead": "Electrical and steam",
+              "text": "Close-up thermal checks of electrical panels, motor control centres, motors, steam lines and steam traps."
+            },
+            {
+              "lead": "Roofs and façades",
+              "text": "Including rooftop solar, plus roof washing with water."
+            },
+            {
+              "lead": "3D site model",
+              "text": "For planning extensions, and stockpile volumes of raw materials and products."
+            },
+            {
+              "lead": "Emergency support",
+              "text": "Live video to your emergency team after a fire or leak, from outside the danger zone and at their request."
+            }
+          ]
+        },
+        {
+          "id": "maritime",
+          "key": "maritime",
+          "label": "Maritime",
+          "title": "Ports, marinas and ships",
+          "intro": "Ports, marinas and ships are costly to inspect, and every day of downtime matters. Aerata looks at what is above the waterline from the air, which reduces work at height and over water and fits into short port stays.",
+          "items": [
+            {
+              "lead": "Quay walls, jetties, piers and breakwaters",
+              "text": "Cracks, spalling, corrosion, displaced armour stones, and damage to fenders and bollards, each located on a 3D model."
+            },
+            {
+              "lead": "Ships above the waterline",
+              "text": "Hull sides, decks, hatch covers, cranes, funnel and lifeboats for owners and superintendents, and the full outer hull in dry dock."
+            },
+            {
+              "lead": "Port facilities",
+              "text": "Cranes, lighting masts, lighthouses and warehouse roofs, with thermal checks of roofs, refrigerated container areas and electrical panels."
+            },
+            {
+              "lead": "Maps and monitoring",
+              "text": "Port and marina maps, progress monitoring for new port works, and yearly shoreline comparison for coastal protection decisions."
+            },
+            {
+              "lead": "Security and incidents",
+              "text": "Security for marinas and yards out of season, and support during a pollution incident when the Coast Guard requests it."
+            }
+          ]
+        },
+        {
+          "id": "ski-resorts",
+          "key": "ski",
+          "label": "Ski resorts",
+          "title": "Ski resorts",
+          "intro": "A lift that breaks down in season costs revenue and reputation. Aerata inspects your lifts pylon by pylon while they run without passengers, so your technicians know where to start before they climb.",
+          "items": [
+            {
+              "lead": "Lift pylons",
+              "text": "Foundations, structure, platforms, cross-arms and heads, the pulley assemblies (sheave trains) and the rope as visible from outside, plus the stations."
+            },
+            {
+              "lead": "Sheaves and contact points",
+              "text": "Overheating found with thermal imaging."
+            },
+            {
+              "lead": "Snow depth",
+              "text": "Measured on every slope, compared with a snow-free survey, so snowmaking water and energy go where they are needed."
+            },
+            {
+              "lead": "Buildings and equipment",
+              "text": "Roofs, façades and heat loss, safety nets, fences, snow cannons, pipes and telecom masts."
+            },
+            {
+              "lead": "Supply and security",
+              "text": "Tools, spares and supplies delivered to upper stations and refuges when there is no road, subject to flight approval, and security for the months without staff."
+            }
+          ]
+        }
+      ],
+      "receive": [
+        {
+          "title": "Findings located on the structure",
+          "desc": "Each defect with its photo, position and size, marked on drawings or the 3D model.",
+          "formats": [
+            "PDF",
+            "XLSX"
+          ]
+        },
+        {
+          "title": "3D models and digital twins",
+          "desc": "A measurable baseline of each structure for comparison at the next inspection.",
+          "formats": [
+            "OBJ",
+            "LAS/LAZ"
+          ]
+        },
+        {
+          "title": "Thermal reports",
+          "desc": "Heat loss, hot spots and seepage indications with temperatures and locations.",
+          "formats": [
+            "PDF"
+          ]
+        },
+        {
+          "title": "Work lists for access",
+          "desc": "Where scaffolding, rope access or lifting is really needed, for planning turnarounds and repairs.",
+          "formats": [
+            "XLSX"
+          ]
+        }
+      ]
+    },
+    "safety": {
+      "name": "Security & public safety",
+      "menu": "Kooi camera units and DJI Dock patrols, plus live support for authorities.",
+      "seoTitle": "Site Security Monitoring & Public Safety Drone Support | Aerata",
+      "seoDesc": "Kooi mobile camera units with 24/7 alarm monitoring, automated DJI Dock drone patrols, and live thermal drone support for fire, flood and rescue authorities.",
+      "heroTitle": "Security and public safety",
+      "heroSub": "Protect unstaffed sites around the clock, and give authorities live pictures and data before, during and after incidents.",
+      "card": {
+        "tag": "Sites & incidents",
+        "o1": "Kooi camera units and automated DJI Dock patrols, monitored 24/7",
+        "o2": "Live thermal and zoom video to the coordination centre",
+        "o3": "Damage records for police, insurers and ELGA"
+      },
+      "sections": [
+        {
+          "id": "site-security",
+          "key": "security",
+          "label": "Site security",
+          "title": "Site security and monitoring",
+          "intro": "Unstaffed sites, construction yards and remote assets are targets for theft and vandalism. Aerata combines fixed watch with eyes in the air: mobile camera units run with our partner Kooi, and automated drone patrols from a DJI Dock on site. Together they give you visible deterrence and remote monitoring around the clock, as a cost-effective alternative to permanent guarding for as long as you need it.",
+          "items": [
+            {
+              "lead": "Mobile camera units",
+              "text": "For sites with no staff and no mains power, with solar and hybrid options, bought or rented for permanent or temporary sites."
+            },
+            {
+              "lead": "Detection and alerts",
+              "text": "Alarms go to a 24/7 alarm-monitoring centre, where operators verify each alarm and follow your protocol: siren, a voice warning through the unit, and a call to a security company or the police."
+            },
+            {
+              "lead": "Automated drone patrols",
+              "text": "A DJI Dock on site launches its drone on a schedule or when an alarm is raised, flies a set route with thermal and zoom cameras, and returns to recharge, with no one needed on site. Operated by Aerata within the flight approvals for each site."
+            },
+            {
+              "lead": "Security map",
+              "text": "A drone survey shows blind spots and the best camera positions before installation."
+            },
+            {
+              "lead": "Fences, gates and incidents",
+              "text": "Fence and gate inspection, and documentation of damage after a break-in, vandalism or fire for the police and your insurer."
+            },
+            {
+              "lead": "Fire early warning",
+              "text": "For storage of lithium batteries, waste and biomass, with availability confirmed for each site."
+            }
+          ],
+          "closing": "Cameras detect and alert, the drone verifies from the air. Response on site comes from licensed security providers, called in through the protocol you agree with us.",
+          "partner": {
+            "name": "Kooi",
+            "text": "Kooi, based in Drachten in the Netherlands, has supplied mobile camera security since 2010, starting in the wind industry. Its UFO camera units and RED fire early warning are connected to the Kooi Alarm Center, certified to the European standard EN 50518 for alarm-receiving centres. Aerata adds the drone side: the survey before installation and DJI Dock patrols that check alarms from the air, and brings the combined service to our clients in the Netherlands, Greece and the Balkans.",
+            "url": "https://www.247kooi.com"
+          }
+        },
+        {
+          "id": "public-safety",
+          "key": "publicSafety",
+          "label": "Public safety",
+          "title": "Public safety",
+          "intro": "Authorities decide better and faster when they can see what is happening. Aerata supplies live pictures and data before, during and after incidents, working only on instruction from, and under the coordination of, the responsible authority.",
+          "items": [
+            {
+              "lead": "Live video",
+              "text": "Thermal and zoom video to your coordination centre during fires, floods and hazardous-material incidents, with coordinates of the fire front, people and hazards for ground teams."
+            },
+            {
+              "lead": "Search and rescue",
+              "text": "Systematic thermal scanning of land and coastline, with the coordinates of each indication."
+            },
+            {
+              "lead": "After a fire",
+              "text": "A burnt-area map and the hot spots that could reignite."
+            },
+            {
+              "lead": "After floods, landslides and earthquakes",
+              "text": "A map and 3D model of the affected area for your engineers."
+            },
+            {
+              "lead": "Prevention",
+              "text": "Vegetation height and density near settlements and roads, firebreak widths, and watercourse maps showing blocked points."
+            },
+            {
+              "lead": "Damage records",
+              "text": "For insurers and ELGA, the Greek agricultural insurance organisation."
+            }
+          ]
+        }
+      ],
+      "receive": [
+        {
+          "title": "Security map and camera plan",
+          "desc": "Site boundary, blind spots and recommended camera positions from a drone survey.",
+          "formats": [
+            "PDF",
+            "KML"
+          ]
+        },
+        {
+          "title": "Verified alarm handling",
+          "desc": "Alarms checked by Kooi Alarm Center operators, with a drone from the DJI Dock to look from the air, and handled to your protocol.",
+          "formats": [
+            "24/7"
+          ]
+        },
+        {
+          "title": "Live video and coordinates",
+          "desc": "Thermal and zoom video to the coordination centre, with coordinates for ground teams.",
+          "formats": [
+            "Live",
+            "KML"
+          ]
+        },
+        {
+          "title": "Incident and damage maps",
+          "desc": "Burnt-area, flood and damage maps and records for authorities, police and insurers.",
+          "formats": [
+            "GeoTIFF",
+            "PDF"
+          ]
+        }
+      ]
+    },
+    "environmental": {
+      "name": "Environmental monitoring",
+      "menu": "Habitat, water and crop monitoring with multispectral and thermal sensors.",
+      "seoTitle": "Environmental Drone Monitoring: NDVI & Habitat Mapping | Aerata",
+      "seoDesc": "Multispectral and thermal drone surveys for habitat mapping, water quality, biodiversity assessment and precision agriculture, delivered as GIS-ready data.",
+      "heroTitle": "Environmental monitoring and smart agriculture",
+      "heroSub": "High-resolution aerial surveys for habitat mapping, biodiversity assessment, water quality monitoring, and precision agriculture. Multispectral and thermal data collected at scale — delivered in compliance-ready GIS formats.",
+      "card": {
+        "tag": "Ecology & Agriculture",
+        "o1": "Map 200+ hectares of terrain in one flight",
+        "o2": "NDVI, thermal, and multispectral for compliance and planning",
+        "o3": "Species ID and population counting via AI analysis"
+      },
+      "sections": [
+        {
+          "id": "monitoring",
+          "key": "monitoring",
+          "label": "Monitoring & assessment",
+          "title": "Environmental monitoring and assessment",
+          "intro": "Drone-based environmental monitoring delivers accurate habitat mapping, pollution detection, and comprehensive ecosystem assessments. Multi-spectral and thermal sensors provide the data resolution needed for informed conservation and regulatory compliance decisions.",
+          "items": [
+            {
+              "lead": "Habitat mapping and classification",
+              "text": "Multi-spectral NDVI and classification mapping for habitat assessment, invasive species detection, and biodiversity baseline surveys in support of conservation and regulatory compliance."
+            },
+            {
+              "lead": "Water quality and pollution gradients",
+              "text": "Multispectral mapping of water bodies for chlorophyll-a, turbidity, and NDWI indices. Tracks seasonal change and identifies pollution gradients across reservoirs and catchments."
+            },
+            {
+              "lead": "Coastal erosion and intertidal zones",
+              "text": "High-resolution orthomosaics and DSMs for coastal erosion monitoring, intertidal zone mapping, and protected habitat assessments."
+            },
+            {
+              "lead": "Wetland and forest ecosystems",
+              "text": "Repeatable surveys of wetlands and forests, so change between seasons and years is measured, not estimated."
+            },
+            {
+              "lead": "Compliance reporting",
+              "text": "Maps and reports that support Natura 2000 assessments and environmental impact assessments (EIA)."
+            }
+          ]
+        },
+        {
+          "id": "biodiversity",
+          "key": "biodiversity",
+          "label": "Biodiversity",
+          "title": "Biodiversity assessment",
+          "intro": "AI-driven analytics for species identification, population estimation, and change detection across protected areas and development site footprints. Drone surveys produce detailed maps and reports that support conservation planning and statutory ecological assessments.",
+          "items": [
+            {
+              "lead": "Species identification",
+              "text": "AI-assisted identification of species from aerial imagery, checked by our analysts."
+            },
+            {
+              "lead": "Population estimates",
+              "text": "Population density estimated across the whole survey area, not from sample plots alone."
+            },
+            {
+              "lead": "Change detection",
+              "text": "Surveys repeated over time and compared, so gains and losses are located on the map."
+            },
+            {
+              "lead": "Reports and GIS maps",
+              "text": "Biodiversity reports with maps your ecologists can open and work on directly."
+            },
+            {
+              "lead": "Development impact",
+              "text": "Pre- and post-development assessments of a site footprint for statutory ecological reporting."
+            }
+          ]
+        },
+        {
+          "id": "smart-agriculture",
+          "key": "agriculture",
+          "label": "Smart agriculture",
+          "title": "Smart agriculture and precision crop management",
+          "intro": "Optimise crop health, irrigation efficiency, and nutrient management with AI-powered drone analytics. NDVI, NDRE, and thermal mapping identify problem zones before they affect yield — enabling targeted intervention rather than blanket treatment.",
+          "items": [
+            {
+              "lead": "Crop health",
+              "text": "NDVI and NDRE analysis shows where crops are under stress before it affects yield."
+            },
+            {
+              "lead": "Irrigation and water stress",
+              "text": "Thermal and multispectral mapping of irrigation efficiency and water stress across each field."
+            },
+            {
+              "lead": "Nutrients and disease risk",
+              "text": "Zones with nutrient deficiency or disease risk located for targeted inspection."
+            },
+            {
+              "lead": "Prescription maps",
+              "text": "NDVI, NDRE, and thermal crop health mapping for targeted irrigation, fertiliser, and intervention planning — delivered as prescription maps for field machinery."
+            },
+            {
+              "lead": "Targeted intervention",
+              "text": "Recommendations for where to act, instead of treating the whole field the same way."
+            }
+          ]
+        }
+      ],
+      "how": [
+        {
+          "title": "Survey Design",
+          "desc": "Sensor selection, flight altitude, GSD, and temporal frequency defined to match the environmental variable being monitored."
+        },
+        {
+          "title": "Multi-Sensor Data Capture",
+          "desc": "Simultaneous RGB, thermal, and/or multispectral data capture at prescribed altitudes. Radiometric calibration panels captured at flight start and end."
+        },
+        {
+          "title": "Spectral Processing & Analysis",
+          "desc": "Radiometrically corrected reflectance maps, index calculation (NDVI, NDWI, NDRE), and classification layers generated from raw data."
+        },
+        {
+          "title": "GIS Deliverables",
+          "desc": "GeoTIFF rasters, shapefiles, and interpretation reports delivered in your required coordinate reference system for direct GIS import."
+        }
+      ],
+      "receive": [
+        {
+          "title": "Reflectance and index maps",
+          "desc": "Radiometrically corrected maps with NDVI, NDWI and NDRE layers, in your coordinate reference system.",
+          "formats": [
+            "GeoTIFF"
+          ]
+        },
+        {
+          "title": "Classification and habitat layers",
+          "desc": "Habitat, land-cover and change layers ready for direct GIS import.",
+          "formats": [
+            "SHP",
+            "GeoPackage"
+          ]
+        },
+        {
+          "title": "Prescription maps",
+          "desc": "Treatment zones for fertiliser, irrigation or spraying, for your field machinery.",
+          "formats": [
+            "SHP",
+            "ISOXML"
+          ]
+        },
+        {
+          "title": "Interpretation reports",
+          "desc": "What the data shows, where, and what changed since the last survey.",
+          "formats": [
+            "PDF"
+          ]
+        }
+      ]
+    }
+  },
+  "cookies": {
+    "title": "Cookies on this site",
+    "text": "We use strictly necessary storage to run this site. With your permission we also use analytics cookies (Google Analytics, HubSpot) to measure visits, and marketing cookies (HubSpot, Google Ads) to measure our campaigns. You can change your choice at any time via 'Cookie settings' at the bottom of every page.",
+    "policyLink": "Privacy & cookie policy",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "settings": "Settings",
+    "save": "Save my choice",
+    "necessary": "Necessary",
+    "necessaryDesc": "Needed for the site to work, such as remembering this choice. Always on.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Google Analytics and HubSpot measure how the site is used, so we can improve it.",
+    "marketing": "Marketing",
+    "marketingDesc": "HubSpot and Google Ads measure whether our campaigns reach the right people.",
+    "footerLink": "Cookie settings"
+  },
+  "homePage": {
+    "seoTitle": "Aerata — Drone Services for Energy, Infrastructure & Industry",
+    "seoDesc": "Dutch drone services for solar, wind and grid infrastructure: thermal inspection, LiDAR and mapping across the Netherlands, Greece and the Balkans."
   }
 }

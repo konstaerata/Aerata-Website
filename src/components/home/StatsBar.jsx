@@ -1,61 +1,57 @@
 // @ts-nocheck
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Layers, Clock, Shield, Zap } from 'lucide-react';
 import { useLang } from '../../lib/LanguageContext';
+import { Stagger, Item, CountUp, EASE_OUT } from '../motion';
 
-function useCountUp(target, duration = 1200, active = true) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!active) { setVal(target); return; }
-    const start = performance.now();
-    const step = (now) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setVal(Math.round(target * eased));
-      if (t < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [target, active]);
-  return val;
-}
+const VIEWPORT = { once: true, margin: '0px 0px -6% 0px' };
 
-function StatItem({ stat, active, prefersReducedMotion, delay }) {
-  const count = useCountUp(stat.value, 1200, active && !prefersReducedMotion);
+function StatItem({ stat, index }) {
+  const reduce = useReducedMotion();
   const Icon = stat.icon;
   return (
-    <motion.div
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className="flex items-center gap-5 justify-center py-4 md:py-0"
-    >
-      <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
-        <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
-      </div>
-      <div>
-        <span className="block font-display font-bold text-4xl text-primary tracking-tight">
-          {count}{stat.suffix}
+    <Item className="relative px-4 sm:px-6 lg:px-10 py-9 lg:py-14 group">
+      {/* Dividers draw in: 4-up on desktop, 2x2 on mobile */}
+      {index > 0 && (
+        <motion.span
+          aria-hidden="true"
+          initial={reduce ? false : { scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.59, delay: 0.12 + index * 0.06, ease: EASE_OUT }}
+          className={`absolute left-0 top-8 bottom-8 w-px bg-white/10 origin-top ${index % 2 ? 'block' : 'hidden md:block'}`}
+        />
+      )}
+      {index > 1 && (
+        <motion.span
+          aria-hidden="true"
+          initial={reduce ? false : { scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.59, ease: EASE_OUT }}
+          className="md:hidden absolute top-0 left-4 right-4 h-px bg-white/10 origin-left"
+        />
+      )}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="relative w-10 h-10 rounded-lg border border-lime/25 bg-lime/5 flex items-center justify-center transition-colors duration-500 group-hover:border-lime/60 group-hover:bg-lime/10">
+          <Icon className="w-[18px] h-[18px] text-lime" aria-hidden="true" />
         </span>
-        <span className="text-sm text-foreground font-medium">{stat.label}</span>
-        <span className="block text-xs text-muted-foreground mt-0.5">{stat.qualifier}</span>
+        <span className="font-mono text-[11px] tracking-[0.2em] text-white/35 tabular-nums">
+          {String(index + 1).padStart(2, '0')}
+        </span>
       </div>
-    </motion.div>
+      <p className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-none mb-4">
+        <CountUp value={`${stat.value}${stat.suffix}`} duration={1.8} />
+      </p>
+      <p className="text-sm font-medium text-white/90 mb-1">{stat.label}</p>
+      <p className="text-xs text-steelBlue/70">{stat.qualifier}</p>
+    </Item>
   );
 }
 
 export default function StatsBar() {
-  const prefersReducedMotion = useReducedMotion();
   const { t } = useLang();
-  const [inView, setInView] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold: 0.3 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
 
   const stats = [
     { icon: Layers, value: 1000, suffix: '+', label: t('statsBar.hectares.label'), qualifier: t('statsBar.hectares.sub') },
@@ -65,19 +61,15 @@ export default function StatsBar() {
   ];
 
   return (
-    <section ref={ref} className="py-16 border-y border-border/60 bg-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-border/50">
+    <section className="relative bg-obsidian overflow-hidden grain border-t border-white/5">
+      <div aria-hidden="true" className="absolute inset-0 hud-grid" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/40 to-transparent" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Stagger gap={0.1} className="grid grid-cols-2 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <StatItem
-              key={i}
-              stat={stat}
-              active={inView}
-              prefersReducedMotion={prefersReducedMotion}
-              delay={i * 0.15}
-            />
+            <StatItem key={i} stat={stat} index={i} />
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

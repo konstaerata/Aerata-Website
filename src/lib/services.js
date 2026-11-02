@@ -1,38 +1,38 @@
 /**
- * services.js — registry of the 5 service pages, used to build "related
+ * services.js — registry of the sector pages (keys kept for news category links), used to build "related
  * services" cross-links without duplicating titles/paths/descriptions
  * across every service page file.
  */
 export const SERVICES = [
   {
     key: 'surveying',
-    path: '/services/surveying',
-    name: 'Surveying & Mapping',
-    description: 'LiDAR surveys, orthophotos, and 3D photogrammetric mapping.',
+    path: '/sectors/construction-surveying',
+    name: 'Construction, Surveying & Mining',
+    description: 'Progress, volumes, LiDAR and survey-grade maps for sites that change.',
   },
   {
     key: 'renewable-energy',
-    path: '/services/renewable-energy',
+    path: '/sectors/renewable-energy',
     name: 'Renewable Energy',
-    description: 'Thermal inspections for solar farms and wind turbine blades.',
+    description: 'PV thermal inspection, blade inspection and construction monitoring.',
   },
   {
     key: 'infrastructure',
-    path: '/services/infrastructure',
-    name: 'Infrastructure',
-    description: 'Power line, tower, and telecom asset inspections.',
+    path: '/sectors/power-grids-telecom',
+    name: 'Power Grids & Telecom',
+    description: 'Medium- and high-voltage lines, substations and telecom masts.',
   },
   {
     key: 'environmental',
-    path: '/services/environmental',
+    path: '/sectors/environmental-monitoring',
     name: 'Environmental Monitoring',
     description: 'Multispectral crop health, habitat, and ecosystem monitoring.',
   },
   {
     key: 'oil-gas',
-    path: '/services/oil-gas',
-    name: 'Oil & Gas',
-    description: 'Pipeline corridor and flare stack inspections.',
+    path: '/sectors/infrastructure-industry',
+    name: 'Infrastructure & Industry',
+    description: 'Bridges, dams, plants, ports and ski lifts, inspected from a distance.',
   },
 ];
 

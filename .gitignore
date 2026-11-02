@@ -39,3 +39,12 @@ Photos_and_Videos/
 # Large video files — GitHub hard-rejects files > 100 MB
 # Videos must be hosted on a CDN (see note below)
 public/media/*.mp4
+
+# Local preview copies of web video renditions (served from R2 in production)
+public/media-preview/
+
+# Original staff photos (processed copies live in public/team/)
+staff photo/
+
+# Copy of the media to upload to Cloudflare R2 (see "R2 upload/1 - START HERE.html")
+R2 upload/

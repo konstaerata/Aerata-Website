@@ -1,62 +1,51 @@
 // @ts-nocheck
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { MaskLines, Scramble, EASE_OUT } from '../motion';
 
-export default function SectionHeading({ label, title, description, align = 'center', light = false, as = 'h2' }) {
-  const prefersReducedMotion = useReducedMotion();
-  const HeadingTag = motion[as];
+const VIEWPORT = { once: true, margin: '0px 0px -6% 0px' };
+
+export default function SectionHeading({ label, title, description, align = 'center', light = false, as = 'h2', spacing = 'mb-14' }) {
+  const reduce = useReducedMotion();
+  const HeadingTag = as;
 
   return (
-    <div className={`mb-12 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+    <div className={`${spacing} ${align === 'center' ? 'text-center' : 'text-left'}`}>
       {label && (
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className={`inline-flex items-center gap-2 mb-4 ${align === 'center' ? 'justify-center w-full' : ''}`}
-        >
+        <div className={`flex items-center gap-3 mb-5 ${align === 'center' ? 'justify-center' : ''}`}>
           {/* Line draws in left-to-right */}
           <motion.span
-            initial={prefersReducedMotion ? false : { scaleX: 0 }}
+            initial={reduce ? false : { scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            viewport={VIEWPORT}
+            transition={{ duration: 0.45, ease: EASE_OUT }}
             style={{ transformOrigin: 'left' }}
-            className="block w-8 h-px bg-lime shrink-0"
+            className={`block w-8 h-px shrink-0 ${light ? 'bg-lime' : 'bg-[hsl(88_55%_34%)]'}`}
           />
-          <motion.span
-            initial={prefersReducedMotion ? false : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.35, delay: 0.15, ease: 'easeOut' }}
-            className="text-[11px] font-display font-semibold tracking-[0.3em] uppercase text-lime"
-          >
-            {label}
-          </motion.span>
-        </motion.div>
+          <Scramble
+            text={label}
+            delay={0.1}
+            className={`text-[11px] font-display font-semibold tracking-[0.3em] uppercase ${light ? 'text-lime' : 'text-[hsl(88_55%_24%)]'}`}
+          />
+        </div>
       )}
 
       <HeadingTag
-        initial={prefersReducedMotion ? false : { opacity: 0.3, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.5, delay: label ? 0.25 : 0.1, ease: [0.25, 0, 0, 1] }}
-        className={`font-display font-bold leading-tight text-3xl md:text-4xl lg:text-5xl tracking-tight ${
+        className={`font-display font-bold leading-[1.05] text-3xl md:text-4xl lg:text-5xl tracking-tight [text-wrap:balance] ${
           light ? 'text-white' : 'text-primary'
         }`}
       >
-        {title}
+        <MaskLines lines={[title]} delay={label ? 0.15 : 0.05} onMount={false} />
       </HeadingTag>
 
       {description && (
         <motion.p
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+          initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: label ? 0.35 : 0.2, ease: 'easeOut' }}
-          className={`mt-4 text-base md:text-lg max-w-2xl leading-relaxed font-light ${
-            light ? 'text-steelBlue' : 'text-muted-foreground/90'
+          viewport={VIEWPORT}
+          transition={{ duration: 0.52, delay: 0.18, ease: EASE_OUT }}
+          className={`mt-5 text-base md:text-lg max-w-2xl leading-relaxed font-light ${
+            light ? 'text-steelBlue' : 'text-muted-foreground'
           } ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {description}

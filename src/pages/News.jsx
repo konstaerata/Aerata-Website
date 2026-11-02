@@ -1,10 +1,9 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Reveal, Spotlight, EASE_OUT } from '../components/motion';
 import { Search, ArrowRight } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
-import { Link } from 'react-router-dom';
+import { Link } from '@/components/LocalizedLink';
 import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
 import SEO from '../components/SEO';
@@ -17,6 +16,7 @@ export default function News() {
   const { t, lang } = useLang();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
+  const reduce = useReducedMotion();
 
   const CATEGORIES = [
     { value: 'all', label: t('news.catAll') },
@@ -29,19 +29,7 @@ export default function News() {
     { value: 'technology', label: t('news.catTechnology') },
   ];
 
-  const { data: posts = SAMPLE_ARTICLES } = useQuery({
-    queryKey: ['blogPosts'],
-    queryFn: async () => {
-      try {
-        const result = await base44.entities.BlogPost.list('-created_date');
-        if (Array.isArray(result) && result.length > 0) return result;
-      } catch (_) {}
-      return SAMPLE_ARTICLES;
-    },
-    staleTime: 1000 * 60 * 30,
-    retry: false,
-    initialData: SAMPLE_ARTICLES,
-  });
+  const posts = SAMPLE_ARTICLES;
 
   const filteredPosts = posts.filter(p => {
     if (!p.published) return false;
@@ -62,41 +50,45 @@ export default function News() {
         ], lang)}
       />
       {/* Page title — navy brand background */}
-      <section className="relative py-32 pt-40 overflow-hidden bg-navy-dark">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <SectionHeading label={t('news.label')} title={t('news.title')} align="left" light as="h1" />
-          </motion.div>
+      <section className="relative pt-44 pb-24 overflow-hidden bg-navy-dark grain">
+        <div aria-hidden="true" className="absolute inset-0 hud-grid" />
+        <div aria-hidden="true" className="absolute -right-32 -top-32 w-[560px] h-[560px] rounded-full bg-lime/10 blur-3xl" />
+        {!reduce && <div className="scanline z-10" aria-hidden="true" />}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 [&_h1]:text-4xl [&_h1]:md:text-6xl [&_h1]:lg:text-7xl">
+          <SectionHeading label={t('news.label')} title={t('news.title')} align="left" light as="h1" />
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-16 pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <Reveal className="flex flex-col lg:flex-row lg:items-center gap-5 mb-14">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder={t('news.search')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 bg-card border-border"
+                className="pl-10 h-11 bg-card border-border transition-shadow focus-visible:shadow-[0_0_0_4px_hsl(88_48%_52%/0.15)]"
               />
             </div>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map(c => (
-                <button key={c.value} onClick={() => setCategory(c.value)}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded border transition-all ${
-                    category === c.value 
-                      ? 'border-primary bg-primary/10 text-primary' 
-                      : 'border-border text-muted-foreground hover:border-primary/50'
+                <button key={c.value} onClick={() => setCategory(c.value)} aria-pressed={category === c.value}
+                  className={`relative px-3.5 py-2 text-xs font-display font-semibold tracking-wide rounded-full transition-colors duration-300 ${
+                    category === c.value
+                      ? 'text-white'
+                      : 'border border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/40'
                   }`}
                 >
-                  {c.label}
+                  {category === c.value && (
+                    <motion.span layoutId="news-chip" className="absolute inset-0 rounded-full bg-primary" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
+                  )}
+                  <span className="relative">{c.label}</span>
                 </button>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Posts Grid */}
           {filteredPosts.length === 0 ? (
@@ -105,15 +97,17 @@ export default function News() {
               <p className="text-sm text-muted-foreground mt-2">{t('news.noResultsDesc')}</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            <motion.div layout={!reduce} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+              <AnimatePresence mode="popLayout" initial={false}>
               {filteredPosts.map((post, i) => (
                 <motion.div
                   key={post.id}
+                  layout={!reduce}
                   className="h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97, transition: { duration: 0.18 } }}
+                  transition={{ duration: 0.39, delay: Math.min(i * 0.03, 0.3), ease: EASE_OUT }}
                 >
                   {(() => {
                     const CATEGORY_META = {
@@ -149,6 +143,8 @@ export default function News() {
                               {meta.label}
                             </span>
                           </div>
+                          {/* Scan sweep on hover */}
+                          <div aria-hidden="true" className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[420%]" />
                           {/* Accent bar along top */}
                           <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: meta.accent }} />
                         </div>
@@ -158,30 +154,31 @@ export default function News() {
                           <p className="text-[10px] text-muted-foreground mb-3 tabular-nums">
                             {post.created_date ? format(new Date(post.created_date), 'MMM d, yyyy') : ''}
                           </p>
-                          <h3 className="font-barlow font-semibold text-foreground text-base leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-3">
+                          <h2 className="font-display font-semibold text-foreground text-lg leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-3">
                             {post.title}
-                          </h3>
+                          </h2>
                           <p className="text-sm text-muted-foreground line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>
                           <div className="mt-5 pt-4 border-t border-border/40 flex items-center justify-between">
                             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
                               {t('news.readMore')} <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
                             </span>
                             {post.is_external && (
-                              <span className="text-[10px] text-muted-foreground/40 tracking-wide">↗ {t('news.external')}</span>
+                              <span className="text-[10px] text-muted-foreground tracking-wide">↗ {t('news.external')}</span>
                             )}
                           </div>
                         </div>
                       </div>
                     );
 
-                    const cardClass = "flex flex-col h-full rounded-xl border border-border/50 bg-card/40 overflow-hidden hover:border-navy-light/60 hover:shadow-xl hover:shadow-navy/10 hover:-translate-y-0.5 transition-all duration-300";
+                    const cardClass = "flex flex-col h-full rounded-xl border border-border/60 bg-card overflow-hidden transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_22px_44px_-20px_hsl(210_35%_12%/0.3)]";
                     return post.is_external
-                      ? <a href={post.source_url} target="_blank" rel="noopener noreferrer" className={`block group h-full ${cardClass}`}>{cardContent}</a>
-                      : <Link to={`/news/${post.id}`} className={`block group h-full ${cardClass}`}>{cardContent}</Link>;
+                      ? <Spotlight as="a" tone="navy" href={post.source_url} target="_blank" rel="noopener noreferrer" className={`block group h-full ${cardClass}`}>{cardContent}</Spotlight>
+                      : <Spotlight as={Link} tone="navy" to={`/news/${post.id}`} className={`block group h-full ${cardClass}`}>{cardContent}</Spotlight>;
                   })()}
                 </motion.div>
               ))}
-            </div>
+              </AnimatePresence>
+            </motion.div>
           )}
         </div>
       </section>

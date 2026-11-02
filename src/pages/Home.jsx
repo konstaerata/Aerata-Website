@@ -8,13 +8,17 @@ import WhyAerata from '../components/home/WhyAerata';
 import ROICalculator from '../components/home/ROICalculator';
 import PartnersSection from '../components/home/PartnersSection';
 import { MEDIA } from '../lib/media';
+import { useLang } from '../lib/LanguageContext';
+import { useHashScroll } from '../hooks/useHashScroll';
 
 export default function Home() {
+  const { t } = useLang();
+  useHashScroll(); // the "previous projects" links land on /#sectors
   return (
     <div>
       <SEO
-        title="Aerata B.V. — Enterprise Drone Inspection Services"
-        description="Aerata delivers aerial intelligence across Europe — thermal, LiDAR, and photogrammetric drone inspections for renewable energy, infrastructure, surveying, and oil &amp; gas."
+        title={t('homePage.seoTitle')}
+        description={t('homePage.seoDesc')}
         path="/"
       />
       <HeroSection heroImage={MEDIA.home_hero_image} heroVideo={MEDIA.home_hero_video} />

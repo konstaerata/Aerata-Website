@@ -1,12 +1,22 @@
 // @ts-nocheck
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import en from '../locales/en.json';
-import nl from '../locales/nl.json';
-import el from '../locales/el.json';
 import { SITE_ORIGINS } from './siteOrigins';
 
-const translations = { en, nl, el };
+// English is built in (it is also the fallback); other languages load on demand,
+// so a visitor only downloads the language they read.
+const translations = { en };
+const LOADERS = {
+  nl: () => import('../locales/nl.json'),
+  el: () => import('../locales/el.json'),
+};
+
+/** Loads a language's texts (no-op when already loaded or English). */
+export function loadLocale(code) {
+  if (translations[code] || !LOADERS[code]) return Promise.resolve();
+  return LOADERS[code]().then((m) => { translations[code] = m.default; });
+}
 
 export const LANGUAGES = [
   { code: 'en', label: 'EN', name: 'English' },
@@ -31,6 +41,12 @@ function hostnameLang() {
   return DOMAIN_LANGS.find((code) => hostname === new URL(SITE_ORIGINS[code]).hostname || hostname.endsWith(`.${new URL(SITE_ORIGINS[code]).hostname}`)) ?? null;
 }
 
+/** The language of the first page load (domain, then /nl or /el prefix). */
+export function detectInitialLang() {
+  if (typeof window === 'undefined') return DEFAULT_LANG;
+  return hostnameLang() ?? window.location.pathname.match(/^\/(nl|el)(?=\/|$)/)?.[1] ?? DEFAULT_LANG;
+}
+
 const LanguageContext = createContext(null);
 
 /**
@@ -49,6 +65,12 @@ export function LanguageProvider({ children }) {
   const location = useLocation();
 
   const lang = hostnameLang() ?? (LANGUAGE_CODES.includes(langParam) ? langParam : DEFAULT_LANG);
+
+  // Switching language in the app loads that language's texts, then re-renders.
+  const [loadedTick, setLoadedTick] = useState(0);
+  useEffect(() => {
+    if (!translations[lang]) loadLocale(lang).then(() => setLoadedTick((n) => n + 1));
+  }, [lang]);
 
   const switchLang = (code) => {
     if (!LANGUAGE_CODES.includes(code)) return;
@@ -80,7 +102,9 @@ export function LanguageProvider({ children }) {
     const parts = key.split('.');
     let val = translations[lang] || translations.en;
     for (const p of parts) {
-      if (val == null) return key;
+      // A missing branch (e.g. a whole namespace not yet translated) falls
+      // through to the English lookup below instead of returning the key.
+      if (val == null) break;
       val = val[p];
     }
     // Fallback to English if key missing in selected language
@@ -95,7 +119,7 @@ export function LanguageProvider({ children }) {
     return val;
   };
 
-  const value = useMemo(() => ({ lang, switchLang, t }), [lang, location.pathname, location.search]);
+  const value = useMemo(() => ({ lang, switchLang, t }), [lang, location.pathname, location.search, loadedTick]);
 
   return (
     <LanguageContext.Provider value={value}>

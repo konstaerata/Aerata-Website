@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocalePath } from '@/components/LocalizedLink';
+import { navigateWithMorph } from '../../lib/viewTransition';
+import { Menu, X, ChevronDown, Globe, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang, LANGUAGES } from '../../lib/LanguageContext';
-import { MEDIA } from '../../lib/media';
+import { MEDIA, mediaUrl } from '../../lib/media';
+import { SECTORS } from '../../lib/sectors';
 
 const socials = [
   {
@@ -42,21 +45,46 @@ const socials = [
   // { label: 'TikTok', href: 'https://www.tiktok.com/@aerata', icon: (...) },
 ];
 
-const services = [
-  { label: 'Aerial Surveying & Mapping', path: '/services/surveying' },
-  { label: 'Renewable Energy', path: '/services/renewable-energy' },
-  { label: 'Environmental Monitoring', path: '/services/environmental' },
-  { label: 'Critical Infrastructure', path: '/services/infrastructure' },
-  { label: 'Oil & Gas', path: '/services/oil-gas' },
-];
+// The six sector pages, shown 3 rows x 2 columns in the dropdown.
+// Names and one-line descriptions come from sectorPages.* in the locale files.
+const sectorLinks = (t) => SECTORS.map((s) => ({
+  label: t(`sectorPages.${s.key}.name`),
+  description: t(`sectorPages.${s.key}.menu`),
+  path: s.path,
+  image: s.card,
+  preview: s.preview,
+}));
 
-const navLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'About Us', path: '/about' },
-  { label: 'Services', path: '#', children: services },
-  { label: 'Our Fleet', path: '/fleet' },
-  { label: 'Training', path: '/training' },
-  { label: 'News', path: '/news' },
+/**
+ * TRIAL: hover previews. The thumbnail's <video> has no src until the item
+ * is first hovered/focused (data-src), then plays muted; leaving pauses and
+ * rewinds it. Remove: drop the <video> and these handlers.
+ */
+const playPreview = (e) => {
+  const v = e.currentTarget.querySelector('video[data-src]');
+  if (!v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!v.src) v.src = v.dataset.src;
+  v.style.opacity = '1';
+  v.play().catch(() => {});
+};
+const SERVICE_NAMES = (t) => (t('servicesPage.list') || []).map((s) => s.title).join(' · ');
+const SECTION_ACTIVE = /^\/(sectors|services)(\/|$)/;
+
+const stopPreview = (e) => {
+  const v = e.currentTarget.querySelector('video[data-src]');
+  if (!v) return;
+  v.style.opacity = '0';
+  v.pause();
+  if (v.src) v.currentTime = 0;
+};
+
+const navLinksFor = (t) => [
+  { label: t('nav.home'), path: '/' },
+  { label: t('nav.about'), path: '/about' },
+  { label: t('nav.sectors'), path: '#', children: sectorLinks(t) },
+  { label: t('nav.fleet'), path: '/fleet' },
+  { label: t('nav.training'), path: '/training' },
+  { label: t('nav.news'), path: '/news' },
 ];
 
 export default function Navbar() {
@@ -68,7 +96,12 @@ export default function Navbar() {
   const langRef = useRef(null);
   const servicesCloseTimer = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
+  const localePath = useLocalePath();
   const { lang, switchLang, t } = useLang();
+  const navLinks = navLinksFor(t);
+  // Path without the /nl or /el prefix, for active-link matching.
+  const currentPath = location.pathname.replace(/^\/(nl|el)(?=\/|$)/, '') || '/';
 
   // Close lang dropdown on outside click
   useEffect(() => {
@@ -79,10 +112,17 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // "Scrolled past 40px" via a 1px sentinel and an IntersectionObserver, not a
+  // scroll listener: reading scrollY on every scroll event forced a layout
+  // per event and was the single biggest cost while scrolling.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:40px;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.appendChild(sentinel);
+    const io = new IntersectionObserver(([e]) => setScrolled(!e.isIntersecting));
+    io.observe(sentinel);
+    return () => { io.disconnect(); sentinel.remove(); };
   }, []);
 
   useEffect(() => {
@@ -106,6 +146,12 @@ export default function Navbar() {
 
     first?.focus();
 
+    // Freeze the page behind the menu and hide the floating Plan button.
+    const root = document.documentElement;
+    root.style.overflow = 'hidden';
+    root.dataset.menuOpen = '';
+    window.__lenis?.stop();
+
     const handler = (e) => {
       if (e.key === 'Escape') {
         setMobileOpen(false);
@@ -120,15 +166,22 @@ export default function Navbar() {
     };
 
     document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
+    return () => {
+      document.removeEventListener('keydown', handler);
+      root.style.overflow = '';
+      delete root.dataset.menuOpen;
+      window.__lenis?.start();
+    };
   }, [mobileOpen]);
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        // No backdrop blur: re-blurring the moving page (and the hero video)
+        // behind the bar every frame was the main cause of scroll jank.
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow,height] duration-500 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-xl border-b border-border shadow-sm h-16'
+            ? 'bg-white border-b border-border shadow-sm h-16'
             : 'bg-transparent h-20'
         }`}
       >
@@ -142,7 +195,7 @@ export default function Navbar() {
               aria-label="Aerata — back to homepage"
             >
               <img
-                src={MEDIA.navbar_logo}
+                src={mediaUrl(MEDIA.navbar_logo, { width: 240 })}
                 alt="Aerata"
                 className="h-12 w-auto object-contain transition-all duration-500"
                 onError={(e) => { e.currentTarget.src = MEDIA.navbar_logo_fallback; }}
@@ -155,6 +208,12 @@ export default function Navbar() {
                 <div
                   key={link.label}
                   className="relative"
+                  onKeyDown={link.children ? (e) => {
+                    if (e.key === 'Escape' && servicesOpen) { setServicesOpen(false); e.currentTarget.querySelector('button')?.focus(); }
+                  } : undefined}
+                  onBlur={link.children ? (e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget)) setServicesOpen(false);
+                  } : undefined}
                   onMouseEnter={() => {
                     if (link.children) {
                       clearTimeout(servicesCloseTimer.current);
@@ -169,14 +228,13 @@ export default function Navbar() {
                 >
                   {link.children ? (
                     <button
-                      aria-haspopup="menu"
+                      type="button"
                       aria-expanded={servicesOpen}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setServicesOpen(true); }
-                        if (e.key === 'Escape') setServicesOpen(false);
-                      }}
-                      className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${
-                        location.pathname.startsWith('/services')
+                      aria-controls="sectors-panel"
+                      // Keyboard (detail 0) toggles; a mouse click keeps the hover-opened panel open.
+                      onClick={(e) => setServicesOpen((o) => (e.detail === 0 ? !o : true))}
+                      className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 flex items-center gap-1 ${
+                        SECTION_ACTIVE.test(currentPath)
                           ? 'text-lime'
                           : scrolled
                           ? 'text-muted-foreground hover:text-foreground'
@@ -184,13 +242,16 @@ export default function Navbar() {
                       }`}
                     >
                       {link.label}
-                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
+                      <ChevronDown aria-hidden="true" className={`w-3 h-3 transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+                      {SECTION_ACTIVE.test(currentPath) && (
+                        <motion.span layoutId="nav-active" className="absolute left-4 right-4 -bottom-0.5 h-px bg-lime" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
+                      )}
                     </button>
                   ) : (
                     <Link
                       to={link.path}
-                      className={`px-4 py-2 text-sm font-medium transition-colors ${
-                        location.pathname === link.path
+                      className={`relative block px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                        currentPath === link.path
                           ? 'text-lime'
                           : scrolled
                           ? 'text-muted-foreground hover:text-foreground'
@@ -198,34 +259,83 @@ export default function Navbar() {
                       }`}
                     >
                       {link.label}
+                      {currentPath === link.path && (
+                        <motion.span layoutId="nav-active" className="absolute left-4 right-4 -bottom-0.5 h-px bg-lime" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
+                      )}
                     </Link>
                   )}
 
+                  <AnimatePresence>
                   {link.children && servicesOpen && (
                     <motion.div
-                      role="menu"
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 6 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className="absolute top-full left-0 pt-2 w-72"
+                      id="sectors-panel"
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.98, transition: { duration: 0.14 } }}
+                      transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ transformOrigin: 'top left' }}
+                      className="absolute top-full -left-24 pt-3 w-[560px]"
                       onMouseEnter={() => clearTimeout(servicesCloseTimer.current)}
                       onMouseLeave={() => { servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 150); }}
                     >
-                      <div className="bg-white backdrop-blur-xl border border-border rounded-lg overflow-hidden shadow-xl">
-                        {link.children.map((child) => (
-                          <Link
+                      <div className="grid grid-cols-2 gap-1 p-2 bg-white border border-border rounded-xl shadow-[0_24px_60px_-12px_hsl(210_35%_12%/0.25)]">
+                        {link.children.map((child, i) => (
+                          <motion.div
                             key={child.path}
-                            to={child.path}
-                            role="menuitem"
-                            className="block px-5 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all border-b border-border/50 last:border-0"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2, delay: 0.02 * i, ease: [0.16, 1, 0.3, 1] }}
+                            className={i === link.children.length - 1 && link.children.length % 2 ? 'col-span-2' : ''}
                           >
-                            {child.label}
-                          </Link>
+                            <Link
+                              to={child.path}
+                              onPointerEnter={playPreview}
+                              onFocus={playPreview}
+                              onPointerLeave={stopPreview}
+                              onBlur={stopPreview}
+                              // Same card → hero morph as the Home sectors: the thumbnail grows into the service page's hero.
+                              onClick={(e) => navigateWithMorph(e, { navigate, to: localePath(child.path), sourceEl: e.currentTarget.querySelector('[data-vt-source]') })}
+                              className="group flex items-center gap-3 p-2.5 rounded-lg hover:bg-primary/5 transition-colors"
+                            >
+                              <span data-vt-source className="relative w-14 h-14 shrink-0 rounded-md overflow-hidden bg-obsidian">
+                                <img src={mediaUrl(child.image, { width: 160 })} alt="" loading="lazy" className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-110" />
+                                {child.preview && (
+                                  <video
+                                    data-src={child.preview}
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload="none"
+                                    aria-hidden="true"
+                                    style={{ opacity: 0 }}
+                                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+                                  />
+                                )}
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-sm font-display font-semibold text-foreground group-hover:text-primary transition-colors">{child.label}</span>
+                                <span className="block text-xs text-muted-foreground leading-snug mt-0.5">{child.description}</span>
+                              </span>
+                            </Link>
+                          </motion.div>
                         ))}
+                        <Link
+                          to="/services"
+                          className="group col-span-2 mt-1 flex items-center justify-between gap-3 px-3 py-3 rounded-lg border-t border-border/60 hover:bg-primary/5 transition-colors"
+                        >
+                          <span className="min-w-0">
+                            <span className="block text-[11px] font-display font-semibold tracking-[0.2em] uppercase text-[hsl(88_55%_24%)]">{t('nav.allServices')}</span>
+                            <span className="block text-xs text-muted-foreground mt-0.5 truncate">{SERVICE_NAMES(t)}</span>
+                          </span>
+                          <span className="shrink-0 inline-flex items-center gap-1.5 text-xs font-display font-semibold text-primary">
+                            {t('nav.allServicesCta')}
+                            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                          </span>
+                        </Link>
                       </div>
                     </motion.div>
                   )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
@@ -254,9 +364,9 @@ export default function Navbar() {
               <div className="relative hidden lg:block" ref={langRef}>
                 <button
                   onClick={() => setLangOpen(!langOpen)}
-                  aria-label="Select language"
+                  aria-label={`${t('nav.language')}: ${lang.toUpperCase()}`}
                   aria-expanded={langOpen}
-                  aria-haspopup="listbox"
+                  aria-controls="lang-panel"
                   className={`flex items-center gap-1.5 px-3 py-2 text-xs font-display font-semibold tracking-wider uppercase rounded transition-colors ${
                     scrolled ? 'text-muted-foreground hover:text-primary' : 'text-white/70 hover:text-white'
                   }`}
@@ -268,8 +378,7 @@ export default function Navbar() {
                 <AnimatePresence>
                   {langOpen && (
                     <motion.div
-                      role="listbox"
-                      aria-label="Language selection"
+                      id="lang-panel"
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 4 }}
@@ -279,8 +388,8 @@ export default function Navbar() {
                       {LANGUAGES.map((l) => (
                         <button
                           key={l.code}
-                          role="option"
-                          aria-selected={lang === l.code}
+                          aria-current={lang === l.code ? 'true' : undefined}
+                          lang={l.code}
                           onClick={() => { switchLang(l.code); setLangOpen(false); }}
                           className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-all ${
                             lang === l.code
@@ -309,7 +418,7 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/contact"
-                className="hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-semibold font-display tracking-wide bg-lime text-white hover:bg-lime/90 transition-all duration-300 rounded"
+                className="hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-semibold font-display tracking-wide bg-lime text-obsidian hover:bg-lime/90 btn-shine transition-all duration-300 rounded"
               >
                 {t('nav.getInTouch')}
               </Link>
@@ -320,9 +429,9 @@ export default function Navbar() {
                 aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
-                className={`lg:hidden p-2 transition-colors ${scrolled ? 'text-foreground' : 'text-white'}`}
+                className={`lg:hidden p-2.5 -mr-2.5 transition-colors ${scrolled || mobileOpen ? 'text-foreground' : 'text-white'}`}
               >
-                {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
               </button>
             </div>
           </div>
@@ -334,6 +443,10 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('nav.menu')}
+            data-lenis-prevent
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
@@ -341,8 +454,13 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-white pt-20 px-6 overflow-y-auto lg:hidden"
           >
             <div className="space-y-1">
-              {navLinks.map((link) => (
-                <div key={link.label}>
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.26, delay: 0.03 + i * 0.03, ease: [0.16, 1, 0.3, 1] }}
+                >
                   {link.children ? (
                     <>
                       <button
@@ -351,7 +469,7 @@ export default function Navbar() {
                         className="w-full flex items-center justify-between py-4 text-lg font-display font-semibold text-foreground border-b border-border/30"
                       >
                         {link.label}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
                       </button>
                       <AnimatePresence>
                         {mobileServicesOpen && (
@@ -371,6 +489,12 @@ export default function Navbar() {
                                 {child.label}
                               </Link>
                             ))}
+                            <Link
+                              to="/services"
+                              className="block py-3 font-display font-semibold text-primary hover:text-lime transition-colors"
+                            >
+                              {t('nav.allServices')}
+                            </Link>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -383,7 +507,7 @@ export default function Navbar() {
                       {link.label}
                     </Link>
                   )}
-                </div>
+                </motion.div>
               ))}
 
               {/* Social icons */}
@@ -395,7 +519,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Aerata on ${s.label}`}
-                    className="w-9 h-9 rounded-md border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                    className="w-11 h-11 rounded-md border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
                   >
                     {s.icon}
                   </a>
@@ -404,7 +528,7 @@ export default function Navbar() {
 
               {/* Mobile Language Switcher */}
               <div className="pt-2 pb-4">
-                <p className="text-[10px] font-display font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">Language</p>
+                <p className="text-[10px] font-display font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">{t('nav.language')}</p>
                 <div className="flex gap-2">
                   {LANGUAGES.map((l) => (
                     <button
@@ -434,7 +558,7 @@ export default function Navbar() {
               <div className="pb-6">
                 <Link
                   to="/contact"
-                  className="block w-full text-center px-6 py-4 font-display font-semibold bg-lime text-white hover:bg-lime/90 transition-all rounded"
+                  className="block w-full text-center px-6 py-4 font-display font-semibold bg-lime text-obsidian hover:bg-lime/90 btn-shine transition-all rounded"
                 >
                   {t('nav.connectTeam')}
                 </Link>

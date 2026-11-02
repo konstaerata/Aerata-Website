@@ -24,17 +24,12 @@ const ROOT = resolve(__dirname, '..');
 // (NewsArticle.jsx builds these from article data) are intentionally
 // excluded — there's nothing static to check there.
 const PAGES = [
-  'src/pages/Home.jsx',
   'src/pages/About.jsx',
-  'src/pages/services/Surveying.jsx',
-  'src/pages/services/RenewableEnergy.jsx',
-  'src/pages/services/Infrastructure.jsx',
-  'src/pages/services/Environment.jsx',
-  'src/pages/services/OilGas.jsx',
+  // Sector pages and Services take title/description from the locale files
+  // (sectorPages.<key>, servicesPage and homePage seoTitle/seoDesc); checked below per language.
   'src/pages/Training.jsx',
   'src/pages/News.jsx',
   'src/pages/Contact.jsx',
-  'src/pages/Privacy.jsx',
   'src/pages/Fleet.jsx',
   'src/pages/ClientPortal.jsx',
 ];
@@ -96,13 +91,36 @@ function main() {
     }
 
     // At least one <h1 or a component known to render one (SectionHeading as="h1",
-    // ServicePageHero, HeroSection, which always render h1) should appear in
+    // ServicePageHero, HeroSection, FlyoverHero, which always render h1) should appear in
     // the file. This is a best-effort static check — some pages (e.g. Home.jsx)
     // delegate their h1 to a child component this script doesn't trace into.
-    const H1_INDICATORS = [/<h1[\s>]/, /as=["']h1["']/, /<ServicePageHero[\s>]/, /<HeroSection[\s>]/];
+    const H1_INDICATORS = [/<h1[\s>]/, /as=["']h1["']/, /<ServicePageHero[\s>]/, /<HeroSection[\s>]/, /<FlyoverHero[\s>]/];
     const hasH1 = H1_INDICATORS.some((re) => re.test(source));
     if (!hasH1) {
       warnings.push(`${page}: no <h1> (or known h1-rendering component) found in source — verify manually if this component delegates its h1 to an untraced child`);
+    }
+  }
+
+  // Sector + services pages: same length/duplicate rules on the locale copy,
+  // for every language those pages are published in.
+  for (const lang of ['en', 'el']) {
+    const loc = JSON.parse(readFileSync(resolve(ROOT, `src/locales/${lang}.json`), 'utf-8'));
+    const seoPages = { ...(loc.sectorPages || {}), services: loc.servicesPage || {}, home: loc.homePage || {} };
+    for (const [key, page] of Object.entries(seoPages)) {
+      if (!page || (!page.seoTitle && !page.seoDesc)) continue;
+      const label = `${lang}:${key}`;
+      if (!page.seoTitle?.trim()) errors.push(`${label}: missing seoTitle`);
+      else {
+        if (page.seoTitle.length > TITLE_MAX) warnings.push(`${label}: title is ${page.seoTitle.length} chars (recommended <= ${TITLE_MAX})`);
+        if (titles.has(page.seoTitle)) errors.push(`${label}: duplicate title with ${titles.get(page.seoTitle)}`);
+        titles.set(page.seoTitle, label);
+      }
+      if (!page.seoDesc?.trim()) errors.push(`${label}: missing seoDesc`);
+      else {
+        if (page.seoDesc.length > DESCRIPTION_MAX) warnings.push(`${label}: description is ${page.seoDesc.length} chars (recommended <= ${DESCRIPTION_MAX})`);
+        if (descriptions.has(page.seoDesc)) errors.push(`${label}: duplicate description with ${descriptions.get(page.seoDesc)}`);
+        descriptions.set(page.seoDesc, label);
+      }
     }
   }
 

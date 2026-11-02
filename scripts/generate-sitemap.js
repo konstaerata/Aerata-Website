@@ -45,11 +45,15 @@ const localizedLoc = localizedUrl;
 const STATIC_ROUTES = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/about', changefreq: 'monthly', priority: '0.8' },
-  { path: '/services/renewable-energy', changefreq: 'monthly', priority: '0.9' },
-  { path: '/services/infrastructure', changefreq: 'monthly', priority: '0.9' },
-  { path: '/services/surveying', changefreq: 'monthly', priority: '0.9' },
-  { path: '/services/environmental', changefreq: 'monthly', priority: '0.9' },
-  { path: '/services/oil-gas', changefreq: 'monthly', priority: '0.9' },
+  // Sector + services pages exist only in the languages listed (others are
+  // noindex until translated), with alternates between those languages.
+  { path: '/sectors/renewable-energy', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/sectors/power-grids-telecom', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/sectors/construction-surveying', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/sectors/infrastructure-industry', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/sectors/security-public-safety', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/services', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
+  { path: '/sectors/environmental-monitoring', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
   { path: '/fleet', changefreq: 'monthly', priority: '0.7' },
   { path: '/news', changefreq: 'weekly', priority: '0.7' },
   { path: '/contact', changefreq: 'monthly', priority: '0.8' },
@@ -109,6 +113,13 @@ async function main() {
   // One <url> per (route, language) pair, each carrying the full set of
   // alternates (including itself and x-default) — matches SEO.jsx exactly.
   const staticEntries = STATIC_ROUTES.flatMap((r) => {
+    if (r.languages) {
+      const alts = [
+        ...r.languages.map((lang) => ({ hreflang: lang, href: localizedLoc(r.path, lang) })),
+        { hreflang: 'x-default', href: localizedLoc(r.path, DEFAULT_LANG) },
+      ];
+      return r.languages.map((lang) => buildUrlEntry({ loc: localizedLoc(r.path, lang), lastmod: TODAY, changefreq: r.changefreq, priority: r.priority, alternates: alts }));
+    }
     const alternates = [
       ...LANGUAGES.map((lang) => ({ hreflang: lang, href: localizedLoc(r.path, lang) })),
       { hreflang: 'x-default', href: localizedLoc(r.path, DEFAULT_LANG) },

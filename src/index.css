@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* The Plan button steps aside while the mobile menu is open. */
+html[data-menu-open] [data-plan-dock] { display: none; }
+
 @layer base {
   :root {
-    --font-oxanium: 'Oxanium', sans-serif;
+    /* Self-hosted (@fontsource-variable/oxanium, imported in main.jsx): no Google Fonts requests. */
+    --font-oxanium: 'Oxanium Variable', 'Oxanium', sans-serif;
     --font-inter: 'Inter', sans-serif;
 
     /* Light background — matches real aerata.com */
@@ -28,7 +30,8 @@
     --secondary: 210 25% 87%;
     --secondary-foreground: 210 35% 20%;
     --muted: 210 15% 92%;
-    --muted-foreground: 210 20% 45%;
+    /* Darkened for WCAG AA contrast (>= 4.5:1 on the light backgrounds). */
+    --muted-foreground: 210 22% 34%;
     --destructive: 0 80% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 210 20% 86%;
@@ -123,22 +126,13 @@
   animation: glowPulse 3s ease-in-out infinite;
 }
 
-/* Subtle grid trace — animates slowly for a live-data feel */
+/* Subtle grid trace. Static: its old background-position drift repainted
+   the whole section on every frame, forever. */
 .data-trace {
   background-image:
     linear-gradient(hsl(200 38% 28% / 0.03) 1px, transparent 1px),
     linear-gradient(90deg, hsl(200 38% 28% / 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
-  animation: dataDrift 8s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .data-trace { animation: none; }
-}
-
-@keyframes dataDrift {
-  from { background-position: 0 0; }
-  to   { background-position: 60px 60px; }
 }
 
 /* Scanline sweep — one-shot on load (used by hero) */
@@ -181,7 +175,158 @@
   border-color: hsl(88 48% 52% / 0.7);
 }
 
+/* ── Motion system: shared surfaces ─────────────────────────────────────── */
+
+/* Spotlight cards — pointer-following glow + lit hairline border */
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+.spotlight--lime::after {
+  background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), hsl(88 48% 52% / 0.13), transparent 45%);
+  box-shadow: inset 0 0 0 1px hsl(88 48% 52% / 0.35);
+}
+.spotlight--navy::after {
+  background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), hsl(200 38% 28% / 0.09), transparent 45%);
+  box-shadow: inset 0 0 0 1px hsl(200 38% 28% / 0.22);
+}
+.spotlight:hover::after { opacity: 1; }
+
+/* Seamless marquee */
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+/* Primary button: lime with dark ink (7.5:1), light sweep on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, hsl(0 0% 100% / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-shine:hover::before { transform: translateX(120%); }
+
+/* HUD grid texture for dark bands */
+.hud-grid {
+  background-image:
+    linear-gradient(hsl(88 48% 52% / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(88 48% 52% / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+}
+
+/* Fine film grain over dark heroes — static, so it costs nothing per frame */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Anchor links glide to their section (skipped under reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Lenis smooth scrolling — the parts of its stylesheet this site needs.
+   Its iframe pointer-events rule is deliberately left out: it would make
+   the HubSpot form and the map unclickable. */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+/* While the page is gliding, ignore the pointer: otherwise every card and
+   link passing under a resting cursor flips into :hover (restyles, hover
+   transitions, cursor lock-on) on every frame. pointer-events inherits, and
+   Lenis toggles this class only when scrolling starts and stops. */
+html.lenis-scrolling body { pointer-events: none; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* Keyboard focus — visible, on-brand */
+:focus-visible {
+  outline: 2px solid hsl(88 48% 45%);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .btn-shine::before { display: none; }
+}
+
+/* Scroll cue — a lit segment travels down a hairline */
+@keyframes scrollcue {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Card → service hero morph (View Transitions, see src/lib/viewTransition.js).
+   The card grows into the hero; the rest of the page cross-fades quickly. */
+::view-transition-group(aerata-hero) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Keep the browser's plus-lighter cross-fade inside the hero group (no
+   washed-out midpoint); only size the snapshots to cover the box. */
+::view-transition-old(aerata-hero),
+::view-transition-new(aerata-hero) {
+  height: 100%;
+  object-fit: cover;
+  animation-duration: 560ms;
+}
+/* The old page stays solid underneath while the new one fades in over it,
+   so nothing in between ever shows the bare page background. */
+::view-transition-old(root) { animation: none; }
+::view-transition-new(root) { animation: vt-fade-in 320ms 120ms ease both; }
+@keyframes vt-fade-in { from { opacity: 0; } }
+
+/* Brand-coloured text selection */
+::selection {
+  background: hsl(88 48% 52% / 0.35);
+  color: inherit;
+}
+
 /* HubSpot form brand styles are injected dynamically via JS in Contact.jsx
    (HS_BRAND_CSS constant + onFormReady callback) so they appear after
    HubSpot's own injected <style> tags and win the cascade. */
    
+/* ── Trial motion features (src/components/fx) ─────────────────────────────
+   Scroll-speed response: ScrollVelocity writes a skewY transform onto
+   .vel-skew elements while scrolling (they must carry no other transform).
+   Target-lock cursor: corners/dot fade with the root's data attributes.
+   Remove this block together with the fx components. */
+.vel-skew {
+  transform-origin: center;
+  will-change: transform;
+}
+.target-cursor { opacity: 0; transition: opacity 200ms ease; }
+.target-cursor[data-visible="1"] { opacity: 1; }
+.target-cursor__dot { transition: opacity 160ms ease; }
+.target-cursor[data-locked="1"] .target-cursor__dot { opacity: 0; }
