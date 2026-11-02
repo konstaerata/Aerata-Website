@@ -41,6 +41,18 @@ export const MEDIA_TRANSFORMS_ENABLED = true;
 /** External image CDN (base44) */
 const BASE_B44 = 'https://media.base44.com/images/public/69cc1de864505c2ecdcc6774';
 
+/**
+ * Web-optimised video renditions, compressed from the camera originals
+ * (which are 100–560 MB each and stall page loads). They live in the same R2
+ * bucket under web/. VITE_VIDEO_BASE overrides the base for local previews
+ * before upload, e.g. VITE_VIDEO_BASE=/media-preview with the files in
+ * public/media-preview/ (git-ignored).
+ */
+const VIDEO_BASE = import.meta.env.VITE_VIDEO_BASE || `${BASE_LOCAL}/web`;
+
+/** Sector and service photos on R2 (resized and served as AVIF/WebP via media.aerata.com). */
+const PHOTO_BASE = `${BASE_LOCAL}/photos`;
+
 // ── Media registry ─────────────────────────────────────────────────────────────
 // Keys are named after where they appear in the UI.
 // Even if the same file is reused in multiple places, each usage has its own key.
@@ -55,8 +67,13 @@ export const MEDIA = {
   footer_logo:                         `${BASE_LOCAL}/logo-1.png`,
 
   // ── Home page ────────────────────────────────────────────────────────────────
-  home_hero_video:                     `${BASE_LOCAL}/promovideoforfrontpage.mp4`,
-  home_hero_image:                     `${BASE_B44}/65a98b32e_generated_a74332b5.png`,
+  // 720p on desktop too: decoding the 1080p rendition while scrolling made
+  // the Home hero visibly less smooth than the other (720p) video heroes.
+  home_hero_video:                     `${VIDEO_BASE}/home-hero-720.mp4`,
+  home_hero_video_mobile:              `${VIDEO_BASE}/home-hero-720.mp4`,
+  home_hero_poster:                    `${VIDEO_BASE}/home-hero-poster.jpg`,
+  // Shown only if the hero video can't play: the video's own still frame.
+  home_hero_image:                     `${VIDEO_BASE}/home-hero-poster.jpg`,
 
   // ── Sectors Showcase (homepage IndustryCards) ────────────────────────────────
   // Update these URLs to swap sector card background images
@@ -72,6 +89,8 @@ export const MEDIA = {
 
   // ── About page ───────────────────────────────────────────────────────────────
   about_hero_image:                    `${BASE_LOCAL}/sitia.mp4`,
+  about_hero_video:                    `${VIDEO_BASE}/about-hero-720.mp4`,
+  about_hero_poster:                   `${VIDEO_BASE}/about-hero-poster.jpg`,
   about_case_solar_farm_image:         `${BASE_B44}/c8d2cb737_generated_7a5a50ca.png`,
   about_case_powerline_image:          `${BASE_B44}/04b2da82d_generated_65a9eb1f.png`,
   about_case_archaeological_image:     `${BASE_B44}/81b06a698_generated_69f885a6.png`,
@@ -108,7 +127,8 @@ export const MEDIA = {
   news_article_company_news_image:     `${BASE_B44}/65a98b32e_generated_a74332b5.png`,
 
   // ── Environmental Monitoring page ────────────────────────────────────────────
-  env_hero_image:                      `${BASE_LOCAL}/environmental.mp4`,
+  env_hero_image:                      `${VIDEO_BASE}/environmental-720.mp4`,
+  env_hero_poster:                     `${VIDEO_BASE}/environmental-poster.jpg`,
   env_gallery_bird_migration_image:    `${BASE_B44}/396042db6_generated_7dacdf8c.png`,
   env_gallery_crop_health_image:       `${BASE_B44}/81b06a698_generated_69f885a6.png`,
   env_gallery_habitat_mapping_image:   `${BASE_B44}/c8d2cb737_generated_7a5a50ca.png`,
@@ -118,12 +138,14 @@ export const MEDIA = {
   env_section_smart_agriculture_image: `${BASE_LOCAL}/smartagriculture.png`,
 
   // ── Surveying page ───────────────────────────────────────────────────────────
-  surveying_hero_video:                `${BASE_LOCAL}/construction_monitoring.MP4`,
+  surveying_hero_video:                `${VIDEO_BASE}/surveying-hero-720.mp4`,
+  surveying_hero_poster:               `${VIDEO_BASE}/surveying-hero-poster.jpg`,
   surveying_section_orthophotos_image: `${BASE_LOCAL}/photogrammetry.png`,
   surveying_section_lidar_image:       `${BASE_LOCAL}/lidarsurvey.png`,
   surveying_section_construction_image:`${BASE_LOCAL}/guillherme-schneider-CJK1s0Cd0fU-unsplash.webp`,
   surveying_section_ai_image:          `${BASE_LOCAL}/aidamage.png`,
-  surveying_demo_3d_video:             `${BASE_LOCAL}/3D_model_aerial_mapping_stcatherines.mp4`,
+  surveying_demo_3d_video:             `${VIDEO_BASE}/surveying-3d-demo-720.mp4`,
+  surveying_demo_3d_poster:            `${VIDEO_BASE}/surveying-3d-demo-poster.jpg`,
 
   // ── Renewable Energy page ────────────────────────────────────────────────────
   renewable_hero_image:                `${BASE_LOCAL}/solarfarm.jpg`,
@@ -158,6 +180,60 @@ export const MEDIA = {
   // ── Environmental Monitoring page (bottom sections) ───────────────────────────
   env_capabilities_image:              `${BASE_LOCAL}/environmentalwhy.png`,
   env_workflow_image:                  `${BASE_LOCAL}/environmentalworkflow.png`,
+
+  // ── Sector & service photos (content refactor, 2026-11) ───────────────────
+  // On R2 under photos/, named by slot code (see docs/photo-guide.html).
+  photo_sol_01:                        `${PHOTO_BASE}/sol-01.jpg`,
+  photo_sol_02:                        `${PHOTO_BASE}/sol-02.jpg`,
+  photo_sol_03:                        `${PHOTO_BASE}/sol-03.jpg`,
+  photo_sol_04:                        `${PHOTO_BASE}/sol-04.jpg`,
+  photo_wnd_01:                        `${PHOTO_BASE}/wnd-01.jpg`,
+  photo_wnd_02:                        `${PHOTO_BASE}/wnd-02.jpg`,
+  photo_wnd_03:                        `${PHOTO_BASE}/wnd-03.jpg`,
+  photo_wnd_04:                        `${PHOTO_BASE}/wnd-04.jpg`,
+  photo_srv_02:                        `${PHOTO_BASE}/srv-02.jpg`,
+  photo_grd_h:                         `${PHOTO_BASE}/grd-h.jpg`,
+  photo_grd_card:                      `${PHOTO_BASE}/grd-card.jpg`,
+  photo_grd_01:                        `${PHOTO_BASE}/grd-01.jpg`,
+  photo_grd_02:                        `${PHOTO_BASE}/grd-02.jpg`,
+  photo_grd_04:                        `${PHOTO_BASE}/grd-04.jpg`,
+  photo_grd_05:                        `${PHOTO_BASE}/grd-05.jpg`,
+  photo_grd_06:                        `${PHOTO_BASE}/grd-06.jpg`,
+  photo_bld_card:                      `${PHOTO_BASE}/bld-card.jpg`,
+  photo_bld_01:                        `${PHOTO_BASE}/bld-01.jpg`,
+  photo_bld_02:                        `${PHOTO_BASE}/bld-02.jpg`,
+  photo_bld_03:                        `${PHOTO_BASE}/bld-03.jpg`,
+  photo_bld_05:                        `${PHOTO_BASE}/bld-05.jpg`,
+  photo_bld_06:                        `${PHOTO_BASE}/bld-06.jpg`,
+  photo_inf_h:                         `${PHOTO_BASE}/inf-h.jpg`,
+  photo_inf_card:                      `${PHOTO_BASE}/inf-card.jpg`,
+  photo_inf_01:                        `${PHOTO_BASE}/inf-01.jpg`,
+  photo_inf_02:                        `${PHOTO_BASE}/inf-02.jpg`,
+  photo_inf_03:                        `${PHOTO_BASE}/inf-03.jpg`,
+  photo_inf_05:                        `${PHOTO_BASE}/inf-05.jpg`,
+  photo_inf_07:                        `${PHOTO_BASE}/inf-07.jpg`,
+  photo_inf_08:                        `${PHOTO_BASE}/inf-08.jpg`,
+  photo_saf_h:                         `${PHOTO_BASE}/saf-h.jpg`,
+  photo_saf_01:                        `${PHOTO_BASE}/saf-01.jpg`,
+  photo_saf_02:                        `${PHOTO_BASE}/saf-02.jpg`,
+  photo_saf_03:                        `${PHOTO_BASE}/saf-03.jpg`,
+  photo_saf_04:                        `${PHOTO_BASE}/saf-04.jpg`,
+  photo_env_card:                      `${PHOTO_BASE}/env-card.jpg`,
+  photo_env_01:                        `${PHOTO_BASE}/env-01.jpg`,
+  photo_env_05:                        `${PHOTO_BASE}/env-05.jpg`,
+  photo_bld_09:                        `${PHOTO_BASE}/bld-09.jpg`,
+  photo_wnd_06:                        `${PHOTO_BASE}/wnd-06.jpg`,
+};
+
+/**
+ * 3–5 s silent hover previews cut from the homepage promo footage, keyed by
+ * service path. Oil & Gas has no matching footage, so it has no preview.
+ */
+export const SERVICE_PREVIEW_VIDEOS = {
+  '/services/renewable-energy': `${VIDEO_BASE}/previews/renewable-energy.mp4`,
+  '/services/infrastructure':   `${VIDEO_BASE}/previews/infrastructure.mp4`,
+  '/services/surveying':        `${VIDEO_BASE}/previews/surveying.mp4`,
+  '/services/environmental':    `${VIDEO_BASE}/previews/environmental.mp4`,
 };
 
 // ── Image transform helpers ──────────────────────────────────────────────────
@@ -196,7 +272,8 @@ export function mediaUrl(originalUrl, { width, format = 'auto', quality = 82, fi
 
   const opts = [`format=${format}`, `quality=${quality}`, `fit=${fit}`];
   if (width) opts.push(`width=${width}`);
-  return `${MEDIA_TRANSFORM_HOST}/cdn-cgi/image/${opts.join(',')}${path}`;
+  // Spaces in filenames are encoded, or a srcset would split the URL at them.
+  return `${MEDIA_TRANSFORM_HOST}/cdn-cgi/image/${opts.join(',')}${path.replace(/ /g, '%20')}`;
 }
 
 /**

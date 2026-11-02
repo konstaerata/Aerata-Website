@@ -1,91 +1,81 @@
 // @ts-nocheck
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Reveal, MaskLines, Scramble, EASE_OUT } from '../components/motion';
 import SEO from '../components/SEO';
 import { useLang } from '../lib/LanguageContext';
 import { breadcrumbSchema } from '../lib/schemas';
+import { PRIVACY } from '../lib/privacyContent';
+import { openConsentSettings } from '../lib/consent';
+
+/** Privacy & cookie policy. Text per language lives in lib/privacyContent.js. */
+function Block({ b }) {
+  if (b.p) return <p>{b.p}</p>;
+  if (b.ul) return <ul className="list-disc pl-5 space-y-2 marker:text-[hsl(88_55%_24%)]">{b.ul.map((li) => <li key={li}>{li}</li>)}</ul>;
+  if (b.table) {
+    return (
+      <div className="overflow-x-auto rounded-lg border border-border" tabIndex={0} role="region" aria-label={b.table.head.join(', ')}>
+        <table className="w-full text-sm text-left">
+          <thead className="bg-secondary/60 text-foreground">
+            <tr>{b.table.head.map((h) => <th key={h} scope="col" className="px-3 py-2.5 font-semibold align-top">{h}</th>)}</tr>
+          </thead>
+          <tbody>
+            {b.table.rows.map((row) => (
+              <tr key={row[0]} className="border-t border-border/70 align-top">
+                {row.map((cell, i) => <td key={i} className={`px-3 py-2.5 ${i === 0 ? 'font-medium text-foreground' : ''}`}>{cell}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  return null;
+}
 
 export default function Privacy() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
+  const reduce = useReducedMotion();
+  const c = PRIVACY[lang] || PRIVACY.en;
+
   return (
-    <div className="pt-32 pb-20">
+    <div className="relative pt-40 pb-28">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[420px] data-trace opacity-70 pointer-events-none [mask-image:linear-gradient(to_bottom,#000,transparent)]" />
       <SEO
-        title="Privacy Policy — Aerata B.V."
-        description="Aerata B.V. privacy policy. Learn how we collect, use, and protect your personal data in compliance with GDPR regulations."
+        title={c.seoTitle}
+        description={c.seoDesc}
         path="/privacy"
-        jsonLd={breadcrumbSchema([
-          { name: 'Home', url: '/' },
-          { name: 'Privacy Policy' },
-        ], lang)}
+        jsonLd={breadcrumbSchema([{ name: 'Home', url: '/' }, { name: c.title }], lang)}
       />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-16 h-px bg-primary" />
-            <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-primary">Legal</span>
+      <div className="relative max-w-[76ch] mx-auto px-4 sm:px-6">
+        <div className="relative mb-14 pb-10 border-b border-border/60">
+          <div className="flex items-center gap-3 mb-7">
+            <motion.span
+              initial={reduce ? false : { scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.45, ease: EASE_OUT }}
+              className="block w-16 h-px bg-[hsl(88_55%_30%)] origin-left"
+            />
+            <Scramble text={c.eyebrow} className="text-xs font-display font-semibold tracking-[0.25em] uppercase text-[hsl(88_55%_24%)]" />
           </div>
-          <h1 className="font-barlow font-bold text-4xl md:text-5xl text-foreground mb-8">Privacy Policy</h1>
-          <p className="text-sm text-muted-foreground mb-12">Last updated: March 2026</p>
-        </motion.div>
+          <h1 className="font-display font-bold text-4xl md:text-6xl text-primary tracking-tight leading-[1.02] mb-6"><MaskLines lines={[c.title]} delay={0.1} /></h1>
+          <p className="text-sm font-mono text-foreground/75 tabular-nums">{c.updated}</p>
+        </div>
 
-        <div className="space-y-8 text-muted-foreground leading-relaxed">
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">1. Introduction</h2>
-            <p>Aerata B.V. ("we," "us," or "our"), registered at Van Leeuwenhoekpark 1, 2611 DW Delft, Netherlands, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit our website or use our services, in compliance with the General Data Protection Regulation (GDPR).</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">2. Data We Collect</h2>
-            <p>We may collect the following types of personal data:</p>
-            <ul className="list-disc ml-6 mt-2 space-y-1">
-              <li>Contact information (name, email address, phone number, company name)</li>
-              <li>Technical data (IP address, browser type, device information)</li>
-              <li>Usage data (pages visited, time spent, interactions)</li>
-              <li>Communication data (messages sent through our contact form)</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">3. How We Use Your Data</h2>
-            <p>We process your personal data for the following purposes:</p>
-            <ul className="list-disc ml-6 mt-2 space-y-1">
-              <li>To respond to your inquiries and provide our services</li>
-              <li>To improve our website and user experience</li>
-              <li>To send relevant communications about our services (with your consent)</li>
-              <li>To comply with legal obligations</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">4. Legal Basis</h2>
-            <p>We process personal data based on: consent, contractual necessity, legitimate interest, and legal obligations under GDPR Article 6.</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">5. Data Sharing</h2>
-            <p>We do not sell your personal data. We may share data with trusted service providers who assist in operating our website and delivering our services, all under appropriate data processing agreements.</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">6. Cookies</h2>
-            <p>Our website uses cookies and similar technologies. You can manage your cookie preferences through the cookie consent banner displayed on your first visit. For more details, please refer to our cookie settings.</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">7. Your Rights</h2>
-            <p>Under the GDPR, you have the right to access, rectify, erase, restrict, and port your personal data, as well as to object to processing. To exercise these rights, contact us at info@aerata.com.</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">8. Data Retention</h2>
-            <p>We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, or as required by applicable law.</p>
-          </section>
-
-          <section>
-            <h2 className="font-barlow font-semibold text-xl text-foreground mb-3">9. Contact</h2>
-            <p>For any questions about this Privacy Policy or our data practices, contact us at:</p>
-            <p className="mt-2">Aerata B.V.<br />Van Leeuwenhoekpark 1, 2611 DW Delft, Netherlands<br />Email: info@aerata.com<br />Phone: +31 6 38165193</p>
-          </section>
+        <div className="space-y-12 text-foreground/85 leading-[1.75] text-[15.5px]">
+          {c.sections.map((s, i) => (
+            <Reveal as="section" key={s.title}>
+              <h2 className="font-display font-semibold text-xl text-foreground mb-4 flex items-baseline gap-3">
+                <span className="font-mono text-xs text-[hsl(88_55%_24%)] tabular-nums">{i + 1}.</span> {s.title}
+              </h2>
+              <div className="space-y-4">{s.blocks.map((b, k) => <Block key={k} b={b} />)}</div>
+              {s.blocks.some((b) => b.table && b.table.rows[0]?.[0] === 'aerata_consent') && (
+                <button type="button" onClick={openConsentSettings} className="mt-5 min-h-11 px-5 py-2.5 rounded border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/5 transition-colors">
+                  {t('cookies.footerLink')}
+                </button>
+              )}
+            </Reveal>
+          ))}
         </div>
       </div>
     </div>

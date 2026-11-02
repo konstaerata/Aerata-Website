@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLang, LANGUAGES, DEFAULT_LANG } from '../lib/LanguageContext';
+
+const OG_LOCALE = { en: 'en_GB', nl: 'nl_NL', el: 'el_GR' };
 import { SITE_ORIGINS, localizedUrl } from '../lib/siteOrigins';
 
 // Kept for backward compat with anything importing SITE_URL from this module —
@@ -25,6 +27,8 @@ export default function SEO({
    * language variants that don't actually have this content.
    */
   translated = true,
+  /** Language codes this page exists in; hreflang lists only these. Default: all. */
+  languages,
 }) {
   const { lang } = useLang();
   const url = localizedUrl(path, lang);
@@ -36,7 +40,7 @@ export default function SEO({
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
 
-      {emitHreflang && LANGUAGES.map((l) => (
+      {emitHreflang && LANGUAGES.filter((l) => !languages || languages.includes(l.code)).map((l) => (
         <link key={l.code} rel="alternate" hrefLang={l.code} href={localizedUrl(path, l.code)} />
       ))}
       {emitHreflang && <link rel="alternate" hrefLang="x-default" href={localizedUrl(path, DEFAULT_LANG)} />}
@@ -49,6 +53,7 @@ export default function SEO({
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content={OG_LOCALE[lang] || OG_LOCALE.en} />
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

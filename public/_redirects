@@ -1,2 +1,18 @@
-# SPA fallback — serve index.html for all client-side routes
-/*    /index.html   200
+# Old service pages -> sector pages (content refactor, 2026-11). Keep above the SPA fallback.
+/services/renewable-energy    /sectors/renewable-energy    301
+/services/infrastructure    /sectors/power-grids-telecom    301
+/services/surveying    /sectors/construction-surveying    301
+/services/oil-gas    /sectors/infrastructure-industry    301
+/services/environmental    /sectors/environmental-monitoring    301
+/nl/services/renewable-energy    /nl/sectors/renewable-energy    301
+/nl/services/infrastructure    /nl/sectors/power-grids-telecom    301
+/nl/services/surveying    /nl/sectors/construction-surveying    301
+/nl/services/oil-gas    /nl/sectors/infrastructure-industry    301
+/nl/services/environmental    /nl/sectors/environmental-monitoring    301
+/el/services/renewable-energy    /el/sectors/renewable-energy    301
+/el/services/infrastructure    /el/sectors/power-grids-telecom    301
+/el/services/surveying    /el/sectors/construction-surveying    301
+/el/services/oil-gas    /el/sectors/infrastructure-industry    301
+/el/services/environmental    /el/sectors/environmental-monitoring    301
+
+# SPA routes, the 404 status and headers live in netlify.toml (read after this file).

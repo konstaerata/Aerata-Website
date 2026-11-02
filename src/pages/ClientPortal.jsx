@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Stagger, Item, MaskLines, Scramble, Spotlight, Magnetic, Reveal, EASE_OUT } from '../components/motion';
+import { Link } from '@/components/LocalizedLink';
 import { Lock, FileText, Map, BarChart2, Mail } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -12,6 +13,7 @@ const PORTAL_FEATURES = [
 ];
 
 export default function ClientPortal() {
+  const reduce = useReducedMotion();
   return (
     <div>
       <SEO
@@ -21,119 +23,141 @@ export default function ClientPortal() {
         noindex
       />
       {/* Page title — navy brand background */}
-      <section className="relative py-32 pt-40 min-h-[80vh] flex items-center overflow-hidden bg-navy-dark">
+      <section className="relative py-32 pt-44 min-h-[86vh] flex items-center overflow-hidden bg-navy-dark grain">
         {/* Subtle grid */}
-        <div className="absolute inset-0 data-trace opacity-20 pointer-events-none" />
+        <div aria-hidden="true" className="absolute inset-0 hud-grid" />
+        <div aria-hidden="true" className="absolute left-1/2 top-1/3 -translate-x-1/2 w-[760px] h-[480px] rounded-full bg-lime/10 blur-3xl" />
+        {!reduce && <div className="scanline z-10" aria-hidden="true" />}
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl mx-auto text-center">
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <div>
               {/* Lock badge */}
-              <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <Lock className="w-7 h-7 text-lime" />
+              <motion.div
+                initial={reduce ? false : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.45, ease: EASE_OUT }}
+                className="relative w-20 h-20 mx-auto mb-9 rounded-full bg-white/[0.06] border border-lime/30 flex items-center justify-center"
+              >
+                <span aria-hidden="true" className="absolute inset-0 rounded-full border border-lime/25 animate-ping [animation-duration:3s] motion-reduce:hidden" />
+                <Lock className="w-8 h-8 text-lime" />
+              </motion.div>
+
+              <div className="flex items-center justify-center gap-3 mb-7">
+                <motion.span initial={reduce ? false : { scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.45, ease: EASE_OUT }} className="block w-10 h-px bg-lime origin-right" />
+                <Scramble text="Secure Access" className="text-xs font-display font-semibold tracking-[0.25em] uppercase text-lime" />
+                <motion.span initial={reduce ? false : { scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.45, ease: EASE_OUT }} className="block w-10 h-px bg-lime origin-left" />
               </div>
 
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="w-10 h-px bg-lime" />
-                <span className="text-xs font-barlow font-semibold tracking-[0.25em] uppercase text-lime">Secure Access</span>
-                <div className="w-10 h-px bg-lime" />
-              </div>
-
-              <h1 className="font-barlow font-bold text-4xl md:text-5xl text-white leading-tight mb-4">
-                Aerata Client Portal
+              <h1 className="font-display font-bold text-4xl md:text-6xl text-white leading-[1.05] tracking-tight mb-6">
+                <MaskLines lines={['Aerata Client Portal']} delay={0.15} />
               </h1>
-              <p className="text-lg text-white/70 max-w-xl mx-auto mb-10">
+              <motion.p
+                initial={reduce ? false : { opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.52, delay: 0.24, ease: EASE_OUT }}
+                className="text-lg text-white/70 max-w-xl mx-auto mb-12"
+              >
                 Your dedicated workspace for accessing inspection reports, mission tracking, and asset analytics. Portal access is provisioned upon project onboarding.
-              </p>
+              </motion.p>
 
               {/* CTA block */}
-              <div className="rounded-lg border border-border/50 bg-card/40 p-8 mb-10 text-left">
-                <p className="text-xs font-mono text-primary/60 mb-4">// PORTAL ACCESS</p>
+              <motion.div
+                initial={reduce ? false : { opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.59, delay: 0.33, ease: EASE_OUT }}
+                className="relative rounded-xl border border-white/15 bg-white/[0.04] backdrop-blur-sm p-8 mb-10 text-left shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
+              >
+                <span aria-hidden="true" className="absolute top-3 left-3 w-4 h-4 border-l border-t border-lime/50" />
+                <span aria-hidden="true" className="absolute bottom-3 right-3 w-4 h-4 border-r border-b border-lime/50" />
+                <p className="text-xs font-mono text-lime/70 mb-5">// PORTAL ACCESS</p>
                 <div className="space-y-4 mb-6">
                   <div>
-                    <label className="text-xs font-barlow font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                    <label className="text-xs font-display font-semibold uppercase tracking-wider text-steelBlue mb-1.5 block">
                       Email / Client ID
                     </label>
                     <input
                       type="email"
                       placeholder="your@company.com"
                       disabled
-                      className="w-full h-11 px-4 rounded border border-border bg-secondary text-foreground/50 text-sm cursor-not-allowed"
+                      className="w-full h-11 px-4 rounded-md border border-white/10 bg-white/[0.05] text-white/40 placeholder:text-white/30 text-sm cursor-not-allowed"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-barlow font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                    <label className="text-xs font-display font-semibold uppercase tracking-wider text-steelBlue mb-1.5 block">
                       Password
                     </label>
                     <input
                       type="password"
                       placeholder="••••••••"
                       disabled
-                      className="w-full h-11 px-4 rounded border border-border bg-secondary text-foreground/50 text-sm cursor-not-allowed"
+                      className="w-full h-11 px-4 rounded-md border border-white/10 bg-white/[0.05] text-white/40 placeholder:text-white/30 text-sm cursor-not-allowed"
                     />
                   </div>
                 </div>
                 <button
                   disabled
-                  className="w-full flex items-center justify-center gap-2 px-8 py-3.5 font-barlow font-semibold text-sm tracking-wide bg-primary/40 text-primary-foreground/60 rounded cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 px-8 py-3.5 font-display font-semibold text-sm tracking-wide bg-white/10 text-white/55 rounded-md cursor-not-allowed"
                 >
                   <Lock className="w-4 h-4" />
                   Portal Coming Soon
                 </button>
-                <p className="text-xs text-muted-foreground/60 text-center mt-4 font-mono">
+                <p className="text-xs text-steelBlue/70 text-center mt-4 font-mono">
                   Secure SSO login and provisioning in progress — expected Q3 2025.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Contact to request access */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <motion.div
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.52, delay: 0.42, ease: EASE_OUT }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              >
+                <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 font-barlow font-semibold text-sm tracking-wide bg-primary text-white hover:bg-primary/90 transition-all duration-300 rounded"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 font-display font-semibold text-sm tracking-wide bg-lime text-obsidian hover:bg-lime/90 btn-shine transition-colors duration-300 rounded"
                 >
                   <Mail className="w-4 h-4" />
                   Request Portal Access
                 </Link>
+                </Magnetic>
                 <a
                   href="mailto:info@aerata.com"
-                  className="inline-flex items-center gap-2 px-6 py-3 font-barlow font-semibold text-sm tracking-wide border border-white/30 text-white/70 hover:text-white hover:border-white/60 transition-all duration-300 rounded"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 font-display font-semibold text-sm tracking-wide border border-white/30 text-white/75 hover:text-white hover:border-white/60 transition-colors duration-300 rounded"
                 >
                   info@aerata.com
                 </a>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Portal Feature Preview */}
-      <section className="py-20 bg-secondary/30 border-t border-border/30">
+      <section className="py-28 bg-secondary/30 border-t border-border/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-barlow font-bold text-2xl text-foreground mb-2">What's Inside the Portal</h2>
-            <p className="text-muted-foreground text-sm">A dedicated workspace for every active client.</p>
+          <div className="text-center mb-14">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-primary tracking-tight mb-3"><MaskLines lines={["What's Inside the Portal"]} onMount={false} /></h2>
+            <Reveal delay={0.15} className="text-muted-foreground">A dedicated workspace for every active client.</Reveal>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {PORTAL_FEATURES.map((f, i) => {
               const Icon = f.icon;
               return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-6 rounded-lg border border-border/50 bg-card/30 text-center"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="font-barlow font-semibold text-foreground mb-2">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </motion.div>
+                <Item key={i}>
+                  <Spotlight tone="navy" className="group h-full p-8 rounded-xl border border-border/60 bg-card text-center transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_-18px_hsl(210_35%_12%/0.28)]">
+                    <div className="w-14 h-14 mx-auto mb-6 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center transition-colors duration-500 group-hover:bg-primary group-hover:border-primary">
+                      <Icon className="w-5 h-5 text-primary transition-colors duration-500 group-hover:text-lime" />
+                    </div>
+                    <h3 className="font-display font-semibold text-lg text-foreground mb-2">{f.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                  </Spotlight>
+                </Item>
               );
             })}
-          </div>
+          </Stagger>
         </div>
       </section>
     </div>

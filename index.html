@@ -2,30 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/media/logo-1.png" />
-    <link rel="apple-touch-icon" href="/media/logo-1.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1b2025" />
     <link rel="manifest" href="/manifest.json" />
-
-    <!-- Search Console & Webmaster verification placeholders -->
-    <!-- Replace content="" values with your actual verification tokens -->
-    <meta name="google-site-verification" content="PASTE_GOOGLE_VERIFICATION_TOKEN_HERE" />
-    <meta name="msvalidate.01" content="PASTE_BING_VERIFICATION_TOKEN_HERE" />
 
     <!-- CDN preconnect — reduces latency for all R2-hosted media -->
     <link rel="preconnect" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev" crossorigin />
     <link rel="dns-prefetch" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://media.base44.com" crossorigin />
-    <link rel="preconnect" href="https://js-eu1.hs-scripts.com" crossorigin />
-    <link rel="preconnect" href="https://js-eu1.hsforms.net" crossorigin />
-
-    <!-- Homepage hero video preload — prevents LCP delay on first paint.
-         Must match src/lib/media.js MEDIA.home_hero_video. Update both if the
-         homepage hero asset changes; this preload is homepage-specific and
-         doesn't help other routes since index.html is shared by the whole SPA. -->
-    <link rel="preload" as="video" href="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/promovideoforfrontpage.mp4" fetchpriority="high" />
+    <link rel="preconnect" href="https://media.aerata.com" />
 
     <!-- Fallback title/description/OG/Twitter tags for the brief pre-hydration
          window and for the noscript view below. Every real route overrides
@@ -39,23 +26,8 @@
          static <link rel="canonical"> or duplicate og:*/twitter:* tags here
          again — they will conflict with every page's own <SEO>. -->
     <title>Aerata B.V. — Aerial Intelligence for Industry</title>
-    <meta name="description" content="Aerata delivers enterprise drone services across Europe — thermal, LiDAR, and photogrammetric data for renewable energy, infrastructure, surveying, and oil &amp; gas. Headquartered in Delft, Netherlands." />
-    <meta name="keywords" content="drone inspections, aerial intelligence, drone services, solar thermal inspection, wind turbine inspection, LiDAR survey, IEC thermography, EASA certified, Netherlands, Delft, Greece, Athens" />
 
-    <!-- HubSpot Analytics -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25483745.js"></script>
-
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M55H84G01Q"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // Page views are sent manually per-route by useGA4Tracking (see src/lib/useGA4Tracking.js)
-      // since this is a client-side-routed SPA — the default automatic page_view on load
-      // only ever sees the first URL.
-      gtag('config', 'G-M55H84G01Q', { send_page_view: false });
-    </script>
+    <!-- Google Analytics and HubSpot load only after cookie consent (src/lib/consent.js). -->
   </head>
   <body>
     <div id="root"></div>

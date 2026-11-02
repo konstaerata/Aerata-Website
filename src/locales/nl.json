@@ -8,7 +8,8 @@
     "news": "Nieuws",
     "clientLogin": "Klant Login",
     "getInTouch": "Neem Contact Op",
-    "connectTeam": "Verbind Met Ons Expert Team"
+    "connectTeam": "Verbind Met Ons Expert Team",
+    "menu": "Menu"
   },
   "services": {
     "surveying": "Luchtfotografie & Kartering",
@@ -41,18 +42,35 @@
     "ctaDesc": "Plan nu uw drone-inspectie en ontdek hoe luchtintelligentie uw bedrijfsvoering kan transformeren.",
     "ctaButton": "Gratis Intake van 15 Minuten",
     "open": "Open",
-    "closed": "Gesloten"
+    "closed": "Gesloten",
+    "rights": "Alle rechten voorbehouden.",
+    "vat": "Btw"
   },
   "whyAerata": {
     "label": "Waarom Aerata",
     "title": "Waarom Kiezen voor Aerata?",
     "description": "We combineren expertise, technologie en betrouwbaarheid om uitzonderlijke luchtinspectieoplossingen te leveren in heel Europa.",
     "reasons": {
-      "certified": { "title": "Gecertificeerde Piloten & Ingenieurs", "desc": "Volledig gecertificeerd en ervaren team met erkenningen van de luchtvaartautoriteit." },
-      "technology": { "title": "Geavanceerde DJI Technologie", "desc": "Enterprise DJI-platforms met thermische, LiDAR- en multispectrale sensoren." },
-      "ai": { "title": "AI-gestuurde Analyse", "desc": "Machine learning-algoritmen voor anomaliedetectie en voorspellend onderhoud." },
-      "gdpr": { "title": "AVG-conforme Gegevensverwerking", "desc": "End-to-end gegevensbeveiliging afgestemd op Europese privacyregelgeving." },
-      "offices": { "title": "Kantoren in Nederland & Griekenland", "desc": "Strategische aanwezigheid die Europese en mediterrane markten bedient." }
+      "certified": {
+        "title": "Gecertificeerde Piloten & Ingenieurs",
+        "desc": "Volledig gecertificeerd en ervaren team met erkenningen van de luchtvaartautoriteit."
+      },
+      "technology": {
+        "title": "Geavanceerde DJI Technologie",
+        "desc": "Enterprise DJI-platforms met thermische, LiDAR- en multispectrale sensoren."
+      },
+      "ai": {
+        "title": "AI-gestuurde Analyse",
+        "desc": "Machine learning-algoritmen voor anomaliedetectie en voorspellend onderhoud."
+      },
+      "gdpr": {
+        "title": "AVG-conforme Gegevensverwerking",
+        "desc": "End-to-end gegevensbeveiliging afgestemd op Europese privacyregelgeving."
+      },
+      "offices": {
+        "title": "Kantoren in Nederland & Griekenland",
+        "desc": "Strategische aanwezigheid die Europese en mediterrane markten bedient."
+      }
     },
     "easaLabel": "EASA Specifieke Categorie",
     "easaText": "EASA Goedgekeurde Specifieke Categorie Operator voor complexe en hoogrisico-missies.",
@@ -115,10 +133,22 @@
     }
   },
   "statsBar": {
-    "hectares": { "label": "Hectare Ingemeten", "sub": "door heel Europa sinds 2022" },
-    "time": { "label": "Reductie in Inspectietijd", "sub": "t.o.v. traditionele grondinspecties" },
-    "energy": { "label": "Hernieuwbare Energie Ingemeten", "sub": "zon- en windparken door Europa" },
-    "pilots": { "label": "Gecertificeerde Piloten & Ingenieurs", "sub": "EASA Specifieke Categorie goedgekeurd" }
+    "hectares": {
+      "label": "Hectare Ingemeten",
+      "sub": "door heel Europa sinds 2022"
+    },
+    "time": {
+      "label": "Reductie in Inspectietijd",
+      "sub": "t.o.v. traditionele grondinspecties"
+    },
+    "energy": {
+      "label": "Hernieuwbare Energie Ingemeten",
+      "sub": "zon- en windparken door Europa"
+    },
+    "pilots": {
+      "label": "Gecertificeerde Piloten & Ingenieurs",
+      "sub": "EASA Specifieke Categorie goedgekeurd"
+    }
   },
   "roi": {
     "label": "ROI Tool",
@@ -128,8 +158,8 @@
     "volume": "Volume",
     "solarLabel": "Zon- / Windinspectie",
     "solarUnit": "MW vermogen",
-    "oilgasLabel": "Olie & Gas / Pijpleiding",
-    "oilgasUnit": "km pijpleiding / asset",
+    "oilgasLabel": "Hoogspanningslijnen & net",
+    "oilgasUnit": "km lijn / asset",
     "constructionLabel": "Bouw / Kartering",
     "constructionUnit": "hectare onderzocht",
     "traditionalTime": "Traditionele Tijd",
@@ -197,7 +227,9 @@
     "howWeWork": "Onze Aanpak",
     "whyAerata": "Waarom Aerata",
     "technicalCaps": "Technische Mogelijkheden",
-    "days": "dagen"
+    "days": "dagen",
+    "aiIllustration": "AI-gegenereerde illustratie",
+    "skipToContent": "Naar de inhoud"
   },
   "renewable": {
     "heroTitle": "Inspecties Hernieuwbare Energie",
@@ -460,5 +492,30 @@
     "demoNote": "Opleveringen als .LAS / .E57 puntenwolken, Potree webviewer of geïntegreerde GIS-lagen.",
     "ctaTitle": "Nauwkeurige Luchtkartering Nodig?",
     "ctaSub": "Neem contact op voor een gratis consult over uw survey- of bouwplaatsbewakingsproject."
+  },
+  "cookies": {
+    "title": "Cookies op deze site",
+    "text": "We gebruiken strikt noodzakelijke opslag om deze site te laten werken. Met uw toestemming gebruiken we ook analytische cookies (Google Analytics, HubSpot) om bezoek te meten en marketingcookies (HubSpot, Google Ads) om onze campagnes te meten. U kunt uw keuze altijd wijzigen via 'Cookie-instellingen' onderaan elke pagina.",
+    "policyLink": "Privacy- en cookiebeleid",
+    "acceptAll": "Alles accepteren",
+    "rejectAll": "Alles weigeren",
+    "settings": "Instellingen",
+    "save": "Mijn keuze opslaan",
+    "necessary": "Noodzakelijk",
+    "necessaryDesc": "Nodig om de site te laten werken, zoals het onthouden van deze keuze. Altijd aan.",
+    "analytics": "Analytisch",
+    "analyticsDesc": "Google Analytics en HubSpot meten hoe de site wordt gebruikt, zodat we die kunnen verbeteren.",
+    "marketing": "Marketing",
+    "marketingDesc": "HubSpot en Google Ads meten of onze campagnes de juiste mensen bereiken.",
+    "footerLink": "Cookie-instellingen"
+  },
+  "contactPage": {
+    "mapLoad": "Kaart tonen",
+    "mapNote": "De kaart wordt geleverd door Google Maps, dat cookies kan plaatsen.",
+    "mapOpen": "Openen in Google Maps"
+  },
+  "homePage": {
+    "seoTitle": "Aerata — Droneservices voor energie, infrastructuur en industrie",
+    "seoDesc": "Nederlandse droneservices voor zon, wind en netinfrastructuur: thermische inspectie, LiDAR en mapping in Nederland, Griekenland en de Balkan."
   }
 }

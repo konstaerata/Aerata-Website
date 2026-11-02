@@ -1,0 +1,880 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aerata website: photo guide</title>
+<style>
+:root{--ink:#1b2025;--muted:#5d6b78;--line:#dde3ea;--bg:#f3f5f8;--lime:#64962c;--navy:#2c5063}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,Segoe UI,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:var(--ink);color:#fff;padding:36px 40px 28px}header h1{margin:0 0 6px;font-size:28px}header p{margin:0;color:#b8c4cf;max-width:860px}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.stat{background:#ffffff12;border:1px solid #ffffff22;border-radius:10px;padding:10px 16px;cursor:pointer;user-select:none}.stat b{display:block;font-size:24px}.stat.on{outline:2px solid #9bd04f}
+.how{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:24px 40px 0;max-width:1100px}.how h2{margin:0 0 8px;font-size:17px}.how ol{margin:0;padding-left:20px}
+nav.toc{position:sticky;top:0;z-index:5;background:#fffffff2;border-bottom:1px solid var(--line);padding:10px 40px;display:flex;gap:6px;flex-wrap:wrap}nav.toc a{color:var(--navy);text-decoration:none;padding:4px 10px;border-radius:99px;border:1px solid var(--line);font-size:13px}nav.toc a:hover{border-color:var(--navy)}
+section{padding:28px 40px 8px;scroll-margin-top:90px}section h2{margin:0;font-size:22px}section .intro{margin:2px 0 16px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:14px}
+.slot{display:grid;grid-template-columns:200px 1fr;gap:16px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:12px;padding:14px}
+.slot.needed{border-left-color:#d9822b}.slot.replace{border-left-color:#c94b4b}.slot.check{border-left-color:#c9a227}.slot.keep{border-left-color:var(--lime)}.slot.me{border-left-color:var(--navy)}.slot.low{opacity:.85}
+.thumb{position:relative;width:200px;height:140px;border-radius:8px;overflow:hidden;background:#e7ecf1}.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.pair{display:grid;grid-template-columns:1fr 1fr;gap:2px}.thumb .x{position:absolute;left:6px;top:6px;background:#c94b4bdd;color:#fff;font-size:11px;padding:1px 6px;border-radius:4px}
+.thumb.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px dashed #b9c4cf;background:#f7f9fb;color:var(--muted)}.thumb.empty span{font:600 15px ui-monospace,monospace;color:var(--navy)}.thumb.empty small{font-size:12px}
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.top code{font:700 14px ui-monospace,monospace;background:#eef2f6;padding:2px 8px;border-radius:5px}
+.badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;color:#fff}.badge.needed{background:#d9822b}.badge.replace{background:#c94b4b}.badge.check{background:#c9a227}.badge.keep{background:var(--lime)}.badge.me{background:var(--navy)}.badge.opt{background:#eef2f6;color:var(--muted)}
+.where{margin:8px 0 4px;font-weight:600}.desc{margin:0 0 6px}.note{margin:0 0 6px;color:#a33c3c;font-size:13px}.file{margin:0 0 6px;color:var(--muted);font-size:12px;font-family:ui-monospace,monospace}.spec{margin:0;color:var(--muted);font-size:13px;border-top:1px dashed var(--line);padding-top:6px}
+.hidden{display:none!important}footer{padding:30px 40px;color:var(--muted);font-size:13px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.slot{grid-template-columns:1fr}.thumb{width:100%}header,section,nav.toc{padding-left:16px;padding-right:16px}.how{margin:16px}}
+</style></head><body>
+<header>
+  <h1>Aerata website: photo guide</h1>
+  <p>Every image position on the site, what is there now, and what to put there. Click a counter to filter.</p>
+  <div class="stats">
+    <div class="stat on" data-f="all"><b>75</b>All positions</div>
+    <div class="stat" data-f="needed"><b>2</b>Photo needed</div>
+    <div class="stat" data-f="replace"><b>15</b>Replace current</div>
+    <div class="stat" data-f="check"><b>3</b>Check</div>
+    <div class="stat" data-f="me"><b>0</b>I’ll do these</div>
+    <div class="stat" data-f="keep"><b>55</b>Keep</div>
+  </div>
+</header>
+<div class="how">
+  <h2>How to send photos</h2>
+  <ol>
+    <li>Name each file after its code, e.g. <code>GRD-01.jpg</code>. For before/after sliders send two files: <code>BLD-C2-before.jpg</code> and <code>BLD-C2-after.jpg</code>.</li>
+    <li>Send the largest original you have (JPG or PNG). I resize and compress them for the web.</li>
+    <li>Real Aerata photos only: no AI images or stock photos of other companies. For client sites, check that the client is fine with the photo being public.</li>
+    <li>Start with the <b>sector cards</b> and <b>heroes</b>: they appear on several pages at once.</li>
+  </ol>
+</div>
+<nav class="toc"><a href="#site">Site-wide (2)</a><a href="#renewables">Renewable energy (0)</a><a href="#grid">Power grids &amp; telecom (0)</a><a href="#build">Construction, surveying &amp; mining (0)</a><a href="#infra">Infrastructure &amp; industry (0)</a><a href="#safety">Security &amp; public safety (1)</a><a href="#environmental">Environmental monitoring (1)</a><a href="#services">Services page (1)</a><a href="#news">News articles (15)</a></nav>
+<section id="site"><h2>Site-wide</h2><p class="intro">Used on every page or when the site is shared.</p><div class="grid">
+<article class="slot needed" data-status="needed">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/logo-1.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>SITE-OG</code><span class="badge needed">Photo needed</span></div>
+    <p class="where">Link preview image (LinkedIn, WhatsApp, Google)</p>
+    <p class="desc">Drone over a real Aerata job site (solar plant or turbine) with the Aerata logo placed bottom-left. Currently just the logo on grey.</p>
+    
+    <p class="file">Current file: logo-1.png</p>
+    <p class="spec">Exactly 1200 × 630 px: a strong photo with the Aerata logo. Shown when a link is shared on LinkedIn, WhatsApp etc.</p>
+  </div>
+</article>
+<article class="slot needed" data-status="needed">
+  <div class="thumb empty"><span>UPLOAD-VIDEOS</span><small>no image yet</small></div>
+  <div class="body">
+    <div class="top"><code>UPLOAD-VIDEOS</code><span class="badge needed">Photo needed</span></div>
+    <p class="where">Hero videos, their still frames and the Home hover clips</p>
+    <p class="desc">Not a photo: these files exist only on the development computer (public/media-preview). They must be uploaded to the R2 bucket under web/ before going live, otherwise the hero videos will not load on the live site.</p>
+    
+    
+    <p class="spec">Upload the folder contents to R2 → web/ (same file names). I can give you the exact file list.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb empty"><span>HOME-FALLBACK</span><small>no image yet</small></div>
+  <div class="body">
+    <div class="top"><code>HOME-FALLBACK</code><span class="badge keep">Keep</span></div>
+    <p class="where">Home hero: image shown if the video cannot play</p>
+    <p class="desc">Done: now uses the hero video’s own still frame instead of the AI image.</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article></div></section><section id="renewables"><h2>Renewable energy</h2><p class="intro">Page: aerata.com/sectors/renewable-energy</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/solarfarm.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>REN-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/solarfarm.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>REN-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/sol-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SOL-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Solar in operation”, image 1 of 2</p>
+    <p class="desc">Thermal image of PV modules with defective cells.</p>
+    <p class="note">Low resolution (640 px wide): looks soft at full size. A larger original would help.</p>
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/sol-02.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SOL-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Solar in operation”, image 2 of 2</p>
+    <p class="desc">Aerata thermographer checking an open combiner box at a solar plant.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/sol-03.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SOL-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Solar construction”, image 1 of 2</p>
+    <p class="desc">PV plant under construction from the air, inverter station and module rows.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/sol-04.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SOL-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Solar construction”, image 2 of 2</p>
+    <p class="desc">Progress map of a PV plant under construction, by plant area.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/srv-02.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>WND-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Wind in operation”, image 1 of 2</p>
+    <p class="desc">Drone close-up of a turbine hub and blade root.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/IMG_1840.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>WND-07</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Wind in operation”, image 2 of 2</p>
+    <p class="desc">Wind turbine inspection from the air.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/wnd-03.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>WND-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Wind construction”, image 1 of 2</p>
+    <p class="desc">Wind turbine foundation under construction, from the air.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/wnd-04.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>WND-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Wind construction”, image 2 of 2</p>
+    <p class="desc">Turbine erection with crane on a hilltop wind farm.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="grid"><h2>Power grids &amp; telecom</h2><p class="intro">Page: aerata.com/sectors/power-grids-telecom</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/powerinspection.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/powerinspection.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Medium voltage”, image 1 of 3</p>
+    <p class="desc">Medium-voltage pole line running through trees.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-02.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Medium voltage”, image 2 of 3</p>
+    <p class="desc">Classified LiDAR point cloud of a medium-voltage line corridor.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-card.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-07</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Medium voltage”, image 3 of 3</p>
+    <p class="desc">Close-up of medium-voltage insulators and fittings.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/powertransmissiontower.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “High voltage”, image 1 of 2</p>
+    <p class="desc">High-voltage pylon from the air.</p>
+    <p class="note">Real drone photo.</p>
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-04.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “High voltage”, image 2 of 2</p>
+    <p class="desc">Close-up of a high-voltage insulator and fittings.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-05.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Telecom”, image 1 of 2</p>
+    <p class="desc">Telecom mast with antennas and radio units.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/grd-06.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>GRD-06</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Telecom”, image 2 of 2</p>
+    <p class="desc">3D model of a radio mast, structure coloured by member.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="build"><h2>Construction, surveying &amp; mining</h2><p class="intro">Page: aerata.com/sectors/construction-surveying</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb empty"><span>▶ video</span><small>surveying-hero-720.mp4</small></div>
+  <div class="body">
+    <div class="top"><code>BLD-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero (video)</p>
+    <p class="desc">Real video, stays. Needs uploading to R2 before going live (see Site-wide).</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/photogrammetry.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/bld-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Building construction”, image 1 of 2</p>
+    <p class="desc">Construction progress from above at three stages.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/bld-02.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Building construction”, image 2 of 2</p>
+    <p class="desc">Thermal analysis of a building roof with findings marked.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/photogrammetry.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Surveying &amp; mapping”, image 1 of 2</p>
+    <p class="desc">Orthophoto and 3D site model.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/lidarsurvey.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Surveying &amp; mapping”, image 2 of 2</p>
+    <p class="desc">LiDAR survey point cloud.</p>
+    <p class="note">Real point-cloud output.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/bld-05.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Mining, quarries &amp; landfill”, image 1 of 2</p>
+    <p class="desc">3D model of a quarry with cut and fill volumes.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/bld-06.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>BLD-06</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Mining, quarries &amp; landfill”, image 2 of 2</p>
+    <p class="desc">Stockpile volume report from a drone survey.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="infra"><h2>Infrastructure &amp; industry</h2><p class="intro">Page: aerata.com/sectors/infrastructure-industry</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-h.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-h.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Bridges, dams, roads &amp; rail”, image 1 of 2</p>
+    <p class="desc">Close-up of a crack in a concrete bridge beam.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-02.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Bridges, dams, roads &amp; rail”, image 2 of 2</p>
+    <p class="desc">3D digital twin of an arch bridge.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/gaspipe.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Oil, gas &amp; industrial”, image 1 of 2</p>
+    <p class="desc">Pipeline and industrial pipework from the air.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-03.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Oil, gas &amp; industrial”, image 2 of 2</p>
+    <p class="desc">Thermal image of industrial pipework showing heat loss.</p>
+    <p class="note">Low resolution (500 px wide): looks soft at full size. A larger original would help.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-05.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Maritime”, image 1 of 2</p>
+    <p class="desc">Inspection drone over a container port.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-card.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-06</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Maritime”, image 2 of 2</p>
+    <p class="desc">Drone inspecting a ship hull and quay in an industrial harbour.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-07.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-07</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Ski resorts”, image 1 of 2</p>
+    <p class="desc">Chairlift sheave train and rope, close drone view.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/inf-08.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>INF-08</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Ski resorts”, image 2 of 2</p>
+    <p class="desc">Terrain contour model of a ski area with lift lines.</p>
+    <p class="note">Low resolution (680 px wide): a larger export would help.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="safety"><h2>Security &amp; public safety</h2><p class="intro">Page: aerata.com/sectors/security-public-safety</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/saf-h.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SAF-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/saf-h.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SAF-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/saf-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SAF-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Site security”, image 1 of 2</p>
+    <p class="desc">Kooi mobile camera unit on a rail construction site.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot check" data-status="check">
+  <div class="thumb"><img src="../public/photos/saf-02.jpg" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>SAF-02</code><span class="badge check">Check</span></div>
+    <p class="where">Chapter “Site security”, image 2 of 2</p>
+    <p class="desc">Kooi camera unit with a DJI drone on a site.</p>
+    <p class="note">AI-generated (Gemini). Used for now because it is the only image of Kooi + DJI drone; replace with a real photo when possible.</p>
+    <p class="file">Current file: saf-02.jpg</p>
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/saf-03.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SAF-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Public safety”, image 1 of 2</p>
+    <p class="desc">Drone over an active wildfire front.</p>
+    
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/saf-04.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SAF-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Public safety”, image 2 of 2</p>
+    <p class="desc">Drone team and rescue helicopter at a mountain staging area.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="environmental"><h2>Environmental monitoring</h2><p class="intro">Page: aerata.com/sectors/environmental-monitoring</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb empty"><span>▶ video</span><small>environmental-720.mp4</small></div>
+  <div class="body">
+    <div class="top"><code>ENV-H</code><span class="badge keep">Keep</span></div>
+    <p class="where">Page hero (video)</p>
+    <p class="desc">Real video, stays. Needs uploading to R2 before going live (see Site-wide).</p>
+    
+    
+    <p class="spec">Landscape 16:9, at least 2400 × 1350 px. Keep the subject in the right half: the title sits on the left.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/smartagriculture.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-CARD</code><span class="badge keep">Keep</span></div>
+    <p class="where">Sector card: Home strips, Sectors menu thumbnail, “Where else we work” cards</p>
+    <p class="desc">Stays.</p>
+    
+    
+    <p class="spec">Landscape, at least 1600 × 1200 px. Subject in the centre: Home crops it to a narrow vertical strip when closed.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/environmentalmonitoring.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Monitoring &amp; assessment”, image 1 of 2</p>
+    <p class="desc">Multispectral and thermal environmental monitoring outputs.</p>
+    <p class="note">Our multispectral output.</p>
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/env-01.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Monitoring &amp; assessment”, image 2 of 2</p>
+    <p class="desc">Water body mapped from the air, coloured by index.</p>
+    <p class="note">Low resolution (826 px wide): a larger export would help.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot check" data-status="check">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/ainest.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>ENV-03</code><span class="badge check">Check</span></div>
+    <p class="where">Chapter “Biodiversity”, image 1 of 2</p>
+    <p class="desc">Biodiversity survey from the air.</p>
+    <p class="note">Looks like a real thermal screenshot with detection boxes. Keep only if it is ours.</p>
+    <p class="file">Current file: ainest.png</p>
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/env-card.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Biodiversity”, image 2 of 2</p>
+    <p class="desc">Water birds counted from the air on open water.</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/smartagriculture.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Smart agriculture”, image 1 of 2</p>
+    <p class="desc">Smart agriculture survey with NDVI crop health maps.</p>
+    <p class="note">Our NDVI output.</p>
+    
+    <p class="spec">Landscape 16:10, at least 2000 × 1250 px. Wide image, left of the two in the chapter.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="../public/photos/env-05.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>ENV-06</code><span class="badge keep">Keep</span></div>
+    <p class="where">Chapter “Smart agriculture”, image 2 of 2</p>
+    <p class="desc">Prescription map of a field split into treatment zones.</p>
+    <p class="note">Low resolution (850 px wide): a larger export would help.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px. Right of the two in the chapter, same height as the wide one.</p>
+  </div>
+</article></div></section><section id="services"><h2>Services page</h2><p class="intro">Page: aerata.com/services. One image per service.</p><div class="grid">
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/irsolar.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SRV-01</code><span class="badge keep">Keep</span></div>
+    <p class="where">Service “PV thermal inspection”</p>
+    <p class="desc">Stays (Thermal view of PV strings.)</p>
+    <p class="note">Real thermal frame of the pair.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/renewablewhy.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SRV-02</code><span class="badge keep">Keep</span></div>
+    <p class="where">Service “Wind turbine inspection”</p>
+    <p class="desc">Stays (Wind turbine blade inspection.)</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/powertower.jpg" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SRV-03</code><span class="badge keep">Keep</span></div>
+    <p class="where">Service “Power line inspection”</p>
+    <p class="desc">Stays (Power line inspection.)</p>
+    <p class="note">Real drone photo.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/lidarsurvey.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SRV-04</code><span class="badge keep">Keep</span></div>
+    <p class="where">Service “LiDAR surveying (laser scanning)”</p>
+    <p class="desc">Stays (LiDAR point cloud.)</p>
+    <p class="note">Real point-cloud output.</p>
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article>
+<article class="slot keep" data-status="keep">
+  <div class="thumb"><img src="https://pub-8d398fd9e3a643679e74a0eacc815464.r2.dev/photogrammetry.png" loading="lazy"></div>
+  <div class="body">
+    <div class="top"><code>SRV-05</code><span class="badge keep">Keep</span></div>
+    <p class="where">Service “Photogrammetry and mapping”</p>
+    <p class="desc">Stays (Orthophoto map.)</p>
+    
+    
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article>
+<article class="slot check" data-status="check">
+  <div class="thumb"><img src="../public/photos/saf-02.jpg" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>SRV-06</code><span class="badge check">Check</span></div>
+    <p class="where">Service “Construction-site security and monitoring”</p>
+    <p class="desc">Replace with a real photo: Construction-site security and monitoring.</p>
+    <p class="note">AI-generated (Gemini). Used for now because it is the only image of Kooi + DJI drone; replace with a real photo when possible.</p>
+    <p class="file">Current file: saf-02.jpg</p>
+    <p class="spec">Landscape 4:3, at least 1600 × 1200 px.</p>
+  </div>
+</article></div></section><section id="news"><h2>News articles</h2><p class="intro">Lower priority. All 15 articles share 6 AI images; each should get its own real photo.</p><div class="grid">
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-01</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “How Thermal Drone Surveys Cut Solar Farm Revenue Loss by 35%”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/38a98ba55_generated_a71edd9a.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-02</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Reducing Powerline Inspection Time by 60% Without Rope Access”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 38a98ba55_generated_a71edd9a.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-03</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “LiDAR vs Photogrammetry: Choosing the Right Survey Method for Your Project”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 81b06a698_generated_69f885a6.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-04</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Centimetre-Accurate Archaeological Mapping in the Peloponnese”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: c8d2cb737_generated_7a5a50ca.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-05</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “EASA Specific Category: What It Means for Your Inspection Project”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/04b2da82d_generated_65a9eb1f.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-06</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Offshore Platform Inspections: Eliminating Rope Access Risk in the North Sea”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 04b2da82d_generated_65a9eb1f.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-07</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Wetland Habitat Mapping: 200 Hectares Surveyed in Two Flights”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/38a98ba55_generated_a71edd9a.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-08</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Drone Inspection ROI: Real Numbers from the Field”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 38a98ba55_generated_a71edd9a.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-09</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Night Operations and Beyond Visual Line of Sight: What Is Now Possible in Europe”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 81b06a698_generated_69f885a6.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/c8d2cb737_generated_7a5a50ca.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-10</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Construction Site Monitoring: How Weekly Drone Surveys Reduced Rework by 30%”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: c8d2cb737_generated_7a5a50ca.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-11</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Aerata Partners with DroneLicense.eu for EU Drone Pilot Certification”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-12</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Wind Turbine Blade Inspections: From Hours to Minutes Per Turbine”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/81b06a698_generated_69f885a6.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-13</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “AI Anomaly Detection in Solar Thermography: How It Works”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 81b06a698_generated_69f885a6.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-14</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Lake Marathon Multispectral Survey: Monitoring Drinking Water from Above”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article>
+<article class="slot replace low" data-status="replace">
+  <div class="thumb"><img src="https://media.base44.com/images/public/69cc1de864505c2ecdcc6774/65a98b32e_generated_a74332b5.png" loading="lazy"><span class="x">current</span></div>
+  <div class="body">
+    <div class="top"><code>NEWS-15</code><span class="badge replace">Replace</span></div>
+    <p class="where">Article: “Aerata Opens Athens Office to Serve Mediterranean and Southeast European Markets”</p>
+    <p class="desc">A real photo matching the article topic.</p>
+    
+    <p class="file">Current file: 65a98b32e_generated_a74332b5.png</p>
+    <p class="spec">Landscape 16:9, at least 1600 × 900 px.</p>
+  </div>
+</article></div></section>
+<footer>Generated from the site code on 2026-11-02. Fleet product photos and team portraits are fine as they are and are not listed.</footer>
+<script>
+document.querySelectorAll('.stat').forEach((el) => el.addEventListener('click', () => {
+  document.querySelectorAll('.stat').forEach((x) => x.classList.toggle('on', x === el));
+  const f = el.dataset.f;
+  document.querySelectorAll('.slot').forEach((s) => s.classList.toggle('hidden', f !== 'all' && s.dataset.status !== f));
+  document.querySelectorAll('section').forEach((sec) => sec.classList.toggle('hidden', !sec.querySelector('.slot:not(.hidden)')));
+}));
+</script>
+</body></html>
