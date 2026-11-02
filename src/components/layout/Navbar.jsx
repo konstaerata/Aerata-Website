@@ -82,7 +82,6 @@ const navLinksFor = (t) => [
   { label: t('nav.home'), path: '/' },
   { label: t('nav.about'), path: '/about' },
   { label: t('nav.sectors'), path: '#', children: sectorLinks(t) },
-  { label: t('nav.fleet'), path: '/fleet' },
   { label: t('nav.training'), path: '/training' },
   { label: t('nav.news'), path: '/news' },
 ];

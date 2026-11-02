@@ -3,7 +3,6 @@
     "home": "Home",
     "about": "About Us",
     "services": "Services",
-    "fleet": "Our Fleet",
     "training": "Training",
     "news": "News",
     "clientLogin": "Client Login",
@@ -234,20 +233,6 @@
     "catEnvironmental": "Environmental",
     "catCompanyNews": "Company News",
     "catTechnology": "Technology"
-  },
-  "fleetPage": {
-    "badge": "[Our Fleet]",
-    "title": "Enterprise-Grade",
-    "titleHighlight": "Aerial Platforms",
-    "description": "Every mission demands the right tool. Our fleet combines the most advanced commercial drone platforms, sensors, and payloads available — each operated by certified, experienced pilots.",
-    "badgeEasa": "EASA Specific Category",
-    "badgeDji": "Enterprise DJI Partner",
-    "badgeLidar": "LiDAR Certified",
-    "badgeWeather": "All-Weather Ops",
-    "deployLabel": "[ Deploy Our Fleet ]",
-    "ctaTitle": "Ready to launch your mission?",
-    "ctaDesc": "Tell us about your project and we'll match the right platform, sensors, and crew to your specific needs.",
-    "ctaButton": "Request a Fleet Briefing"
   },
   "common": {
     "howWeWork": "How We Work",

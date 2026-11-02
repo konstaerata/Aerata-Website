@@ -1,4 +1,8 @@
 # Old service pages -> sector pages (content refactor, 2026-11). Keep above the SPA fallback.
+# The Fleet page was removed (2026-11-02).
+/fleet    /services    301
+/nl/fleet    /nl/services    301
+/el/fleet    /el/services    301
 /services/renewable-energy    /sectors/renewable-energy    301
 /services/infrastructure    /sectors/power-grids-telecom    301
 /services/surveying    /sectors/construction-surveying    301
