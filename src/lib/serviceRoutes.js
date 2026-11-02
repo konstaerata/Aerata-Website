@@ -31,7 +31,6 @@ export const PAGE_IMPORTS = {
   '/news/:id': () => import('../pages/NewsArticle'),
   '/contact': () => import('../pages/Contact'),
   '/privacy': () => import('../pages/Privacy'),
-  '/fleet': () => import('../pages/Fleet'),
   '/portal': () => import('../pages/ClientPortal'),
 };
 

@@ -30,7 +30,6 @@ const PAGES = [
   'src/pages/Training.jsx',
   'src/pages/News.jsx',
   'src/pages/Contact.jsx',
-  'src/pages/Fleet.jsx',
   'src/pages/ClientPortal.jsx',
 ];
 

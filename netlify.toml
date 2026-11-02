@@ -39,11 +39,6 @@
   status = 200
 
 [[redirects]]
-  from = "/fleet"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/training"
   to = "/index.html"
   status = 200
@@ -114,11 +109,6 @@
   status = 200
 
 [[redirects]]
-  from = "/nl/fleet"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/nl/training"
   to = "/index.html"
   status = 200
@@ -185,11 +175,6 @@
 
 [[redirects]]
   from = "/el/services"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/el/fleet"
   to = "/index.html"
   status = 200
 

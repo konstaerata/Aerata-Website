@@ -54,7 +54,6 @@ const STATIC_ROUTES = [
   { path: '/sectors/security-public-safety', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
   { path: '/services', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
   { path: '/sectors/environmental-monitoring', changefreq: 'monthly', priority: '0.9', languages: ['en', 'el'] },
-  { path: '/fleet', changefreq: 'monthly', priority: '0.7' },
   { path: '/news', changefreq: 'weekly', priority: '0.7' },
   { path: '/contact', changefreq: 'monthly', priority: '0.8' },
   { path: '/privacy', changefreq: 'yearly', priority: '0.3' },

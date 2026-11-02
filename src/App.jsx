@@ -40,7 +40,6 @@ const NewsArticle = lazy(PAGE_IMPORTS['/news/:id']);
 const Contact = lazy(PAGE_IMPORTS['/contact']);
 const About = lazy(() => import('./pages/About'));
 const Privacy = lazy(PAGE_IMPORTS['/privacy']);
-const Fleet = lazy(PAGE_IMPORTS['/fleet']);
 const ClientPortal = lazy(PAGE_IMPORTS['/portal']);
 
 // Shared route list — rendered once at the root (English, unprefixed, the
@@ -59,7 +58,6 @@ const PAGE_ROUTES = [
   { path: '/news/:id', element: <NewsArticle /> },
   { path: '/contact', element: <Contact /> },
   { path: '/privacy', element: <Privacy /> },
-  { path: '/fleet', element: <Fleet /> },
 ];
 
 // Strips a leading slash so a page path can be nested under a parent route

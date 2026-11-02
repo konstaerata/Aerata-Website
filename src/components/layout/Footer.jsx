@@ -155,7 +155,6 @@ export default function Footer() {
             <div className="flex flex-col items-start gap-1.5 md:gap-2.5 text-sm">
               <Link to="/" className={LINK}>{t('footer.home')}</Link>
               <Link to="/about" className={LINK}>{t('footer.company')}</Link>
-              <Link to="/fleet" className={LINK}>{t('nav.fleet')}</Link>
               <Link to="/news" className={LINK}>{t('footer.news')}</Link>
               <Link to="/training" className={LINK}>{t('nav.training')}</Link>
               <Link to="/contact" className={LINK}>{t('footer.contact')}</Link>

@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 const ROUTES = [
-  '/about', '/services', '/fleet', '/training', '/news', '/news/*', '/contact', '/privacy',
+  '/about', '/services', '/training', '/news', '/news/*', '/contact', '/privacy',
   '/sectors/renewable-energy', '/sectors/power-grids-telecom', '/sectors/construction-surveying',
   '/sectors/infrastructure-industry', '/sectors/security-public-safety', '/sectors/environmental-monitoring',
 ];

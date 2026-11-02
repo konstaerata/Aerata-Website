@@ -26,7 +26,7 @@ import { SITE_ORIGINS, localizedUrl } from '../src/lib/siteOrigins.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITEMAP_PATH = resolve(__dirname, '../public/sitemap.xml');
 
-const SAMPLE_ROUTES = ['/', '/about', '/sectors/environmental-monitoring', '/fleet', '/contact'];
+const SAMPLE_ROUTES = ['/', '/about', '/sectors/environmental-monitoring', '/services', '/contact'];
 
 function main() {
   const errors = [];

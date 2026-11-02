@@ -3,7 +3,6 @@
     "home": "Home",
     "about": "Over Ons",
     "services": "Diensten",
-    "fleet": "Ons Vloot",
     "training": "Training",
     "news": "Nieuws",
     "clientLogin": "Klant Login",
@@ -208,20 +207,6 @@
     "catEnvironmental": "Milieu",
     "catCompanyNews": "Bedrijfsnieuws",
     "catTechnology": "Technologie"
-  },
-  "fleetPage": {
-    "badge": "[Ons Vloot]",
-    "title": "Enterprise-Kwaliteit",
-    "titleHighlight": "Luchtplatforms",
-    "description": "Elke missie vereist het juiste gereedschap. Ons vloot combineert de meest geavanceerde commerciële droneplatforms, sensoren en payloads — bediend door gecertificeerde, ervaren piloten.",
-    "badgeEasa": "EASA Specifieke Categorie",
-    "badgeDji": "Enterprise DJI Partner",
-    "badgeLidar": "LiDAR Gecertificeerd",
-    "badgeWeather": "Alle-Weersoperaties",
-    "deployLabel": "[ Zet Ons Vloot In ]",
-    "ctaTitle": "Klaar om uw missie te starten?",
-    "ctaDesc": "Vertel ons over uw project en wij koppelen het juiste platform, de juiste sensoren en crew aan uw specifieke behoeften.",
-    "ctaButton": "Vloot Briefing Aanvragen"
   },
   "common": {
     "howWeWork": "Onze Aanpak",
