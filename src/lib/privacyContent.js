@@ -3,8 +3,8 @@
  * by pages/Privacy.jsx. Blocks: p (paragraph), ul (list), table ({ head, rows }).
  *
  * Keep in step with what the site actually does (lib/consent.js, the HubSpot
- * form, hosting). Retention periods are proposals awaiting the owner's
- * confirmation (2026-11-02).
+ * form, hosting). The Google Analytics retention stated here (14 months) must
+ * match the GA4 property setting (Admin > Data retention).
  */
 
 export const PRIVACY_VERSION = '2026-11-02';
@@ -17,6 +17,8 @@ const COOKIE_ROWS = {
     ['_gcl_au', 'Google', 'Google Ads: measuring campaign results', '90 days', 'Marketing'],
     ['__cf_bm', 'Cloudflare (via HubSpot)', 'Bot protection for HubSpot services', '30 minutes', 'Necessary when HubSpot is loaded'],
     ['_GRECAPTCHA', 'Google', 'reCAPTCHA spam protection on the contact form', '6 months', 'Necessary for the form'],
+    ['test_cookie', 'Google', 'Google Ads: checks whether the browser accepts cookies', '15 minutes', 'Marketing'],
+    ['NID and other Google cookies', 'Google', 'Set by Google Maps, only if you choose to load the map on the contact page', 'up to 6 months', 'Only after you load the map'],
   ],
   nl: [
     ['aerata_consent', 'Aerata', 'Slaat uw cookiekeuze op', '12 maanden', 'Noodzakelijk'],
@@ -25,6 +27,8 @@ const COOKIE_ROWS = {
     ['_gcl_au', 'Google', 'Google Ads: meten van campagneresultaten', '90 dagen', 'Marketing'],
     ['__cf_bm', 'Cloudflare (via HubSpot)', 'Botbescherming voor HubSpot-diensten', '30 minuten', 'Noodzakelijk wanneer HubSpot geladen is'],
     ['_GRECAPTCHA', 'Google', 'reCAPTCHA-spambescherming op het contactformulier', '6 maanden', 'Noodzakelijk voor het formulier'],
+    ['test_cookie', 'Google', 'Google Ads: controleert of de browser cookies accepteert', '15 minuten', 'Marketing'],
+    ['NID en andere Google-cookies', 'Google', 'Geplaatst door Google Maps, alleen als u de kaart op de contactpagina laadt', 'tot 6 maanden', 'Alleen nadat u de kaart laadt'],
   ],
   el: [
     ['aerata_consent', 'Aerata', 'Αποθηκεύει την επιλογή σας για τα cookies', '12 μήνες', 'Απαραίτητο'],
@@ -33,6 +37,8 @@ const COOKIE_ROWS = {
     ['_gcl_au', 'Google', 'Google Ads: μέτρηση αποτελεσμάτων καμπανιών', '90 ημέρες', 'Μάρκετινγκ'],
     ['__cf_bm', 'Cloudflare (μέσω HubSpot)', 'Προστασία από bots για τις υπηρεσίες HubSpot', '30 λεπτά', 'Απαραίτητο όταν φορτώνεται το HubSpot'],
     ['_GRECAPTCHA', 'Google', 'Προστασία reCAPTCHA από spam στη φόρμα επικοινωνίας', '6 μήνες', 'Απαραίτητο για τη φόρμα'],
+    ['test_cookie', 'Google', 'Google Ads: ελέγχει αν ο φυλλομετρητής δέχεται cookies', '15 λεπτά', 'Μάρκετινγκ'],
+    ['NID και άλλα cookies της Google', 'Google', 'Τα ορίζει το Google Maps, μόνο αν επιλέξετε να φορτώσετε τον χάρτη στη σελίδα επικοινωνίας', 'έως 6 μήνες', 'Μόνο αφού φορτώσετε τον χάρτη'],
   ],
 };
 
@@ -75,7 +81,7 @@ export const PRIVACY = {
         { p: 'Where a project requires it, we share project information with partners working on that project, such as Kooi B.V. for site security. We may also share data when the law requires it.' },
       ] },
       { title: 'Transfers outside the EU', blocks: [
-        { p: 'Some of these providers, or their parent companies, are based in the United States. Transfers to US companies certified under the EU-US Data Privacy Framework rely on the European Commission\'s adequacy decision of 10 July 2023; otherwise they rely on the European Commission\'s Standard Contractual Clauses.' },
+        { p: 'Some of these providers, or their parent companies, are based in the United States. Transfers to US companies certified under the EU-US Data Privacy Framework rely on the European Commission\'s adequacy decision of 10 July 2023; otherwise they rely on the European Commission\'s Standard Contractual Clauses. You can ask us for a copy of these safeguards at info@aerata.com.' },
       ] },
       { title: 'How long we keep data', blocks: [
         { ul: [
@@ -141,7 +147,7 @@ export const PRIVACY = {
         { p: 'Waar een project dat vereist, delen we projectinformatie met partners die aan dat project werken, zoals Kooi B.V. voor beveiliging van locaties. We kunnen gegevens ook delen als de wet dat verplicht.' },
       ] },
       { title: 'Doorgifte buiten de EU', blocks: [
-        { p: 'Sommige van deze dienstverleners, of hun moederbedrijven, zijn gevestigd in de Verenigde Staten. Doorgifte aan Amerikaanse bedrijven die gecertificeerd zijn onder het EU-VS Data Privacy Framework is gebaseerd op het adequaatheidsbesluit van de Europese Commissie van 10 juli 2023; in andere gevallen op de standaardcontractbepalingen van de Europese Commissie.' },
+        { p: 'Sommige van deze dienstverleners, of hun moederbedrijven, zijn gevestigd in de Verenigde Staten. Doorgifte aan Amerikaanse bedrijven die gecertificeerd zijn onder het EU-VS Data Privacy Framework is gebaseerd op het adequaatheidsbesluit van de Europese Commissie van 10 juli 2023; in andere gevallen op de standaardcontractbepalingen van de Europese Commissie. U kunt een kopie van deze waarborgen opvragen via info@aerata.com.' },
       ] },
       { title: 'Hoe lang we gegevens bewaren', blocks: [
         { ul: [
@@ -207,7 +213,7 @@ export const PRIVACY = {
         { p: 'Όπου το απαιτεί ένα έργο, μοιραζόμαστε πληροφορίες του έργου με συνεργάτες που εργάζονται σε αυτό, όπως η Kooi B.V. για τη φύλαξη χώρων. Μπορεί επίσης να διαβιβάσουμε δεδομένα όταν το επιβάλλει ο νόμος.' },
       ] },
       { title: 'Διαβιβάσεις εκτός ΕΕ', blocks: [
-        { p: 'Ορισμένοι από τους παρόχους αυτούς, ή οι μητρικές τους εταιρείες, έχουν έδρα στις Ηνωμένες Πολιτείες. Οι διαβιβάσεις προς εταιρείες των ΗΠΑ που είναι πιστοποιημένες στο Πλαίσιο Προστασίας Δεδομένων ΕΕ-ΗΠΑ στηρίζονται στην απόφαση επάρκειας της Ευρωπαϊκής Επιτροπής της 10ης Ιουλίου 2023· σε άλλες περιπτώσεις, στις Τυποποιημένες Συμβατικές Ρήτρες της Ευρωπαϊκής Επιτροπής.' },
+        { p: 'Ορισμένοι από τους παρόχους αυτούς, ή οι μητρικές τους εταιρείες, έχουν έδρα στις Ηνωμένες Πολιτείες. Οι διαβιβάσεις προς εταιρείες των ΗΠΑ που είναι πιστοποιημένες στο Πλαίσιο Προστασίας Δεδομένων ΕΕ-ΗΠΑ στηρίζονται στην απόφαση επάρκειας της Ευρωπαϊκής Επιτροπής της 10ης Ιουλίου 2023· σε άλλες περιπτώσεις, στις Τυποποιημένες Συμβατικές Ρήτρες της Ευρωπαϊκής Επιτροπής. Μπορείτε να ζητήσετε αντίγραφο των εγγυήσεων αυτών στο info@aerata.com.' },
       ] },
       { title: 'Πόσο διάστημα διατηρούμε τα δεδομένα', blocks: [
         { ul: [
