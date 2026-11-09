@@ -2,38 +2,11 @@
 import React from 'react';
 import { useLang } from '../../lib/LanguageContext';
 import { Marquee, Reveal, Scramble, CountUp } from '../motion';
+import { PARTNERS, partnerText } from '../../lib/partners';
 
-const partners = [
-  { name: 'iSOLAR',                         relationship: 'Solar farm maintenance company' },
-  { name: 'Voltalia',                        relationship: 'Renewable energy producer' },
-  { name: 'EDF Renewables',                 relationship: 'Global energy company' },
-  { name: 'VITO',                            relationship: 'Flemish research institute' },
-  { name: 'EYDAP',                           relationship: 'Water utility provider' },
-  { name: 'Elicas Group',                    relationship: 'Wind energy developer' },
-  { name: 'Sunel',                           relationship: 'Solar energy company' },
-  { name: 'ABO WIND',                        relationship: 'Renewable energy developer' },
-  { name: 'Metlen',                           relationship: 'Renewable energy company' },
-  { name: 'VALOREM',                         relationship: 'Renewable energy developer' },
-  { name: 'STR Power Group',                 relationship: 'Solar EPC contractor' },
-  { name: 'DJI Enterprise',                  relationship: 'Drone technology manufacturer' },
-];
+const partners = PARTNERS.filter((p) => p.home !== false);
 
 const rows = [partners.slice(0, 6), partners.slice(6)];
-
-/** Greek partner descriptions (names stay as they are). */
-const RELATIONSHIP_EL = {
-  'Solar farm maintenance company': 'Εταιρεία συντήρησης φωτοβολταϊκών',
-  'Renewable energy producer': 'Παραγωγός ανανεώσιμης ενέργειας',
-  'Global energy company': 'Διεθνής εταιρεία ενέργειας',
-  'Flemish research institute': 'Φλαμανδικό ερευνητικό ινστιτούτο',
-  'Water utility provider': 'Εταιρεία ύδρευσης',
-  'Wind energy developer': 'Εταιρεία ανάπτυξης αιολικών',
-  'Solar energy company': 'Εταιρεία ηλιακής ενέργειας',
-  'Renewable energy developer': 'Εταιρεία ανάπτυξης ΑΠΕ',
-  'Renewable energy company': 'Εταιρεία ανανεώσιμης ενέργειας',
-  'Solar EPC contractor': 'Εργολάβος EPC φωτοβολταϊκών',
-  'Drone technology manufacturer': 'Κατασκευαστής τεχνολογίας drone',
-};
 
 function PartnerChip({ partner }) {
   const { lang } = useLang();
@@ -45,7 +18,7 @@ function PartnerChip({ partner }) {
           {partner.name}
         </span>
         <span className="block text-xs text-muted-foreground mt-0.5 whitespace-nowrap">
-          {lang === 'el' ? RELATIONSHIP_EL[partner.relationship] || partner.relationship : partner.relationship}
+          {partnerText(partner.rel, lang)}
         </span>
       </div>
     </div>

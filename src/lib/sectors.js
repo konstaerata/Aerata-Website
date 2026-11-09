@@ -166,7 +166,7 @@ export const SECTORS = [
       security: {
         media: [
           { id: 'SAF-01', desc: 'Kooi mobile camera unit on a rail construction site.', src: MEDIA.photo_saf_01 },
-          { id: 'SAF-02', desc: 'AI-generated illustration of a Kooi camera unit with a DJI drone on a site.', src: MEDIA.photo_saf_02, ai: true },
+          { id: 'SAF-02', desc: 'AI-generated illustration of a Kooi camera unit with a DJI drone on a site.', src: MEDIA.photo_saf_02, ai: true, aiBadge: false },
         ],
       },
       publicSafety: {
