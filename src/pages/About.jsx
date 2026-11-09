@@ -7,23 +7,7 @@ import { Reveal, Stagger, Item, Spotlight, CountUp } from '../components/motion'
 import { MEDIA } from '../lib/media';
 import { useLang } from '../lib/LanguageContext';
 import { breadcrumbSchema } from '../lib/schemas';
-
-const partners = [
-  { name: 'iSOLAR',                        sector: 'Solar Energy',          rel: 'Solar farm maintenance company' },
-  { name: 'Voltalia',                       sector: 'Renewable Energy',      rel: 'Renewable energy producer' },
-  { name: 'EDF Renewables',                sector: 'Renewable Energy',      rel: 'Global energy company' },
-  { name: 'VITO',                           sector: 'Research',              rel: 'Flemish research institute' },
-  { name: 'EYDAP',                          sector: 'Water Infrastructure',  rel: 'Water utility provider' },
-  { name: 'Elicas Group',                   sector: 'Wind Energy',           rel: 'Wind energy developer' },
-  { name: 'Sunel',                          sector: 'Solar Energy',          rel: 'Solar energy company' },
-  { name: 'ABO WIND',                       sector: 'Wind & Solar',          rel: 'Renewable energy developer' },
-  { name: 'Metlen',                          sector: 'Renewable Energy',      rel: 'Renewable energy company' },
-  { name: 'VALOREM',                        sector: 'Renewable Energy',      rel: 'Renewable energy developer' },
-  { name: 'STR Power Group',               sector: 'Solar Energy',          rel: 'Solar EPC contractor' },
-  { name: 'Embiria Consultancy',            sector: 'Construction',          rel: 'Engineering consultancy' },
-  { name: 'DJI Enterprise',                sector: 'Technology',            rel: 'Drone technology manufacturer' },
-];
-
+import { PARTNERS as partners, partnerText } from '../lib/partners';
 
 const team = [
   { name: 'Spyridon Konstantinopoulos',     role: 'Founder',                photo: '/team/spyridon-konstantinopoulos.webp', linkedin: 'https://www.linkedin.com/in/spyridon-konstantinopoulos-195ab734/' },
@@ -31,7 +15,6 @@ const team = [
   { name: 'Markos Foros',                   role: 'Client Relations',       photo: '/team/markos-foros.webp', linkedin: 'https://www.linkedin.com/in/markosforos/' },
   { name: 'Alexandros Lapokonstantakis',    role: 'Operations',             photo: '/team/alexandros-lapokonstantakis.webp', linkedin: 'https://www.linkedin.com/in/alexander-lapokonstantakis-805b30414/' },
   { name: 'Spyros Karapanagiotis',          role: 'Compliance',             photo: '/team/spyros-karapanagiotis.webp', linkedin: 'https://www.linkedin.com/in/spyros-karapanagiotis-833ba3412/' },
-  { name: 'Michalis Michalas',              role: 'Research & Development', photo: '/team/michalis-michalas.webp', linkedin: 'https://www.linkedin.com/in/michalis-michalas-b37aa3177/' },
 ];
 
 const initials = (name) => name.split(' ').map((n) => n[0]).join('');
@@ -44,6 +27,7 @@ const LinkedInIcon = ({ className = '' }) => (
 
 /** All partners at once, in a grid with sector tags. */
 function PartnersWall() {
+  const { lang } = useLang();
   return (
     <>
       <Stagger gap={0.04} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -54,13 +38,13 @@ function PartnersWall() {
               className="group h-full flex flex-col justify-between gap-6 p-6 rounded-xl border border-border/60 bg-card transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_-18px_hsl(210_35%_12%/0.25)]"
             >
               <span className="self-start inline-flex items-center px-2.5 py-1 rounded text-[10px] font-display font-bold tracking-[0.2em] uppercase text-[hsl(88_55%_24%)] bg-lime/10 border border-lime/30">
-                {p.sector}
+                {partnerText(p.sector, lang)}
               </span>
               <div>
                 <h3 className="font-display font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors">
                   {p.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1.5">{p.rel}</p>
+                <p className="text-sm text-muted-foreground mt-1.5">{partnerText(p.rel, lang)}</p>
               </div>
             </Spotlight>
           </Item>

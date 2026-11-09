@@ -20,7 +20,7 @@ export const SERVICE_META = {
   'power-line': { sectors: ['grid'], slot: { id: 'SRV-03', desc: 'Power line inspection.', src: MEDIA.infra_report_tower_audit_image } },
   lidar: { sectors: ['grid', 'build', 'infra'], slot: { id: 'SRV-04', desc: 'LiDAR point cloud.', src: MEDIA.surveying_section_lidar_image } },
   mapping: { sectors: ['build', 'renewables', 'environmental'], slot: { id: 'SRV-05', desc: 'Orthophoto map.', src: MEDIA.surveying_section_orthophotos_image } },
-  security: { sectors: ['safety', 'build', 'renewables'], slot: { id: 'SRV-06', desc: 'AI-generated illustration of a Kooi camera unit with a DJI drone on a site.', src: MEDIA.photo_saf_02, ai: true } },
+  security: { sectors: ['safety', 'build', 'renewables'], slot: { id: 'SRV-06', desc: 'AI-generated illustration of a Kooi camera unit with a DJI drone on a site.', src: MEDIA.photo_saf_02, ai: true, aiBadge: false } },
 };
 
 const SECTOR_BY_KEY = Object.fromEntries(SECTORS.map((s) => [s.key, s]));

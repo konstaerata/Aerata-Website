@@ -36,8 +36,9 @@ export default function MediaSlot({ slot, alt, ratio = 'aspect-[4/3]', className
       {slot.src ? (
         <>
           <OptimizedImage src={slot.src} alt={slot.ai ? slot.desc : alt || slot.desc || ''} width={1200} height={900} fill sizes={sizes} />
-          {/* AI-generated images are labelled visibly (EU AI Act art. 50). */}
-          {slot.ai && <span className="absolute left-3 bottom-3 px-2 py-1 rounded bg-obsidian/85 text-white text-[11px] font-mono tracking-wide">{t('common.aiIllustration')}</span>}
+          {/* AI-generated images are labelled visibly (EU AI Act art. 50), unless the
+              slot sets aiBadge: false; the alt text still discloses it. */}
+          {slot.ai && slot.aiBadge !== false && <span className="absolute left-3 bottom-3 px-2 py-1 rounded bg-obsidian/85 text-white text-[11px] font-mono tracking-wide">{t('common.aiIllustration')}</span>}
         </>
       ) : (
         <SlotPlaceholder id={slot.id} desc={slot.desc} />
